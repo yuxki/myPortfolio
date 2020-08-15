@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/yuxki/myPortfolio#readme",
   "devDependencies": {
+    "eslint-plugin-react-hooks": "^4.0.8",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
     "webpack": "^4.44.1",

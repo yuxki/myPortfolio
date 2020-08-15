@@ -103,7 +103,7 @@ export default function DrawerMenu() {
 						<div className={classes.drawerLeft}>
 							<List>
 								{['Home', 'Works', 'About'].map((text, index) => (
-									<ListItem>
+									<ListItem key={text}>
 										<ListItemText primary={text} classes={{ primary: classes.primary }} />
 									</ListItem>
 								))}
