@@ -43,10 +43,8 @@ const useStatefulStyles = makeStyles({
 });
 
 export default function ContentChange(props) {
-	console.log(props.test);
 	const classes = useStyles();
 	const statefulClasses = useStatefulStyles(props);
-	console.log(this.state);
 	const [changeContent, setChangeContent] = React.useState(false);
 
 	const handleChangeContent = () => {

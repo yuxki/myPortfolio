@@ -1272,15 +1272,15 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 
 /***/ }),
 
-/***/ "./node_modules/@material-ui/icons/ExpandMore.js":
+/***/ "./node_modules/@material-ui/icons/ExpandLess.js":
 /*!*******************************************************!*\
-  !*** ./node_modules/@material-ui/icons/ExpandMore.js ***!
+  !*** ./node_modules/@material-ui/icons/ExpandLess.js ***!
   \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\n\nvar _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ \"./node_modules/@material-ui/icons/utils/createSvgIcon.js\"));\n\nvar _default = (0, _createSvgIcon.default)(_react.default.createElement(\"path\", {\n  d: \"M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z\"\n}), 'ExpandMore');\n\nexports.default = _default;\n\n//# sourceURL=webpack:///./node_modules/@material-ui/icons/ExpandMore.js?");
+eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\n\nvar _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ \"./node_modules/@material-ui/icons/utils/createSvgIcon.js\"));\n\nvar _default = (0, _createSvgIcon.default)(_react.default.createElement(\"path\", {\n  d: \"M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z\"\n}), 'ExpandLess');\n\nexports.default = _default;\n\n//# sourceURL=webpack:///./node_modules/@material-ui/icons/ExpandLess.js?");
 
 /***/ }),
 
@@ -2567,6 +2567,18 @@ eval("__webpack_require__.r(__webpack_exports__);\nvar isProduction = \"developm
 
 /***/ }),
 
+/***/ "./src/TopPage.tsx":
+/*!*************************!*\
+  !*** ./src/TopPage.tsx ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst footer_1 = __webpack_require__(/*! ./footer */ \"./src/footer.tsx\");\nconst navUpward_1 = __webpack_require__(/*! ./navUpward */ \"./src/navUpward.tsx\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    staticArea: {\n        position: 'static',\n    },\n    topPageArea: {\n        display: 'block',\n        position: 'relative',\n        height: '458px',\n        margin: theme.spacing(0, 10),\n    },\n    footerNavUpward: {\n        position: 'absolute',\n        top: 0,\n        right: theme.spacing(24),\n    }\n}));\nfunction TopPage() {\n    const classes = useStyles();\n    return (React.createElement(\"div\", { className: classes.staticArea },\n        React.createElement(\"div\", { className: classes.topPageArea },\n            React.createElement(\"div\", { className: classes.footerNavUpward },\n                React.createElement(navUpward_1.default, null))),\n        React.createElement(footer_1.default, null)));\n}\nexports.default = TopPage;\n\n\n//# sourceURL=webpack:///./src/TopPage.tsx?");
+
+/***/ }),
+
 /***/ "./src/app.tsx":
 /*!*********************!*\
   !*** ./src/app.tsx ***!
@@ -2575,31 +2587,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nvar isProduction = \"developm
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nconst header_1 = __webpack_require__(/*! ./header */ \"./src/header.tsx\");\nconst billboard_1 = __webpack_require__(/*! ./billboard */ \"./src/billboard.tsx\");\nconst contentChange_1 = __webpack_require__(/*! ./contentChange */ \"./src/contentChange.tsx\");\nclass App extends React.Component {\n    render() {\n        return (React.createElement(\"div\", null,\n            React.createElement(header_1.default, null),\n            React.createElement(billboard_1.default, null),\n            React.createElement(contentChange_1.default, { test: \"-100\" })));\n    }\n}\nReactDOM.render(React.createElement(App, null), document.querySelector('#app'));\n\n\n//# sourceURL=webpack:///./src/app.tsx?");
-
-/***/ }),
-
-/***/ "./src/billboard.tsx":
-/*!***************************!*\
-  !*** ./src/billboard.tsx ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst Typography_1 = __webpack_require__(/*! @material-ui/core/Typography */ \"./node_modules/@material-ui/core/esm/Typography/index.js\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    h2: {\n        fontWeight: 'lighter',\n        display: 'flex',\n        fontSize: 47,\n        margin: theme.spacing(1, 0),\n        textAlign: 'center'\n    },\n    h6: {\n        fontWeight: 'lighter',\n        display: 'flex',\n        fontSize: 12,\n        textAlign: 'center'\n    },\n    billboard: {\n        width: '100%',\n        height: '100%',\n    },\n    billboardContent: {\n        display: 'flex',\n        flexDirection: 'column',\n        padding: theme.spacing(18, 10, 0, 10),\n        justifyContent: 'center',\n        alignItems: 'center',\n    }\n}));\nfunction Billboard() {\n    const classes = useStyles();\n    return (React.createElement(\"div\", { className: classes.billboard },\n        React.createElement(\"div\", { className: classes.billboardContent },\n            React.createElement(\"img\", { src: 'logo.png', style: { display: 'flex', width: 78, height: 89 } }),\n            React.createElement(Typography_1.default, { variant: \"h2\", classes: { h2: classes.h2 } }, \"Atelier Hiroyuki\"),\n            React.createElement(Typography_1.default, { variant: \"h6\", classes: { h6: classes.h6 } }, \"\\u4F5C\\u308C\\u308B\\u3092\\u3001\\u697D\\u3057\\u304F\\u3059\\u308B\\u305F\\u3081\\u306B\"))));\n}\nexports.default = Billboard;\n\n\n//# sourceURL=webpack:///./src/billboard.tsx?");
-
-/***/ }),
-
-/***/ "./src/contentChange.tsx":
-/*!*******************************!*\
-  !*** ./src/contentChange.tsx ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst clsx_1 = __webpack_require__(/*! clsx */ \"./node_modules/clsx/dist/clsx.m.js\");\nconst Typography_1 = __webpack_require__(/*! @material-ui/core/Typography */ \"./node_modules/@material-ui/core/esm/Typography/index.js\");\nconst ExpandMore_1 = __webpack_require__(/*! @material-ui/icons/ExpandMore */ \"./node_modules/@material-ui/icons/ExpandMore.js\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    contentChange: {\n        display: 'flex',\n        backgroundColor: '#F2BE22',\n        width: '270px',\n        height: '53px',\n        position: 'absolute',\n        bottom: 0,\n        right: theme.spacing(10),\n        justifyContent: 'center',\n        alignItems: 'center',\n    },\n    root: {\n        display: 'flex',\n        color: '#FFFFFF',\n    },\n    h4: {\n        color: '#FFFFFF',\n        display: 'flex',\n        fontSize: '15px',\n    },\n    // 以下切り替えアニメーション部分\n    fadeOut: {\n        transition: 'all 1.5s',\n        opacity: '0',\n    },\n}));\nconst useStatefulStyles = styles_1.makeStyles({\n    moveOutContentChange: {\n        transform: 'translateY' + `(${props => props.test}px)`,\n        transitionTimingFunction: 'ease-out',\n        transitionDuration: '1s',\n    },\n});\nfunction ContentChange(props) {\n    console.log(props.test);\n    const classes = useStyles();\n    const statefulClasses = useStatefulStyles(props);\n    console.log(this.state);\n    const [changeContent, setChangeContent] = React.useState(false);\n    const handleChangeContent = () => {\n        setChangeContent(true);\n    };\n    return (React.createElement(\"div\", { className: clsx_1.default(classes.contentChange, changeContent && classes.fadeOut, changeContent && statefulClasses.moveOutContentChange), onClick: handleChangeContent },\n        React.createElement(ExpandMore_1.default, { fontSize: 'large', classes: { root: classes.root } }),\n        React.createElement(Typography_1.default, { variant: \"h4\", classes: { h4: classes.h4 } }, \"works\")));\n}\nexports.default = ContentChange;\n\n\n//# sourceURL=webpack:///./src/contentChange.tsx?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nconst header_1 = __webpack_require__(/*! ./header */ \"./src/header.tsx\");\nconst TopPage_1 = __webpack_require__(/*! ./TopPage */ \"./src/TopPage.tsx\");\nclass App extends React.Component {\n    render() {\n        return (React.createElement(\"div\", null,\n            React.createElement(header_1.default, null),\n            React.createElement(TopPage_1.default, null)));\n    }\n}\nReactDOM.render(React.createElement(App, null), document.querySelector('#app'));\n\n\n//# sourceURL=webpack:///./src/app.tsx?");
 
 /***/ }),
 
@@ -2611,7 +2599,19 @@ eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst clsx_1 = __webpack_require__(/*! clsx */ \"./node_modules/clsx/dist/clsx.m.js\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst Drawer_1 = __webpack_require__(/*! @material-ui/core/Drawer */ \"./node_modules/@material-ui/core/esm/Drawer/index.js\");\nconst List_1 = __webpack_require__(/*! @material-ui/core/List */ \"./node_modules/@material-ui/core/esm/List/index.js\");\nconst IconButton_1 = __webpack_require__(/*! @material-ui/core/IconButton */ \"./node_modules/@material-ui/core/esm/IconButton/index.js\");\nconst Menu_1 = __webpack_require__(/*! @material-ui/icons/Menu */ \"./node_modules/@material-ui/icons/Menu.js\");\nconst Close_1 = __webpack_require__(/*! @material-ui/icons/Close */ \"./node_modules/@material-ui/icons/Close.js\");\nconst ListItem_1 = __webpack_require__(/*! @material-ui/core/ListItem */ \"./node_modules/@material-ui/core/esm/ListItem/index.js\");\nconst ListItemText_1 = __webpack_require__(/*! @material-ui/core/ListItemText */ \"./node_modules/@material-ui/core/esm/ListItemText/index.js\");\nconst Typography_1 = __webpack_require__(/*! @material-ui/core/Typography */ \"./node_modules/@material-ui/core/esm/Typography/index.js\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    primary: {\n        fontSize: 44,\n        margin: theme.spacing(1, 0),\n    },\n    h2: {\n        fontWeight: 'lighter',\n        display: 'flex',\n        fontSize: 47,\n        margin: theme.spacing(1, 0),\n        textAlign: 'center'\n    },\n    hide: {\n        display: 'none',\n    },\n    drawer: {\n        width: '100%',\n        flexShrink: 0,\n    },\n    drawerPaper: {\n        width: '100%',\n        backgroundColor: '#F2BE22',\n    },\n    drawerContent: {\n        padding: theme.spacing(12, 10),\n    },\n    drawerHeader: {\n        display: 'flex',\n        alignItems: 'center',\n        justifyContent: 'flex-end',\n    },\n    drawerBody: {\n        display: 'flex',\n    },\n    drawerLeft: {\n        display: 'inherit',\n        flex: 1,\n        justifyContent: 'center',\n        alignItems: 'center',\n    },\n    drawerRight: {\n        display: 'inherit',\n        flexDirection: 'column',\n        flex: 1,\n        justifyContent: 'center',\n        alignItems: 'center',\n    },\n}));\nfunction DrawerMenu() {\n    const classes = useStyles();\n    const [open, setOpen] = React.useState(false);\n    const handleDrawerOpen = () => {\n        setOpen(true);\n    };\n    const handleDrawerClose = () => {\n        setOpen(false);\n    };\n    return (React.createElement(\"div\", null,\n        React.createElement(IconButton_1.default, { color: \"inherit\", \"aria-label\": \"open drawer\", edge: \"end\", onClick: handleDrawerOpen, className: clsx_1.default(open && classes.hide) },\n            React.createElement(Menu_1.default, null)),\n        React.createElement(Drawer_1.default, { className: classes.drawer, variant: \"persistent\", anchor: \"right\", open: open, classes: {\n                paper: classes.drawerPaper,\n            } },\n            React.createElement(\"div\", { className: classes.drawerContent },\n                React.createElement(\"div\", { className: classes.drawerHeader },\n                    React.createElement(IconButton_1.default, { onClick: handleDrawerClose },\n                        React.createElement(Close_1.default, null))),\n                React.createElement(\"div\", { className: classes.drawerBody },\n                    React.createElement(\"div\", { className: classes.drawerLeft },\n                        React.createElement(List_1.default, null, ['Home', 'Works', 'About'].map((text, index) => (React.createElement(ListItem_1.default, { key: text },\n                            React.createElement(ListItemText_1.default, { primary: text, classes: { primary: classes.primary } })))))),\n                    React.createElement(\"div\", { className: classes.drawerRight },\n                        React.createElement(\"img\", { src: 'logo.png', style: { display: 'flex', width: 78, height: 89 } }),\n                        React.createElement(Typography_1.default, { variant: \"h2\", classes: { h2: classes.h2 } }, \"Atelier Hiroyuki\")))))));\n}\nexports.default = DrawerMenu;\n\n\n//# sourceURL=webpack:///./src/drawerMenu.tsx?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst clsx_1 = __webpack_require__(/*! clsx */ \"./node_modules/clsx/dist/clsx.m.js\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst Drawer_1 = __webpack_require__(/*! @material-ui/core/Drawer */ \"./node_modules/@material-ui/core/esm/Drawer/index.js\");\nconst IconButton_1 = __webpack_require__(/*! @material-ui/core/IconButton */ \"./node_modules/@material-ui/core/esm/IconButton/index.js\");\nconst Menu_1 = __webpack_require__(/*! @material-ui/icons/Menu */ \"./node_modules/@material-ui/icons/Menu.js\");\nconst Close_1 = __webpack_require__(/*! @material-ui/icons/Close */ \"./node_modules/@material-ui/icons/Close.js\");\nconst menuList_1 = __webpack_require__(/*! ./menuList */ \"./src/menuList.tsx\");\nconst logo_1 = __webpack_require__(/*! ./logo */ \"./src/logo.tsx\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    hide: {\n        display: 'none',\n    },\n    drawer: {\n        width: '100%',\n        flexShrink: 0,\n    },\n    drawerPaper: {\n        width: '100%',\n        backgroundColor: '#F2BE22',\n    },\n    drawerContent: {\n        padding: theme.spacing(12, 10),\n    },\n    drawerHeader: {\n        display: 'flex',\n        alignItems: 'center',\n        justifyContent: 'flex-end',\n    },\n    drawerBody: {\n        display: 'flex',\n    },\n    drawerLeft: {\n        display: 'inherit',\n        flex: 1,\n        justifyContent: 'center',\n        alignItems: 'center',\n    },\n    drawerRight: {\n        display: 'inherit',\n        flex: 1,\n        justifyContent: 'center',\n        alignItems: 'center',\n    },\n}));\nfunction DrawerMenu() {\n    const classes = useStyles();\n    const [open, setOpen] = React.useState(false);\n    const handleDrawerOpen = () => {\n        setOpen(true);\n    };\n    const handleDrawerClose = () => {\n        setOpen(false);\n    };\n    return (React.createElement(\"div\", null,\n        React.createElement(IconButton_1.default, { color: \"inherit\", \"aria-label\": \"open drawer\", edge: \"end\", onClick: handleDrawerOpen, className: clsx_1.default(open && classes.hide) },\n            React.createElement(Menu_1.default, null)),\n        React.createElement(Drawer_1.default, { className: classes.drawer, variant: \"persistent\", anchor: \"right\", open: open, classes: {\n                paper: classes.drawerPaper,\n            } },\n            React.createElement(\"div\", { className: classes.drawerContent },\n                React.createElement(\"div\", { className: classes.drawerHeader },\n                    React.createElement(IconButton_1.default, { onClick: handleDrawerClose },\n                        React.createElement(Close_1.default, null))),\n                React.createElement(\"div\", { className: classes.drawerBody },\n                    React.createElement(\"div\", { className: classes.drawerLeft },\n                        React.createElement(menuList_1.default, null)),\n                    React.createElement(\"div\", { className: classes.drawerRight },\n                        React.createElement(logo_1.default, null)))))));\n}\nexports.default = DrawerMenu;\n\n\n//# sourceURL=webpack:///./src/drawerMenu.tsx?");
+
+/***/ }),
+
+/***/ "./src/footer.tsx":
+/*!************************!*\
+  !*** ./src/footer.tsx ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst menuList_1 = __webpack_require__(/*! ./menuList */ \"./src/menuList.tsx\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    footerArea: {\n        backgroundColor: '#F2BE22',\n        position: 'absolute',\n        display: 'flex',\n        bottom: 0,\n        width: '100%',\n        height: '400px',\n        justifyContent: 'flex-end',\n    },\n    menuArea: {\n        display: 'inherit',\n        paddingRight: theme.spacing(10),\n        marginTop: theme.spacing(10),\n    },\n}));\nfunction Footer() {\n    const classes = useStyles();\n    return (React.createElement(\"div\", { className: classes.footerArea },\n        React.createElement(\"div\", { className: classes.menuArea },\n            React.createElement(menuList_1.default, null))));\n}\nexports.default = Footer;\n\n\n//# sourceURL=webpack:///./src/footer.tsx?");
 
 /***/ }),
 
@@ -2623,7 +2623,43 @@ eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst drawerMenu_1 = __webpack_require__(/*! ./drawerMenu */ \"./src/drawerMenu.tsx\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    header: {\n        width: '100%',\n        height: theme.spacing(15),\n    },\n    headerContent: {\n        display: 'flex',\n        padding: theme.spacing(12, 10, 0, 10),\n        alignItems: 'center',\n        justifyContent: 'flex-end',\n    },\n}));\nfunction Header() {\n    const classes = useStyles();\n    return (React.createElement(\"header\", { className: classes.header },\n        React.createElement(\"div\", { className: classes.headerContent },\n            React.createElement(drawerMenu_1.default, null))));\n}\nexports.default = Header;\n\n\n//# sourceURL=webpack:///./src/header.tsx?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst drawerMenu_1 = __webpack_require__(/*! ./drawerMenu */ \"./src/drawerMenu.tsx\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    header: {\n        width: '100%',\n        height: theme.spacing(15),\n        marginBottom: theme.spacing(5),\n    },\n    headerContent: {\n        display: 'flex',\n        padding: theme.spacing(12, 10, 0, 10),\n        alignItems: 'center',\n        justifyContent: 'flex-end',\n    },\n}));\nfunction Header() {\n    const classes = useStyles();\n    return (React.createElement(\"header\", { className: classes.header },\n        React.createElement(\"div\", { className: classes.headerContent },\n            React.createElement(drawerMenu_1.default, null))));\n}\nexports.default = Header;\n\n\n//# sourceURL=webpack:///./src/header.tsx?");
+
+/***/ }),
+
+/***/ "./src/logo.tsx":
+/*!**********************!*\
+  !*** ./src/logo.tsx ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst Typography_1 = __webpack_require__(/*! @material-ui/core/Typography */ \"./node_modules/@material-ui/core/esm/Typography/index.js\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    logoArea: {\n        display: 'flex',\n        flexDirection: 'column',\n        alignItems: 'center',\n    },\n    h2: {\n        fontWeight: 'lighter',\n        display: 'flex',\n        fontSize: 47,\n        margin: theme.spacing(1, 0),\n        textAlign: 'center'\n    },\n}));\nfunction Logo() {\n    const classes = useStyles();\n    return (React.createElement(\"div\", { className: classes.logoArea },\n        React.createElement(\"img\", { src: 'logo.png', style: { display: 'flex', width: 78, height: 89 } }),\n        React.createElement(Typography_1.default, { variant: \"h2\", classes: { h2: classes.h2 } }, \"Atelier Hiroyuki\")));\n}\nexports.default = Logo;\n\n\n//# sourceURL=webpack:///./src/logo.tsx?");
+
+/***/ }),
+
+/***/ "./src/menuList.tsx":
+/*!**************************!*\
+  !*** ./src/menuList.tsx ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst List_1 = __webpack_require__(/*! @material-ui/core/List */ \"./node_modules/@material-ui/core/esm/List/index.js\");\nconst ListItem_1 = __webpack_require__(/*! @material-ui/core/ListItem */ \"./node_modules/@material-ui/core/esm/ListItem/index.js\");\nconst ListItemText_1 = __webpack_require__(/*! @material-ui/core/ListItemText */ \"./node_modules/@material-ui/core/esm/ListItemText/index.js\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    primary: {\n        fontSize: 44,\n        margin: theme.spacing(1, 0),\n    },\n    root: {\n        margin: 0,\n        padding: 0,\n    },\n}));\nfunction MenuList() {\n    const classes = useStyles();\n    return (React.createElement(List_1.default, { classes: { root: classes.root } }, ['Home', 'Works', 'About'].map((text, index) => (React.createElement(ListItem_1.default, { key: text, classes: { root: classes.root } },\n        React.createElement(ListItemText_1.default, { primary: text, classes: { primary: classes.primary } }))))));\n}\nexports.default = MenuList;\n\n\n//# sourceURL=webpack:///./src/menuList.tsx?");
+
+/***/ }),
+
+/***/ "./src/navUpward.tsx":
+/*!***************************!*\
+  !*** ./src/navUpward.tsx ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst styles_1 = __webpack_require__(/*! @material-ui/core/styles */ \"./node_modules/@material-ui/core/esm/styles/index.js\");\nconst ExpandLess_1 = __webpack_require__(/*! @material-ui/icons/ExpandLess */ \"./node_modules/@material-ui/icons/ExpandLess.js\");\nconst useStyles = styles_1.makeStyles((theme) => styles_1.createStyles({\n    navUpward: {\n        display: 'flex',\n        backgroundColor: '#F2BE22',\n        width: '56px',\n        height: '56px',\n        justifyContent: 'center',\n        alignItems: 'center',\n    },\n    root: {\n        display: 'inherit',\n        color: '#FFFFFF',\n    },\n}));\nfunction NavUpward() {\n    const classes = useStyles();\n    return (React.createElement(\"div\", { className: classes.navUpward },\n        React.createElement(ExpandLess_1.default, { fontSize: 'large', classes: { root: classes.root } })));\n}\nexports.default = NavUpward;\n\n\n//# sourceURL=webpack:///./src/navUpward.tsx?");
 
 /***/ })
 
