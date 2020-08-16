@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		header: {
 			width: '100%',
 			height: theme.spacing(15),
+			marginBottom : theme.spacing(5),
 		},
 		headerContent: {
 			display:'flex',

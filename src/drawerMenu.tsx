@@ -2,27 +2,14 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
+import MenuList from './menuList';
+import Logo from './logo';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		primary: {
-			fontSize: 44,
-			margin: theme.spacing(1,0),
-		},
-		h2: {
-			fontWeight: 'lighter',
-			display: 'flex',
-			fontSize: 47,
-			margin: theme.spacing(1,0),
-			textAlign: 'center'
-		},
 		hide: {
 			display: 'none',
 		},
@@ -53,7 +40,6 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		drawerRight: {
 			display: 'inherit',
-			flexDirection: 'column',
 			flex: 1,
 			justifyContent: 'center',
 			alignItems: 'center',
@@ -101,19 +87,10 @@ export default function DrawerMenu() {
 					</div>
 					<div className={classes.drawerBody}>
 						<div className={classes.drawerLeft}>
-							<List>
-								{['Home', 'Works', 'About'].map((text, index) => (
-									<ListItem key={text}>
-										<ListItemText primary={text} classes={{ primary: classes.primary }} />
-									</ListItem>
-								))}
-							</List>
+						<MenuList />
 						</div>
 						<div className={classes.drawerRight}>
-							<img src={'logo.png'} style={{ display: 'flex', width: 78, height: 89 }} />
-							<Typography variant="h2" classes={{ h2: classes.h2 }}>
-								Atelier Hiroyuki
-							</Typography>
+						<Logo />
 						</div>
 					</div>
 				</div>
