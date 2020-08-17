@@ -56,7 +56,7 @@ export default function ContentChange(props) {
 			className={clsx(classes.contentChange,
 				changeContent && classes.fadeOut,
 				changeContent && statefulClasses.moveOutContentChange)}
-			onClick={handleChangeContent}
+			onClick={props.incrementTopPageNum}
 		>
 			<ExpandMoreIcon
 				fontSize='large'

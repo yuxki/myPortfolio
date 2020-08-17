@@ -20,14 +20,25 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function Nav() {
+export default function Nav(props) {
 	const classes = useStyles();
+
 
 	return (
 		<div className={classes.navArea}>
-			<NavUpward />
-			<NavDownward />
+			<NavUpward
+				makePageNumToPositive={props.makePageNumToPositive}
+				featuredWorkLength={props.featuredWorkLength}
+				topPageNum={props.topPageNum}
+				setTopPageNum={props.setTopPageNum}
+				decrementTopPageNum={props.decrementTopPageNum}/>
+			<NavDownward
+				makePageNumToNegative={props.makePageNumToNegative}
+				featuredWorkLength={props.featuredWorkLength}
+				topPageNum={props.topPageNum}
+				setTopPageNum={props.setTopPageNum}
+				incrementTopPageNum={props.incrementTopPageNum}
+				/>
 		</div>
-
 	)
 }
