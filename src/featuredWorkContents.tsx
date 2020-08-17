@@ -15,11 +15,11 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-export default function FeaturedWork() {
+export default function FeaturedWorkContents(props) {
 	const classes = useStyles();
 	return (
 		<div className={classes.featuredWorkContent}>
-			<img src={"pawoon.jpg"} className={classes.primaryGraphicDesign} />
+			<img src={props.featuredWorkImgSrc[0]} className={classes.primaryGraphicDesign} />
 		</div>
 	)
 }

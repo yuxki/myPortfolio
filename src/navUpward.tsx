@@ -19,11 +19,16 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function NavUpward() {
+export default function NavUpward(props) {
 	const classes = useStyles();
 
+	// const navEvent = ;
+
 	return (
-		<div className={classes.navUpward}>
+		<div
+			className={classes.navUpward}
+			onClick={(props.topPageNum < 0)? props.makePageNumToPositive: props.decrementTopPageNum}
+		>
 			<ExpandLessIcon
 				fontSize='large'
 				classes={{ root: classes.root }}

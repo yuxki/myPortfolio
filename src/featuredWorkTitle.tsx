@@ -4,12 +4,10 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		workTitleContent: {
+		featuredWorkTitleArea: {
 			position: 'absolute',
 			bottom:0,
 			left: 0,
-			// margin:0,
-			// padding:0,
 		},
 		h2: {
 			fontSize: '66px',
@@ -18,12 +16,12 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-export default function WorkTitle() {
+export default function FeaturedWorkTitle(props) {
 	const classes = useStyles();
 	return (
-		<div className={classes.workTitleContent}>
+		<div className={classes.featuredWorkTitleArea}>
 			<Typography variant="h2" classes={{ h2: classes.h2 }}>
-				Graphics Design
+				{props.featuredWorkTitle}
 			</Typography>
 		</div>
 	)

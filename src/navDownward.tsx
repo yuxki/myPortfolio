@@ -1,4 +1,5 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -20,11 +21,16 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function NavDownward() {
+export default function NavDownward(props) {
 	const classes = useStyles();
+	const navEvent = (props.featuredWorkLength === (props.topPageNum))
+		? props.makePageNumToNegative
+		: props.incrementTopPageNum;
 
 	return (
-		<div className={classes.navDownward}>
+		<div
+			className={classes.navDownward}
+			onClick={navEvent}>
 			<ExpandMoreIcon
 				fontSize='large'
 				classes={{ root: classes.root }}
