@@ -1,4 +1,5 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		h2: {
 			fontSize: '66px',
-			fontWight: 'lighter',
+			fontWeight: 'lighter',
 		}
 	})
 );
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function FeaturedWorkTitle(props) {
 	const classes = useStyles();
 	return (
-		<div className={classes.featuredWorkTitleArea}>
+		<div className={clsx(classes.featuredWorkTitleArea)}>
 			<Typography variant="h2" classes={{ h2: classes.h2 }}>
 				{props.featuredWorkTitle}
 			</Typography>

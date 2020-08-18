@@ -1,4 +1,5 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
@@ -22,12 +23,13 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function NavUpward(props) {
 	const classes = useStyles();
 
-	// const navEvent = ;
+	const navEvent = (props.topPageNum < 0) ? props.makePageNumToPositive : props.decrementTopPageNum;
+	const emptyFunc = () => { };
 
 	return (
 		<div
 			className={classes.navUpward}
-			onClick={(props.topPageNum < 0)? props.makePageNumToPositive: props.decrementTopPageNum}
+			onClick={props.isAnimating ? emptyFunc : navEvent}
 		>
 			<ExpandLessIcon
 				fontSize='large'

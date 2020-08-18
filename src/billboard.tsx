@@ -1,4 +1,5 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Logo from './logo';
@@ -7,8 +8,8 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		billboardContent: {
 			position: 'absolute',
-			top : theme.spacing(13),
-			left:'50%',
+			top: theme.spacing(13),
+			left: '50%',
 			transform: 'translateX(-50%)',
 			display: 'flex',
 			flexDirection: 'column',
@@ -28,7 +29,7 @@ export default function Billboard() {
 	const classes = useStyles();
 
 	return (
-			<div className={classes.billboardContent}>
+			<div className={clsx(classes.billboardContent)}>
 				<Logo />
 				<Typography variant="h6" classes={{ h6: classes.h6 }}>
 					作れるを、楽しくするために
