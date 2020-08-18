@@ -1,0 +1,27 @@
+.fadeOut {
+	transition: all 1.5s !important;
+	opacity: 0 !important;
+}
+
+.moveOutContentChange {
+	transform: translateY(-714px) !important;
+	transition-timing-function: ease-out !important;
+	transition-duration: 1s !important;
+}
+
+.hide {
+	display: none !important;
+}
+
+.waitAppear {
+	top: 714px;
+}
+
+.fade{
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}

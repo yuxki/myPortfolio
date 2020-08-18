@@ -1,0 +1,92 @@
+<div className={classes.staticArea}>
+	<div className={classes.topPageArea}>
+		{topPageNum === 0 && (
+			<Billboard />
+		)}
+		{topPageNum > 0 && [
+			<div>
+				<FeaturedWorkContents
+					featuredWorkType={featuredWorkInfoArry[topPageNum - 1].featuredWorkType}
+					featuredWorkImgSrc={featuredWorkInfoArry[topPageNum - 1].featuredWorkImgSrc}
+					featuredWorkLayout={featuredWorkInfoArry[topPageNum - 1].featuredWorkLayout} />,
+				<FeaturedWorkTitle featuredWorkTitle={featuredWorkInfoArry[topPageNum - 1].featuredWorkTitle} />,
+				<Nav
+					makePageNumToPositive={makePageNumToPositive}
+					makePageNumToNegative={makePageNumToNegative}
+					featuredWorkLength={featuredWorkInfoArry.length}
+					topPageNum={topPageNum}
+					setTopPageNum={setTopPageNum}
+					incrementTopPageNum={incrementTopPageNum}
+					decrementTopPageNum={decrementTopPageNum}
+					switchElementWithAnimation={switchElementWithAnimation}
+				/>
+			</div>
+		]}
+		{topPageNum < 0 && [
+			<div className={classes.footerNavUpward}>
+				<NavUpward
+					topPageNum={topPageNum}
+					setTopPageNum={setTopPageNum}
+					makePageNumToPositive={makePageNumToPositive}
+				/>
+			</div>
+		]}
+	</div>
+	{topPageNum === 0 && (
+		<ContentChange
+			switchElementWithAnimation={switchElementWithAnimation}
+		/>
+	)}
+	{topPageNum < 0 && (
+		<Footer />
+	)}
+</div>
+
+
+
+
+<div>
+	{topPageNum === 0 && ([
+		<div className={classes.staticArea}>
+			<div className={classes.topPageArea}>
+				<Billboard />
+			</div>
+			<ContentChange
+				switchElementWithAnimation={switchElementWithAnimation}
+			/>
+		</div>
+	])}
+	{topPageNum > 0 && ([
+		<div className={classes.staticArea}>
+			<div className={classes.topPageArea}>
+				<FeaturedWorkContents
+					featuredWorkType={featuredWorkInfoArry[topPageNum - 1].featuredWorkType}
+					featuredWorkImgSrc={featuredWorkInfoArry[topPageNum - 1].featuredWorkImgSrc}
+					featuredWorkLayout={featuredWorkInfoArry[topPageNum - 1].featuredWorkLayout} />
+				<FeaturedWorkTitle featuredWorkTitle={featuredWorkInfoArry[topPageNum - 1].featuredWorkTitle} />
+				<Nav
+					makePageNumToPositive={makePageNumToPositive}
+					makePageNumToNegative={makePageNumToNegative}
+					featuredWorkLength={featuredWorkInfoArry.length}
+					topPageNum={topPageNum}
+					setTopPageNum={setTopPageNum}
+					incrementTopPageNum={incrementTopPageNum}
+					decrementTopPageNum={decrementTopPageNum}
+					switchElementWithAnimation={switchElementWithAnimation}
+				/>
+			</div>
+		</div>
+	])}
+	{topPageNum < 0 && ([
+		<div className={classes.staticArea}>
+			<div className={classes.topPageArea}>
+				<NavUpward
+					topPageNum={topPageNum}
+					setTopPageNum={setTopPageNum}
+					makePageNumToPositive={makePageNumToPositive}
+				/>
+			</div>
+			<Footer />
+		</div>
+	])}
+</div>

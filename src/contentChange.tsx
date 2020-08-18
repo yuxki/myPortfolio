@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '53px',
 			position: 'absolute',
 			bottom: 0,
-			right: theme.spacing(10),
+			left: '50%',
+			transform: 'translateX(-50%)',
 			justifyContent: 'center',
 			alignItems: 'center',
 		},
@@ -34,17 +35,8 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-const useStatefulStyles = makeStyles({
-	moveOutContentChange: {
-		transform: 'translateY' + `(${props => props.test}px)`,
-		transitionTimingFunction: 'ease-out',
-		transitionDuration: '1s',
-	},
-});
-
 export default function ContentChange(props) {
 	const classes = useStyles();
-	const statefulClasses = useStatefulStyles(props);
 	const [changeContent, setChangeContent] = React.useState(false);
 
 	const handleChangeContent = () => {
@@ -53,10 +45,8 @@ export default function ContentChange(props) {
 
 	return (
 		<div
-			className={clsx(classes.contentChange,
-				changeContent && classes.fadeOut,
-				changeContent && statefulClasses.moveOutContentChange)}
-			onClick={props.incrementTopPageNum}
+			className={clsx(classes.contentChange)}
+			onClick={props.switchElementWithAnimation}
 		>
 			<ExpandMoreIcon
 				fontSize='large'

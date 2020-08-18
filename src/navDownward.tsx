@@ -25,12 +25,15 @@ export default function NavDownward(props) {
 	const classes = useStyles();
 	const navEvent = (props.featuredWorkLength === (props.topPageNum))
 		? props.makePageNumToNegative
-		: props.incrementTopPageNum;
+		: props.switchElementWithAnimation;
+
+	const emptyFunc = () => { console.log('clicked!') };
 
 	return (
 		<div
 			className={classes.navDownward}
-			onClick={navEvent}>
+			onClick={props.isAnimating ? emptyFunc : navEvent}
+		>
 			<ExpandMoreIcon
 				fontSize='large'
 				classes={{ root: classes.root }}

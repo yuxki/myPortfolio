@@ -1,4 +1,5 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import Billboard from "./billboard";
 import ContentChange from "./contentChange";
 import Nav from "./nav"
@@ -11,7 +12,7 @@ import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/sty
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		staticArea: {
-			position: 'static',
+			position: 'relative',
 		},
 		topPageArea: {
 			display: 'block',
@@ -23,11 +24,12 @@ const useStyles = makeStyles((theme: Theme) =>
 			position: 'absolute',
 			top: 0,
 			right: theme.spacing(24),
-		}
+		},
 	}),
 );
 
 export default function TopPage() {
+	const classes = useStyles();
 
 	// TopPageの内容に当る、featuredWorkの変数を定義する
 	interface FeaturedWorkInfo {
@@ -61,9 +63,84 @@ export default function TopPage() {
 	const featuredWorkInfoArry: Array<FeaturedWorkInfo> =
 		[graphicsDesignInfo, applicationDesignInfo, threDGraphicsInfo];
 
-	const classes = useStyles();
+	// ページの切り替えを管理するState
 	const [topPageNum, setTopPageNum] = React.useState(0);
 
+	// アニメーション中か否かを管理するState
+	const [isAnimating, setIsAnimating] = React.useState(false);
+
+	// クラスで探したelementに、任意のクラスを複数追加するPromise関数を追加・削除する
+	function transactClassesToElements(mode: string, targetClass: string, transactedClasses: Array<string>) {
+		return new Promise((resolve, reject) => {
+			const elements = document.querySelectorAll(targetClass);
+			let targetElement: HTMLElement;
+			elements.forEach(element => {
+				let targetElement = element as HTMLElement;
+				if (mode === 'ADD') {
+					targetElement.classList.add(...transactedClasses);
+				} else if (mode === 'REMOVE')
+					targetElement.classList.remove(...transactedClasses);
+			});
+			resolve();
+		})
+	}
+
+	// アニメーションのイベントをハンドリングするPromise関数を返す
+	function handleAnimationEvent(targetClass: string, eventType: string): Promise<boolean> {
+		return new Promise((resolve, reject) => {
+			const element = document.querySelector(targetClass);
+			const listener = () => {
+				console.log(eventType + ' is finished');
+				element.removeEventListener(eventType, listener);
+				resolve();
+			};
+			element.addEventListener(eventType, listener);
+		});
+	}
+
+	// setStateを含む任意のfunctionを実行するPromise関数を返す
+	function setStateFunc(func): Promise<boolean> {
+		return new Promise((resolve, reject) => {
+			func();
+			resolve();
+		})
+	}
+
+	function sleep(): Promise<boolean> {
+		return new Promise(resolve => {
+			setTimeout(() => {
+				console.log('sleep out');
+				resolve()
+			}, 500)
+		})
+	}
+
+	// アニメーションを追加→アニメーション実行のハンドリング→setStateの順序で、要素の切り替えを行う
+	async function switchElementWithAnimation(): Promise<void> {
+		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
+		await setStateFunc(handleAnimationStart);
+
+		// フェードアウトのアニメーションCSSを、クラスの切り替えで発火させる
+		await transactClassesToElements('ADD', '.animationTarget', ['fadeOut', 'moveOutContentChange']);
+		await handleAnimationEvent('.fadeOut', 'transitionend');
+		await transactClassesToElements('REMOVE', '.animationTarget', ['fadeOut', 'moveOutContentChange']);
+
+		// topPageNumを変更する
+		await setStateFunc(incrementTopPageNum);
+
+		// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
+		await transactClassesToElements('ADD', '.animationTarget', ['waitAppear']);
+		// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
+		await sleep();
+		await transactClassesToElements('ADD', '.animationTarget', ['fade', 'moveOutContentChange']);
+		await handleAnimationEvent('.fade', 'animationend');
+		await transactClassesToElements('REMOVE', '.animationTarget', ['waitAppear', 'fade', 'moveOutContentChange']);
+
+		// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
+		await setStateFunc(handleAnimationEnd);
+	}
+
+	// topPageNumを変更するファンクション群
 	function incrementTopPageNum() {
 		setTopPageNum((topPageNum + 1));
 	}
@@ -77,48 +154,69 @@ export default function TopPage() {
 	}
 
 	function makePageNumToPositive() {
-		console.log('makePageNumToPositive is Occred');
 		setTopPageNum((featuredWorkInfoArry.length));
 	}
 
+	// isAnimatingを変更するファンクション群
+	function handleAnimationStart() {
+		setIsAnimating(true);
+	}
+
+	function handleAnimationEnd() {
+		setIsAnimating(false);
+	}
+
 	return (
-		<div className={classes.staticArea}>
-			<div className={classes.topPageArea}>
+		<div>
+			<div className={clsx(classes.staticArea, 'animationTarget')}>
+				<div className={classes.topPageArea}>
+					{topPageNum === 0 && (
+						<Billboard />
+					)}
+					{topPageNum > 0 && [
+						<div>
+							<FeaturedWorkContents
+								featuredWorkType={featuredWorkInfoArry[topPageNum - 1].featuredWorkType}
+								featuredWorkImgSrc={featuredWorkInfoArry[topPageNum - 1].featuredWorkImgSrc}
+								featuredWorkLayout={featuredWorkInfoArry[topPageNum - 1].featuredWorkLayout} />
+							<FeaturedWorkTitle featuredWorkTitle={featuredWorkInfoArry[topPageNum - 1].featuredWorkTitle} />
+							<Nav
+								makePageNumToPositive={makePageNumToPositive}
+								makePageNumToNegative={makePageNumToNegative}
+								featuredWorkLength={featuredWorkInfoArry.length}
+								topPageNum={topPageNum}
+								setTopPageNum={setTopPageNum}
+								incrementTopPageNum={incrementTopPageNum}
+								decrementTopPageNum={decrementTopPageNum}
+								switchElementWithAnimation={switchElementWithAnimation}
+								isAnimating={isAnimating}
+							/>
+						</div>
+					]}
+					{topPageNum < 0 && [
+						<div className={classes.footerNavUpward}>
+							<NavUpward
+								topPageNum={topPageNum}
+								setTopPageNum={setTopPageNum}
+								makePageNumToPositive={makePageNumToPositive}
+								isAnimating={isAnimating}
+							/>
+						</div>
+					]}
+				</div>
 				{topPageNum === 0 && (
-					<Billboard />
-				)}
-				{topPageNum > 0 && [
-					<FeaturedWorkContents
-						featuredWorkType={featuredWorkInfoArry[topPageNum - 1].featuredWorkType}
-						featuredWorkImgSrc={featuredWorkInfoArry[topPageNum - 1].featuredWorkImgSrc}
-						featuredWorkLayout={featuredWorkInfoArry[topPageNum - 1].featuredWorkLayout} />,
-					<FeaturedWorkTitle featuredWorkTitle={featuredWorkInfoArry[topPageNum - 1].featuredWorkTitle} />,
-					<Nav
-						makePageNumToPositive={makePageNumToPositive}
-						makePageNumToNegative={makePageNumToNegative}
-						featuredWorkLength={featuredWorkInfoArry.length}
-						topPageNum={topPageNum}
-						setTopPageNum={setTopPageNum}
-						incrementTopPageNum={incrementTopPageNum}
-						decrementTopPageNum={decrementTopPageNum}
+					<ContentChange
+						switchElementWithAnimation={switchElementWithAnimation}
 					/>
-				]}
-				{topPageNum < 0 && [
-					<div className={classes.footerNavUpward}>
-						<NavUpward
-							topPageNum={topPageNum}
-							setTopPageNum={setTopPageNum}
-							makePageNumToPositive={makePageNumToPositive}
-						/>
-					</div>
-				]}
+				)}
+				<div>
+				</div>
 			</div>
-			{topPageNum === 0 && (
-				<ContentChange incrementTopPageNum={incrementTopPageNum} />
-			)}
-			{topPageNum < 0 && (
-				<Footer />
-			)}
+			{topPageNum < 0 && ([
+			<div className={'animationTarget'}>
+					<Footer />
+			</div>
+			])}
 		</div>
 	)
 }
