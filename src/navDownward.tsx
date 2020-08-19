@@ -28,12 +28,10 @@ export default function NavDownward(props) {
 		? props.slideTopPageOut
 		: props.switchElementWithAnimationToDown;
 
-	const emptyFunc = () => { console.log('clicked!') };
-
 	return (
 		<div
 			className={classes.navDownward}
-			onClick={props.isAnimating ? emptyFunc : navEvent}
+			onClick={props.isAnimating ? null : navEvent}
 		>
 			<ExpandMoreIcon
 				fontSize='large'

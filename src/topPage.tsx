@@ -89,7 +89,7 @@ export default function TopPage() {
 		return new Promise((resolve, reject) => {
 			const element = document.querySelector(targetClass);
 			const listener = () => {
-				console.log(eventType + ' is finished');
+				// console.log(eventType + ' is finished');
 				element.removeEventListener(eventType, listener);
 				resolve();
 			};
@@ -108,7 +108,7 @@ export default function TopPage() {
 	function sleep(): Promise<boolean> {
 		return new Promise(resolve => {
 			setTimeout(() => {
-				console.log('sleep out');
+				// console.log('sleep out');
 				resolve()
 			}, 500)
 		})
@@ -138,6 +138,8 @@ export default function TopPage() {
 
 		// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
 		await setStateFunc(handleAnimationEnd);
+
+		return;
 	}
 
 	// アニメーションを追加→アニメーション実行のハンドリング→setStateの順序で、要素の切り替えを行う
@@ -164,6 +166,8 @@ export default function TopPage() {
 
 		// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
 		await setStateFunc(handleAnimationEnd);
+
+		return;
 	}
 
 	// topPageを上に移動させる
@@ -172,7 +176,6 @@ export default function TopPage() {
 		await setStateFunc(handleAnimationStart);
 		await transactClassesToElements('ADD', '.slideArea', ['slideTopPage']);
 	}
-
 
 	// topPageNumを変更するファンクション群
 	function incrementTopPageNum() {
@@ -192,9 +195,24 @@ export default function TopPage() {
 		setIsAnimating(false);
 	}
 
+	function switchElementWithAnimationBywheel(event) {
+		if (event.deltaY > 120) {
+			if (topPageNum === featuredWorkInfoArry.length) {
+				return
+			}
+			switchElementWithAnimationToDown();
+		};
+		if (event.deltaY < -120) {
+			if (topPageNum === 0) {
+				return
+			}
+			switchElementWithAnimationToUp();
+		};
+	}
+
 	return (
 		<div>
-			<div className={clsx(classes.staticArea, 'slideArea')}>
+			<div className={clsx(classes.staticArea, 'slideArea')} onWheel={isAnimating ? null : switchElementWithAnimationBywheel}>
 				<div className={clsx(classes.topPageArea, 'animationTarget')}>
 					{topPageNum === 0 && (
 						<Billboard />
