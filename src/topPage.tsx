@@ -68,32 +68,40 @@ export default function TopPage() {
 	// アニメーション中か否かを管理するState
 	const [isAnimating, setIsAnimating] = React.useState(false);
 
+	// アニメーション発火を目的としたref
+	const animationTarget = React.useRef(null);
+	const slideArea = React.useRef(null);
+
+	React.useEffect(() => {
+     console.log('didmount');
+   });
+
 	// クラスで探したelementに、任意のクラスを複数追加・削除するPromise関数を返す
-	function transactClassesToElements(mode: string, targetClass: string, transactedClasses: Array<string>) {
+	function transactClassesToElements(mode: string, targetElement: any, transactedClasses: Array<string>) {
 		return new Promise((resolve, reject) => {
-			const elements = document.querySelectorAll(targetClass);
-			let targetElement: HTMLElement;
-			elements.forEach(element => {
-				let targetElement = element as HTMLElement;
-				if (mode === 'ADD') {
-					targetElement.classList.add(...transactedClasses);
-				} else if (mode === 'REMOVE')
-					targetElement.classList.remove(...transactedClasses);
-			});
+			const element = targetElement;
+
+			if (mode === 'ADD') {
+				element.current.classList.add(...transactedClasses);
+
+			} else if (mode === 'REMOVE') {
+				element.current.classList.remove(...transactedClasses);
+			}
 			resolve();
 		})
 	}
 
 	// アニメーションのイベントをハンドリングするPromise関数を返す
-	function handleAnimationEvent(targetClass: string, eventType: string): Promise<boolean> {
+	function handleAnimationEvent(targetElement: any, eventType: string): Promise<boolean> {
 		return new Promise((resolve, reject) => {
-			const element = document.querySelector(targetClass);
+			const element = targetElement;
+
 			const listener = () => {
-				// console.log(eventType + ' is finished');
-				element.removeEventListener(eventType, listener);
+				console.log(eventType + ' is finished');
+				element.current.removeEventListener(eventType, listener);
 				resolve();
 			};
-			element.addEventListener(eventType, listener);
+			element.current.addEventListener(eventType, listener);
 		});
 	}
 
@@ -108,7 +116,7 @@ export default function TopPage() {
 	function sleep(): Promise<boolean> {
 		return new Promise(resolve => {
 			setTimeout(() => {
-				// console.log('sleep out');
+				console.log('sleep out');
 				resolve()
 			}, 500)
 		})
@@ -121,20 +129,20 @@ export default function TopPage() {
 		await setStateFunc(handleAnimationStart);
 
 		// フェードアウトのアニメーションCSSを、クラスの切り替えで発火させる
-		await transactClassesToElements('ADD', '.animationTarget', ['fadeOut', 'moveContentToTop']);
-		await handleAnimationEvent('.fadeOut', 'transitionend');
-		await transactClassesToElements('REMOVE', '.animationTarget', ['fadeOut', 'moveContentToTop']);
+		await transactClassesToElements('ADD', animationTarget, ['fadeOut', 'moveContentToTop']);
+		await handleAnimationEvent(animationTarget, 'transitionend');
+		await transactClassesToElements('REMOVE', animationTarget, ['fadeOut', 'moveContentToTop']);
 
 		// topPageNumを変更する
 		await setStateFunc(incrementTopPageNum);
 
 		// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
-		await transactClassesToElements('ADD', '.animationTarget', ['waitAppearFromBottom']);
+		await transactClassesToElements('ADD', animationTarget, ['waitAppearFromBottom']);
 		// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
 		await sleep();
-		await transactClassesToElements('ADD', '.animationTarget', ['fade', 'moveContentToTop']);
-		await handleAnimationEvent('.fade', 'animationend');
-		await transactClassesToElements('REMOVE', '.animationTarget', ['waitAppearFromBottom', 'fade', 'moveContentToTop']);
+		await transactClassesToElements('ADD', animationTarget, ['fade', 'moveContentToTop']);
+		await handleAnimationEvent(animationTarget, 'animationend');
+		await transactClassesToElements('REMOVE', animationTarget, ['waitAppearFromBottom', 'fade', 'moveContentToTop']);
 
 		// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
 		await setStateFunc(handleAnimationEnd);
@@ -149,20 +157,20 @@ export default function TopPage() {
 		await setStateFunc(handleAnimationStart);
 
 		// フェードアウトのアニメーションCSSを、クラスの切り替えで発火させる
-		await transactClassesToElements('ADD', '.animationTarget', ['fadeOut', 'moveContentToBottom']);
-		await handleAnimationEvent('.fadeOut', 'transitionend');
-		await transactClassesToElements('REMOVE', '.animationTarget', ['fadeOut', 'moveContentToBottom']);
+		await transactClassesToElements('ADD', animationTarget, ['fadeOut', 'moveContentToBottom']);
+		await handleAnimationEvent(animationTarget, 'transitionend');
+		await transactClassesToElements('REMOVE', animationTarget, ['fadeOut', 'moveContentToBottom']);
 
 		// topPageNumを変更する
 		await setStateFunc(decrementTopPageNum);
 
 		// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
-		await transactClassesToElements('ADD', '.animationTarget', ['waitAppearFromTop']);
+		await transactClassesToElements('ADD', animationTarget, ['waitAppearFromTop']);
 		// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
 		await sleep();
-		await transactClassesToElements('ADD', '.animationTarget', ['fade', 'moveContentToBottom']);
-		await handleAnimationEvent('.fade', 'animationend');
-		await transactClassesToElements('REMOVE', '.animationTarget', ['waitAppearFromTop', 'fade', 'moveContentToBottom']);
+		await transactClassesToElements('ADD', animationTarget, ['fade', 'moveContentToBottom']);
+		await handleAnimationEvent(animationTarget, 'animationend');
+		await transactClassesToElements('REMOVE', animationTarget, ['waitAppearFromTop', 'fade', 'moveContentToBottom']);
 
 		// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
 		await setStateFunc(handleAnimationEnd);
@@ -174,7 +182,7 @@ export default function TopPage() {
 	async function slideTopPageOut() {
 		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
 		await setStateFunc(handleAnimationStart);
-		await transactClassesToElements('ADD', '.slideArea', ['slideTopPage']);
+		await transactClassesToElements('ADD', slideArea, ['slideTopPage']);
 	}
 
 	// topPageNumを変更するファンクション群
@@ -212,8 +220,13 @@ export default function TopPage() {
 
 	return (
 		<div>
-			<div className={clsx(classes.staticArea, 'slideArea')} onWheel={isAnimating ? null : switchElementWithAnimationBywheel}>
-				<div className={clsx(classes.topPageArea, 'animationTarget')}>
+			<div className={clsx(classes.staticArea, 'slideArea')}
+				onWheel={isAnimating ? null : switchElementWithAnimationBywheel}
+				ref={slideArea}
+			>
+				<div className={clsx(classes.topPageArea, 'animationTarget')}
+					ref={animationTarget}
+				>
 					{topPageNum === 0 && (
 						<Billboard />
 					)}
