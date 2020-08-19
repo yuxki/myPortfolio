@@ -28,22 +28,18 @@ export default function Nav(props) {
 	return (
 		<div className={clsx(classes.navArea)} >
 			<NavUpward
-				makePageNumToPositive={props.makePageNumToPositive}
 				featuredWorkLength={props.featuredWorkLength}
 				topPageNum={props.topPageNum}
 				setTopPageNum={props.setTopPageNum}
 				isAnimating={props.isAnimating}
-				decrementTopPageNum={props.decrementTopPageNum}
+				switchElementWithAnimationToUp={props.switchElementWithAnimationToUp}
 				/>
 			<NavDownward
-				makePageNumToNegative={props.makePageNumToNegative}
 				featuredWorkLength={props.featuredWorkLength}
 				topPageNum={props.topPageNum}
 				setTopPageNum={props.setTopPageNum}
-				incrementTopPageNum={props.incrementTopPageNum}
-				switchElementWithAnimation={props.switchElementWithAnimation}
 				isAnimating={props.isAnimating}
-				incrementSwitch={props.incrementSwitch}
+				switchElementWithAnimationToDown={props.switchElementWithAnimationToDown}
 				slideTopPageOut={props.slideTopPageOut}
 				/>
 		</div>

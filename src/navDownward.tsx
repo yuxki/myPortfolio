@@ -26,8 +26,8 @@ export default function NavDownward(props) {
 
 	const navEvent = (props.featuredWorkLength === (props.topPageNum))
 		? props.slideTopPageOut
-		: props.incrementSwitch;
-		
+		: props.switchElementWithAnimationToDown;
+
 	const emptyFunc = () => { console.log('clicked!') };
 
 	return (

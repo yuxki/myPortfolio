@@ -41,7 +41,7 @@ export default function ContentChange(props) {
 	return (
 		<div
 			className={clsx(classes.contentChange)}
-			onClick={props.incrementSwitch}
+			onClick={props.switchElementWithAnimationToDown}
 		>
 			<ExpandMoreIcon
 				fontSize='large'
