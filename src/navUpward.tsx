@@ -22,14 +22,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function NavUpward(props) {
 	const classes = useStyles();
-
-	const navEvent = (props.topPageNum < 0) ? props.makePageNumToPositive : props.decrementTopPageNum;
 	const emptyFunc = () => { };
 
 	return (
 		<div
 			className={classes.navUpward}
-			onClick={props.isAnimating ? emptyFunc : navEvent}
+			onClick={props.isAnimating ? emptyFunc : props.switchElementWithAnimationToUp}
 		>
 			<ExpandLessIcon
 				fontSize='large'

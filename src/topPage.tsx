@@ -24,11 +24,6 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: 'inherit',
 			margin: theme.spacing(0, 10),
 		},
-		footerNavUpward: {
-			position: 'absolute',
-			top: 0,
-			right: theme.spacing(24),
-		},
 	}),
 );
 
@@ -120,40 +115,60 @@ export default function TopPage() {
 	}
 
 	// アニメーションを追加→アニメーション実行のハンドリング→setStateの順序で、要素の切り替えを行う
-	function createSwitchElementWithAnimation(stateOperation: string) {
-		let func;
+	async function switchElementWithAnimationToDown(): Promise<void> {
 
-		if (stateOperation === 'INCREMENT') func = incrementTopPageNum;
+		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
+		await setStateFunc(handleAnimationStart);
 
-		return async function switchElementWithAnimation(): Promise<void> {
+		// フェードアウトのアニメーションCSSを、クラスの切り替えで発火させる
+		await transactClassesToElements('ADD', '.animationTarget', ['fadeOut', 'moveContentToTop']);
+		await handleAnimationEvent('.fadeOut', 'transitionend');
+		await transactClassesToElements('REMOVE', '.animationTarget', ['fadeOut', 'moveContentToTop']);
 
-			// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
-			await setStateFunc(handleAnimationStart);
+		// topPageNumを変更する
+		await setStateFunc(incrementTopPageNum);
 
-			// フェードアウトのアニメーションCSSを、クラスの切り替えで発火させる
-			await transactClassesToElements('ADD', '.animationTarget', ['fadeOut', 'moveOutContentChange']);
-			await handleAnimationEvent('.fadeOut', 'transitionend');
-			await transactClassesToElements('REMOVE', '.animationTarget', ['fadeOut', 'moveOutContentChange']);
+		// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
+		await transactClassesToElements('ADD', '.animationTarget', ['waitAppearFromBottom']);
+		// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
+		await sleep();
+		await transactClassesToElements('ADD', '.animationTarget', ['fade', 'moveContentToTop']);
+		await handleAnimationEvent('.fade', 'animationend');
+		await transactClassesToElements('REMOVE', '.animationTarget', ['waitAppearFromBottom', 'fade', 'moveContentToTop']);
 
-			// topPageNumを変更する
-			await setStateFunc(func);
+		// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
+		await setStateFunc(handleAnimationEnd);
+	}
 
-			// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
-			await transactClassesToElements('ADD', '.animationTarget', ['waitAppear']);
-			// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
-			await sleep();
-			await transactClassesToElements('ADD', '.animationTarget', ['fade', 'moveOutContentChange']);
-			await handleAnimationEvent('.fade', 'animationend');
-			await transactClassesToElements('REMOVE', '.animationTarget', ['waitAppear', 'fade', 'moveOutContentChange']);
+	// アニメーションを追加→アニメーション実行のハンドリング→setStateの順序で、要素の切り替えを行う
+	async function switchElementWithAnimationToUp(): Promise<void> {
 
-			// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
-			await setStateFunc(handleAnimationEnd);
-		}
+		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
+		await setStateFunc(handleAnimationStart);
+
+		// フェードアウトのアニメーションCSSを、クラスの切り替えで発火させる
+		await transactClassesToElements('ADD', '.animationTarget', ['fadeOut', 'moveContentToBottom']);
+		await handleAnimationEvent('.fadeOut', 'transitionend');
+		await transactClassesToElements('REMOVE', '.animationTarget', ['fadeOut', 'moveContentToBottom']);
+
+		// topPageNumを変更する
+		await setStateFunc(decrementTopPageNum);
+
+		// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
+		await transactClassesToElements('ADD', '.animationTarget', ['waitAppearFromTop']);
+		// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
+		await sleep();
+		await transactClassesToElements('ADD', '.animationTarget', ['fade', 'moveContentToBottom']);
+		await handleAnimationEvent('.fade', 'animationend');
+		await transactClassesToElements('REMOVE', '.animationTarget', ['waitAppearFromTop', 'fade', 'moveContentToBottom']);
+
+		// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
+		await setStateFunc(handleAnimationEnd);
 	}
 
 	// topPageを上に移動させる
-	 async function slideTopPageOut(){
-		 // アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
+	async function slideTopPageOut() {
+		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
 		await setStateFunc(handleAnimationStart);
 		await transactClassesToElements('ADD', '.slideArea', ['slideTopPage']);
 	}
@@ -177,8 +192,6 @@ export default function TopPage() {
 		setIsAnimating(false);
 	}
 
-	const incrementSwitch = createSwitchElementWithAnimation('INCREMENT');
-
 	return (
 		<div>
 			<div className={clsx(classes.staticArea, 'slideArea')}>
@@ -194,32 +207,19 @@ export default function TopPage() {
 								featuredWorkLayout={featuredWorkInfoArry[topPageNum - 1].featuredWorkLayout} />
 							<FeaturedWorkTitle featuredWorkTitle={featuredWorkInfoArry[topPageNum - 1].featuredWorkTitle} />
 							<Nav
-								makePageNumToPositive={makePageNumToPositive}
 								featuredWorkLength={featuredWorkInfoArry.length}
 								topPageNum={topPageNum}
 								setTopPageNum={setTopPageNum}
-								incrementTopPageNum={incrementTopPageNum}
-								decrementTopPageNum={decrementTopPageNum}
 								isAnimating={isAnimating}
-								incrementSwitch={incrementSwitch}
+								switchElementWithAnimationToDown={switchElementWithAnimationToDown}
+								switchElementWithAnimationToUp={switchElementWithAnimationToUp}
 								slideTopPageOut={slideTopPageOut}
-							/>
-						</div>
-					]}
-					{topPageNum < 0 && [
-						<div className={classes.footerNavUpward}>
-							<NavUpward
-								topPageNum={topPageNum}
-								setTopPageNum={setTopPageNum}
-								makePageNumToPositive={makePageNumToPositive}
-								isAnimating={isAnimating}
 							/>
 						</div>
 					]}
 					{topPageNum === 0 && (
 						<ContentChange
-							createSwitchElementWithAnimation={createSwitchElementWithAnimation}
-							incrementSwitch={incrementSwitch}
+							switchElementWithAnimationToDown={switchElementWithAnimationToDown}
 						/>
 					)}
 				</div>
