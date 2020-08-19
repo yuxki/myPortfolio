@@ -23,10 +23,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function NavDownward(props) {
 	const classes = useStyles();
-	const navEvent = (props.featuredWorkLength === (props.topPageNum))
-		? props.makePageNumToNegative
-		: props.switchElementWithAnimation;
 
+	const navEvent = (props.featuredWorkLength === (props.topPageNum))
+		? props.slideTopPageOut
+		: props.incrementSwitch;
+		
 	const emptyFunc = () => { console.log('clicked!') };
 
 	return (

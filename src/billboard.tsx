@@ -8,9 +8,9 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		billboardContent: {
 			position: 'absolute',
-			top: theme.spacing(13),
+			top: '50%',
 			left: '50%',
-			transform: 'translateX(-50%)',
+			transform: 'translate(-50%, -50%)',
 			display: 'flex',
 			flexDirection: 'column',
 			justifyContent: 'center',

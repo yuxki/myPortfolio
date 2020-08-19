@@ -13,11 +13,15 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		staticArea: {
 			position: 'relative',
+			height: '100vh',
+			backgroundColor: '#FFFFFF',
+			transitionDuration: '1s',
+			// backgroundColor: 'rgb(255,255,255,0.5)',
 		},
 		topPageArea: {
 			display: 'block',
 			position: 'relative',
-			height: '458px',
+			height: 'inherit',
 			margin: theme.spacing(0, 10),
 		},
 		footerNavUpward: {
@@ -69,7 +73,7 @@ export default function TopPage() {
 	// アニメーション中か否かを管理するState
 	const [isAnimating, setIsAnimating] = React.useState(false);
 
-	// クラスで探したelementに、任意のクラスを複数追加するPromise関数を追加・削除する
+	// クラスで探したelementに、任意のクラスを複数追加・削除するPromise関数を返す
 	function transactClassesToElements(mode: string, targetClass: string, transactedClasses: Array<string>) {
 		return new Promise((resolve, reject) => {
 			const elements = document.querySelectorAll(targetClass);
@@ -116,29 +120,44 @@ export default function TopPage() {
 	}
 
 	// アニメーションを追加→アニメーション実行のハンドリング→setStateの順序で、要素の切り替えを行う
-	async function switchElementWithAnimation(): Promise<void> {
-		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
-		await setStateFunc(handleAnimationStart);
+	function createSwitchElementWithAnimation(stateOperation: string) {
+		let func;
 
-		// フェードアウトのアニメーションCSSを、クラスの切り替えで発火させる
-		await transactClassesToElements('ADD', '.animationTarget', ['fadeOut', 'moveOutContentChange']);
-		await handleAnimationEvent('.fadeOut', 'transitionend');
-		await transactClassesToElements('REMOVE', '.animationTarget', ['fadeOut', 'moveOutContentChange']);
+		if (stateOperation === 'INCREMENT') func = incrementTopPageNum;
 
-		// topPageNumを変更する
-		await setStateFunc(incrementTopPageNum);
+		return async function switchElementWithAnimation(): Promise<void> {
 
-		// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
-		await transactClassesToElements('ADD', '.animationTarget', ['waitAppear']);
-		// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
-		await sleep();
-		await transactClassesToElements('ADD', '.animationTarget', ['fade', 'moveOutContentChange']);
-		await handleAnimationEvent('.fade', 'animationend');
-		await transactClassesToElements('REMOVE', '.animationTarget', ['waitAppear', 'fade', 'moveOutContentChange']);
+			// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
+			await setStateFunc(handleAnimationStart);
 
-		// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
-		await setStateFunc(handleAnimationEnd);
+			// フェードアウトのアニメーションCSSを、クラスの切り替えで発火させる
+			await transactClassesToElements('ADD', '.animationTarget', ['fadeOut', 'moveOutContentChange']);
+			await handleAnimationEvent('.fadeOut', 'transitionend');
+			await transactClassesToElements('REMOVE', '.animationTarget', ['fadeOut', 'moveOutContentChange']);
+
+			// topPageNumを変更する
+			await setStateFunc(func);
+
+			// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
+			await transactClassesToElements('ADD', '.animationTarget', ['waitAppear']);
+			// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
+			await sleep();
+			await transactClassesToElements('ADD', '.animationTarget', ['fade', 'moveOutContentChange']);
+			await handleAnimationEvent('.fade', 'animationend');
+			await transactClassesToElements('REMOVE', '.animationTarget', ['waitAppear', 'fade', 'moveOutContentChange']);
+
+			// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
+			await setStateFunc(handleAnimationEnd);
+		}
 	}
+
+	// topPageを上に移動させる
+	 async function slideTopPageOut(){
+		 // アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
+		await setStateFunc(handleAnimationStart);
+		await transactClassesToElements('ADD', '.slideArea', ['slideTopPage']);
+	}
+
 
 	// topPageNumを変更するファンクション群
 	function incrementTopPageNum() {
@@ -147,14 +166,6 @@ export default function TopPage() {
 
 	function decrementTopPageNum() {
 		setTopPageNum((topPageNum - 1));
-	}
-
-	function makePageNumToNegative() {
-		setTopPageNum(-1);
-	}
-
-	function makePageNumToPositive() {
-		setTopPageNum((featuredWorkInfoArry.length));
 	}
 
 	// isAnimatingを変更するファンクション群
@@ -166,10 +177,12 @@ export default function TopPage() {
 		setIsAnimating(false);
 	}
 
+	const incrementSwitch = createSwitchElementWithAnimation('INCREMENT');
+
 	return (
 		<div>
-			<div className={clsx(classes.staticArea, 'animationTarget')}>
-				<div className={classes.topPageArea}>
+			<div className={clsx(classes.staticArea, 'slideArea')}>
+				<div className={clsx(classes.topPageArea, 'animationTarget')}>
 					{topPageNum === 0 && (
 						<Billboard />
 					)}
@@ -182,14 +195,14 @@ export default function TopPage() {
 							<FeaturedWorkTitle featuredWorkTitle={featuredWorkInfoArry[topPageNum - 1].featuredWorkTitle} />
 							<Nav
 								makePageNumToPositive={makePageNumToPositive}
-								makePageNumToNegative={makePageNumToNegative}
 								featuredWorkLength={featuredWorkInfoArry.length}
 								topPageNum={topPageNum}
 								setTopPageNum={setTopPageNum}
 								incrementTopPageNum={incrementTopPageNum}
 								decrementTopPageNum={decrementTopPageNum}
-								switchElementWithAnimation={switchElementWithAnimation}
 								isAnimating={isAnimating}
+								incrementSwitch={incrementSwitch}
+								slideTopPageOut={slideTopPageOut}
 							/>
 						</div>
 					]}
@@ -203,20 +216,17 @@ export default function TopPage() {
 							/>
 						</div>
 					]}
-				</div>
-				{topPageNum === 0 && (
-					<ContentChange
-						switchElementWithAnimation={switchElementWithAnimation}
-					/>
-				)}
-				<div>
+					{topPageNum === 0 && (
+						<ContentChange
+							createSwitchElementWithAnimation={createSwitchElementWithAnimation}
+							incrementSwitch={incrementSwitch}
+						/>
+					)}
 				</div>
 			</div>
-			{topPageNum < 0 && ([
-			<div className={'animationTarget'}>
-					<Footer />
+			<div>
+				<Footer />
 			</div>
-			])}
 		</div>
 	)
 }

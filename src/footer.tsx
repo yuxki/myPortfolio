@@ -5,12 +5,12 @@ import MenuList from './menuList';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		footerArea: {
-			backgroundColor: '#F2BE22',
-			position: 'absolute',
-			display: 'flex',
+			zIndex : -100,
+			position: 'fixed',
 			bottom: 0,
+			backgroundColor: '#F2BE22',
+			display: 'flex',
 			width: '100%',
-			height: '400px',
 			justifyContent: 'flex-end',
 		},
 		menuArea: {

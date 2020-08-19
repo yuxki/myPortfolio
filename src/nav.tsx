@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		navArea: {
 			display: 'flex',
 			position: 'absolute',
-			bottom: 0,
+			bottom: theme.spacing(12),
 			right: 0,
 		},
 		root: {
@@ -44,7 +44,7 @@ export default function Nav(props) {
 				switchElementWithAnimation={props.switchElementWithAnimation}
 				isAnimating={props.isAnimating}
 				incrementSwitch={props.incrementSwitch}
-				makeNegativeSwitch={props.makeNegativeSwitch}
+				slideTopPageOut={props.slideTopPageOut}
 				/>
 		</div>
 	)
