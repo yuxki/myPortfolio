@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		featuredWorkContent: {
 			position: 'absolute',
-			top: 0,
+			top: theme.spacing(20),
 			left: '50%',
 			transform: 'translateX(-50%)',
 		},

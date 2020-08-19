@@ -37,16 +37,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ContentChange(props) {
 	const classes = useStyles();
-	const [changeContent, setChangeContent] = React.useState(false);
-
-	const handleChangeContent = () => {
-		setChangeContent(true);
-	}
 
 	return (
 		<div
 			className={clsx(classes.contentChange)}
-			onClick={props.switchElementWithAnimation}
+			onClick={props.incrementSwitch}
 		>
 			<ExpandMoreIcon
 				fontSize='large'

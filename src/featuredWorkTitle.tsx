@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		featuredWorkTitleArea: {
 			position: 'absolute',
-			bottom:0,
+			bottom: theme.spacing(12),
 			left: 0,
 		},
 		h2: {

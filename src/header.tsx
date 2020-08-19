@@ -5,6 +5,8 @@ import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/sty
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		header: {
+			position:'fixed',
+			zIndex:100,
 			width: '100%',
 			height: theme.spacing(15),
 			marginBottom : theme.spacing(5),

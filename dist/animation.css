@@ -21,6 +21,11 @@
   animation: fadeIn 1s ease-in;
 }
 
+.slideTopPage {
+	transform: translateY(-330px) !important;
+	z-index: 100;
+}
+
 @keyframes fadeIn {
   0% {opacity: 0}
   100% {opacity: 1}
