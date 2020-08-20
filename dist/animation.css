@@ -35,7 +35,6 @@
 
 .slideTopPage {
 	transform: translateY(-330px) !important;
-	z-index: 100;
 }
 
 /* 上方向への要素切り替えのアニメーション */

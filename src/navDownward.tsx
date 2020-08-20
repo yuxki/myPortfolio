@@ -31,7 +31,7 @@ export default function NavDownward(props) {
 	return (
 		<div
 			className={classes.navDownward}
-			onClick={props.isAnimating ? null : navEvent}
+			onClick={props.isAnimating || props.isSlideOut ? null : navEvent}
 		>
 			<ExpandMoreIcon
 				fontSize='large'

@@ -32,6 +32,7 @@ export default function Nav(props) {
 				topPageNum={props.topPageNum}
 				setTopPageNum={props.setTopPageNum}
 				isAnimating={props.isAnimating}
+				isSlideOut={props.isSlideOut}
 				switchElementWithAnimationToUp={props.switchElementWithAnimationToUp}
 				/>
 			<NavDownward
@@ -39,6 +40,7 @@ export default function Nav(props) {
 				topPageNum={props.topPageNum}
 				setTopPageNum={props.setTopPageNum}
 				isAnimating={props.isAnimating}
+				isSlideOut={props.isSlideOut}
 				switchElementWithAnimationToDown={props.switchElementWithAnimationToDown}
 				slideTopPageOut={props.slideTopPageOut}
 				/>
