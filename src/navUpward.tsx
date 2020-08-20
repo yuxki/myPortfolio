@@ -26,7 +26,7 @@ export default function NavUpward(props) {
 	return (
 		<div
 			className={classes.navUpward}
-			onClick={props.isAnimating ? null : props.switchElementWithAnimationToUp}
+			onClick={props.isAnimating || props.isSlideOut ? null : props.switchElementWithAnimationToUp}
 		>
 			<ExpandLessIcon
 				fontSize='large'

@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '100vh',
 			backgroundColor: '#FFFFFF',
 			transitionDuration: '1s',
+			zIndex:50,
 			// backgroundColor: 'rgb(255,255,255,0.5)',
 		},
 		topPageArea: {
@@ -68,13 +69,16 @@ export default function TopPage() {
 	// アニメーション中か否かを管理するState
 	const [isAnimating, setIsAnimating] = React.useState(false);
 
+	// TopPageがスライドしているか否かを管理するState
+	const [isSlideOut, setIsSlideOut] = React.useState(false);
+
 	// アニメーション発火を目的としたref
 	const animationTarget = React.useRef(null);
 	const slideArea = React.useRef(null);
 
 	React.useEffect(() => {
-     console.log('didmount');
-   });
+		console.log('didmount');
+	});
 
 	// クラスで探したelementに、任意のクラスを複数追加・削除するPromise関数を返す
 	function transactClassesToElements(mode: string, targetElement: any, transactedClasses: Array<string>) {
@@ -178,11 +182,25 @@ export default function TopPage() {
 		return;
 	}
 
-	// topPageを上に移動させる
+	// topPageを上に移動させるファンクション
 	async function slideTopPageOut() {
+		console.log('slideTopPageIn');
 		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
 		await setStateFunc(handleAnimationStart);
 		await transactClassesToElements('ADD', slideArea, ['slideTopPage']);
+		await handleAnimationEvent(slideArea, 'transitionend');
+		await setStateFunc(handleAnimationEnd);
+		setIsSlideOut(true);
+	}
+
+	// topPageを上に移動させるファンクション
+	async function slideTopPageIn() {
+		console.log('slideTopPageIn');
+		await setStateFunc(handleAnimationStart);
+		await transactClassesToElements('REMOVE', slideArea, ['slideTopPage']);
+		await handleAnimationEvent(slideArea, 'transitionend');
+		await setStateFunc(handleAnimationEnd);
+		setIsSlideOut(false);
 	}
 
 	// topPageNumを変更するファンクション群
@@ -203,13 +221,16 @@ export default function TopPage() {
 		setIsAnimating(false);
 	}
 
+	// wheelのイベントで画面の切り替えを行うファンクション群
 	function switchElementWithAnimationBywheel(event) {
 		if (event.deltaY > 120) {
 			if (topPageNum === featuredWorkInfoArry.length) {
+				slideTopPageOut();
 				return
 			}
 			switchElementWithAnimationToDown();
 		};
+
 		if (event.deltaY < -120) {
 			if (topPageNum === 0) {
 				return
@@ -218,10 +239,20 @@ export default function TopPage() {
 		};
 	}
 
+	function slideTopPageInBywheel(event) {
+		if (event.deltaY < -120) {
+			slideTopPageIn();
+		}
+		return
+	}
+
 	return (
 		<div>
 			<div className={clsx(classes.staticArea, 'slideArea')}
-				onWheel={isAnimating ? null : switchElementWithAnimationBywheel}
+				onWheel={isAnimating
+					? null
+					: isSlideOut ? slideTopPageInBywheel : switchElementWithAnimationBywheel
+				}
 				ref={slideArea}
 			>
 				<div className={clsx(classes.topPageArea, 'animationTarget')}
@@ -240,8 +271,8 @@ export default function TopPage() {
 							<Nav
 								featuredWorkLength={featuredWorkInfoArry.length}
 								topPageNum={topPageNum}
-								setTopPageNum={setTopPageNum}
 								isAnimating={isAnimating}
+								isSlideOut={isSlideOut}
 								switchElementWithAnimationToDown={switchElementWithAnimationToDown}
 								switchElementWithAnimationToUp={switchElementWithAnimationToUp}
 								slideTopPageOut={slideTopPageOut}
@@ -255,9 +286,11 @@ export default function TopPage() {
 					)}
 				</div>
 			</div>
-			<div>
-				<Footer />
-			</div>
+			<Footer
+				isAnimating={isAnimating}
+				isSlideOut={isSlideOut}
+				slideTopPageInBywheel={slideTopPageInBywheel}
+			/>
 		</div>
 	)
 }
