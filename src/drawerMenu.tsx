@@ -87,7 +87,7 @@ export default function DrawerMenu() {
 					</div>
 					<div className={classes.drawerBody}>
 						<div className={classes.drawerLeft}>
-						<MenuList />
+						<MenuList handleDrawerClose={handleDrawerClose}/>
 						</div>
 						<div className={classes.drawerRight}>
 						<Logo />

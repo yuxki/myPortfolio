@@ -25,7 +25,7 @@ export default function Footer(props) {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.footerArea}
+		<footer className={classes.footerArea}
 			onWheel={props.isAnimating
 				? null
 				: props.isSlideOut ? props.slideTopPageInBywheel : null
@@ -35,6 +35,6 @@ export default function Footer(props) {
 			<div className={classes.menuArea}>
 				<MenuList />
 			</div>
-		</div>
+		</footer>
 	)
 }
