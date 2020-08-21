@@ -7,7 +7,20 @@ import FeaturedWorkContents from "./featuredWorkContents";
 import FeaturedWorkTitle from "./featuredWorkTitle";
 import Footer from "./footer";
 import NavUpward from './navUpward';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme, Theme, createStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+const theme = createMuiTheme({
+	overrides: {
+		MuiCssBaseline: {
+			'@global': {
+				body: {
+					overflow: 'hidden',
+				},
+			},
+		},
+	},
+})
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -16,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '100vh',
 			backgroundColor: '#FFFFFF',
 			transitionDuration: '1s',
-			zIndex:50,
+			zIndex: 51,
 			// backgroundColor: 'rgb(255,255,255,0.5)',
 		},
 		topPageArea: {
@@ -24,6 +37,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			position: 'relative',
 			height: 'inherit',
 			margin: theme.spacing(0, 10),
+		},
+		'@global': {
+			overflow: 'hidden',
 		},
 	}),
 );
@@ -248,6 +264,9 @@ export default function TopPage() {
 
 	return (
 		<div>
+			<ThemeProvider theme={theme}>
+				<CssBaseline />
+			</ThemeProvider>
 			<div className={clsx(classes.staticArea, 'slideArea')}
 				onWheel={isAnimating
 					? null

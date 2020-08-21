@@ -1,8 +1,18 @@
 import * as React from 'react';
+import { HashRouter as Router, Link, useRouteMatch } from "react-router-dom";
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+
+interface menuTextToRoute {
+	[menuText: string]: string;
+}
+
+const textToRouteMap: menuTextToRoute = {
+	'Home': '/',
+	'About': '/about',
+}
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -17,15 +27,20 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function MenuList() {
+export default function MenuList(props) {
 	const classes = useStyles();
+	let match = useRouteMatch();
 	return (
-		<List classes={{ root: classes.root }}>
-			{['Home', 'Works', 'About'].map((text, index) => (
-				<ListItem key={text} classes={{ root: classes.root }}>
-					<ListItemText primary={text} classes={{ primary: classes.primary }} />
-				</ListItem>
-			))}
-		</List>
+			<List classes={{ root: classes.root }}>
+				{['Home', 'About'].map((text, index) => (
+					<ListItem key={text} classes={{ root: classes.root }}>
+						<Link to={textToRouteMap[text]}>
+							<div onClick={props.handleDrawerClose ? props.handleDrawerClose : null}>
+							<ListItemText primary={text} classes={{ primary: classes.primary }}/>
+							</div>
+						</Link>
+					</ListItem>
+				))}
+			</List>
 	);
 }
