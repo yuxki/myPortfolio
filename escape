@@ -1,0 +1,19 @@
+class App extends React.Component {
+	render() {
+		return (
+			<Router>
+				<div>
+					<Header />
+					<Switch>
+						<Route path={"/about"}>
+							<AboutPage />
+						</Route>
+						<Route path={"/"}>
+							<TopPage />
+						</Route>
+					</Switch>
+				</div>
+			</Router>
+		)
+	}
+}

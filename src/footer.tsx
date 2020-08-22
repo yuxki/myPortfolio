@@ -5,9 +5,6 @@ import MenuList from './menuList';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		footerArea: {
-			zIndex: -100,
-			position: 'fixed',
-			bottom: 0,
 			backgroundColor: '#F2BE22',
 			display: 'flex',
 			width: '100%',
@@ -33,7 +30,7 @@ export default function Footer(props) {
 			style={props.isSlideOut ? {zIndex:45} : {}}
 			>
 			<div className={classes.menuArea}>
-				<MenuList />
+				<MenuList resetState={props.resetState}/>
 			</div>
 		</footer>
 	)

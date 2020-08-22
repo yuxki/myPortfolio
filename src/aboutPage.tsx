@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import Header from "./header";
 import Footer from "./footer";
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,9 +9,9 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		aboutPageArea: {
 			display: 'block',
-			position: 'relative',
-			top:theme.spacing(15),
-			margin: theme.spacing(0, 10),
+			position: 'static',
+			paddingTop:theme.spacing(15),
+			margin: theme.spacing(0, 10, 8, 10),
 		},
 		bodyAboutAtelier:{
 			marginTop:theme.spacing(4),
@@ -27,6 +28,7 @@ export default function AboutPage() {
 	return (
 		<div>
 			<CssBaseline />
+			<Header />
 			<div className={classes.aboutPageArea}>
 				<Typography variant='h1' classes={{ root: classes.root }}>
 					About
@@ -40,11 +42,9 @@ export default function AboutPage() {
 						})}
 				</div>
 			</div>
-			{/*
 			<div>
 				<Footer />
 			</div>
-			*/}
 		</div>
 	)
 }
