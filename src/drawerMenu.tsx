@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function DrawerMenu() {
+export default function DrawerMenu(props) {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
 
@@ -87,7 +87,10 @@ export default function DrawerMenu() {
 					</div>
 					<div className={classes.drawerBody}>
 						<div className={classes.drawerLeft}>
-						<MenuList handleDrawerClose={handleDrawerClose}/>
+						<MenuList
+							handleDrawerClose={handleDrawerClose}
+							resetState = {props.resetState}
+						/>
 						</div>
 						<div className={classes.drawerRight}>
 						<Logo />

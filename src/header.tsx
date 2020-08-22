@@ -20,13 +20,13 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function Header() {
+export default function Header(props) {
 	const classes = useStyles();
-
+	const resetState = props.resetState ? props.resetState : null;
 	return (
 		<header className={classes.header}>
 			<div className={classes.headerContent}>
-				<DrawerMenu />
+				<DrawerMenu resetState={props.resetState}/>
 			</div>
 		</header>
 	)

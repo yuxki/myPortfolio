@@ -1,5 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import Header from "./header";
 import Billboard from "./billboard";
 import ContentChange from "./contentChange";
 import Nav from "./nav"
@@ -14,8 +15,16 @@ const theme = createMuiTheme({
 	overrides: {
 		MuiCssBaseline: {
 			'@global': {
+				html: {
+					overflow: 'hidden',
+				},
 				body: {
 					overflow: 'hidden',
+				},
+				footer: {
+					zIndex: -100,
+					position: 'fixed',
+					bottom: 0,
 				},
 			},
 		},
@@ -93,7 +102,7 @@ export default function TopPage() {
 	const slideArea = React.useRef(null);
 
 	React.useEffect(() => {
-		console.log('didmount');
+		console.log('render in TopPage!');
 	});
 
 	// クラスで探したelementに、任意のクラスを複数追加・削除するPromise関数を返す
@@ -200,23 +209,23 @@ export default function TopPage() {
 
 	// topPageを上に移動させるファンクション
 	async function slideTopPageOut() {
-		console.log('slideTopPageIn');
+		console.log('slideTopPageOut');
 		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
 		await setStateFunc(handleAnimationStart);
-		await transactClassesToElements('ADD', slideArea, ['slideTopPage']);
+		await setStateFunc(handleSlideOut);
+		// await transactClassesToElements('ADD', slideArea, ['slideTopPage']);
 		await handleAnimationEvent(slideArea, 'transitionend');
 		await setStateFunc(handleAnimationEnd);
-		setIsSlideOut(true);
 	}
 
 	// topPageを上に移動させるファンクション
 	async function slideTopPageIn() {
 		console.log('slideTopPageIn');
 		await setStateFunc(handleAnimationStart);
-		await transactClassesToElements('REMOVE', slideArea, ['slideTopPage']);
+		await setStateFunc(handleSlideIn);
+		// await transactClassesToElements('REMOVE', slideArea, ['slideTopPage']);
 		await handleAnimationEvent(slideArea, 'transitionend');
 		await setStateFunc(handleAnimationEnd);
-		setIsSlideOut(false);
 	}
 
 	// topPageNumを変更するファンクション群
@@ -228,6 +237,10 @@ export default function TopPage() {
 		setTopPageNum((topPageNum - 1));
 	}
 
+	function initTopPageNum() {
+		setTopPageNum(0);
+	}
+
 	// isAnimatingを変更するファンクション群
 	function handleAnimationStart() {
 		setIsAnimating(true);
@@ -235,6 +248,15 @@ export default function TopPage() {
 
 	function handleAnimationEnd() {
 		setIsAnimating(false);
+	}
+
+	// isSlideOutを変更するファンクション群
+	function handleSlideOut(){
+		setIsSlideOut(true);
+	}
+
+	function handleSlideIn(){
+		setIsSlideOut(false);
 	}
 
 	// wheelのイベントで画面の切り替えを行うファンクション群
@@ -262,12 +284,50 @@ export default function TopPage() {
 		return
 	}
 
+	// footerのリンクを押下した時の画面に影響を与えるファンクション群
+
+	// footerのリンク押下時の専用処理
+	async function switchElementWithAnimationToBillboard(): Promise<void> {
+
+		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
+		await setStateFunc(handleAnimationStart);
+
+		// フェードアウトのアニメーションCSSを、クラスの切り替えで発火させる
+		await transactClassesToElements('ADD', animationTarget, ['fadeOut', 'moveContentToBottom']);
+		await handleAnimationEvent(animationTarget, 'transitionend');
+		await transactClassesToElements('REMOVE', animationTarget, ['fadeOut', 'moveContentToBottom']);
+
+		// topPageNumを変更する
+		await setStateFunc(initTopPageNum);
+
+		// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
+		await transactClassesToElements('ADD', animationTarget, ['waitAppearFromTop']);
+		// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
+		await sleep();
+		await transactClassesToElements('ADD', animationTarget, ['fade', 'moveContentToBottom']);
+		await handleAnimationEvent(animationTarget, 'animationend');
+		await transactClassesToElements('REMOVE', animationTarget, ['waitAppearFromTop', 'fade', 'moveContentToBottom']);
+
+		// アニメーション実行終了のStateに切り替え、イベントの制限を解放する
+		await setStateFunc(handleAnimationEnd);
+
+		return;
+	}
+
+	function resetState() {
+		setIsSlideOut(false)
+		initTopPageNum();
+	}
+
+
+
 	return (
 		<div>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 			</ThemeProvider>
-			<div className={clsx(classes.staticArea, 'slideArea')}
+			<Header resetState={resetState}/>
+			<div className={clsx(classes.staticArea, isSlideOut && 'slideTopPage')}
 				onWheel={isAnimating
 					? null
 					: isSlideOut ? slideTopPageInBywheel : switchElementWithAnimationBywheel
@@ -309,6 +369,7 @@ export default function TopPage() {
 				isAnimating={isAnimating}
 				isSlideOut={isSlideOut}
 				slideTopPageInBywheel={slideTopPageInBywheel}
+				resetState={resetState}
 			/>
 		</div>
 	)
