@@ -16,6 +16,8 @@ http.createServer((req, res) => {
 		return;
 	}
 
+	console.log(req.url);
+
 	let lookup = path.basename(decodeURI(req.url)) || 'index.html';
   if(req.url === '/about') {
     lookup = 'index.html'
