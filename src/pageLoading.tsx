@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles, Theme, createStyles,} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles, } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -11,20 +11,19 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '100vh',
 			backgroundColor: '#FFFFFF',
 			transitionDuration: '0.5s',
-			zIndex: 200,
 		},
 		appearLoadingArea: {
-			display: 'flex: !important',
+			display: 'flex',
+			zIndex: 200,
 		}
 	}),
 )
 
-export default function PageLoading(props){
-const classes = useStyles();
-
+export default function PageLoading(prop) {
+	const classes = useStyles();
 	return (
 		<div className={clsx(classes.pageLoadingArea,
-			props.isPageLoading && classes.appearLoadingArea)}
+			prop.isPageLoading && classes.appearLoadingArea)}
 		>
 		</div>
 	)
