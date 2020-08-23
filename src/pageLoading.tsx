@@ -10,21 +10,44 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100vw',
 			height: '100vh',
 			backgroundColor: '#FFFFFF',
-			transitionDuration: '0.5s',
 		},
 		appearLoadingArea: {
 			display: 'flex',
 			zIndex: 200,
+		},
+		loadingStatus: {
+			display: 'flex',
+			width: '100%',
+			height: '100%',
+			justifyContent: 'flex-start',
+			alignItems: 'center',
+		},
+		loadingViewBox: {
+			display: 'flex',
+			width: '150px',
+		},
+		loadingBar: {
+			display: 'flex',
+			height: '5px',
+			backgroundColor: "#F2BE22",
+			'transitionDuration': '0.5s',
 		}
 	}),
 )
 
-export default function PageLoading(prop) {
+export default function PageLoading(props) {
 	const classes = useStyles();
+
+
 	return (
 		<div className={clsx(classes.pageLoadingArea,
-			prop.isPageLoading && classes.appearLoadingArea)}
+			!props.isPreload && classes.appearLoadingArea,
+		)}
 		>
+			<div className={classes.loadingStatus}>
+				<div className={classes.loadingBar} style={{ width: `${props.doneLoadingPercent}%` }}>
+				</div>
+			</div>
 		</div>
 	)
 }

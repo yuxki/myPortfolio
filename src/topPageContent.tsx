@@ -106,21 +106,28 @@ function joinFeaturedWorkImgElem(infoArray: Array<FeaturedWorkInfo>): Array<HTML
 	});
 	return htmlImageArray;
 }
-
-
 const htmlImageArray = joinFeaturedWorkImgElem(featuredWorkInfoArry);
-console.log(htmlImageArray);
 
+
+/*------------------------- ここからコンポーネント -------------------------*/
 export default function TopPageContent(props) {
+	const isPreload= props.isPreload;
+	const handleDonePreload= props.handleDonePreload;
+
 	const classes = useStyles();
 
 	function setLoadAllCallback(elems: Array<HTMLImageElement>, callback) {
+		let parElemPercent = 100 / elems.length;
+		let remainPercent = 100 / elems.length;
+
 		let count = 0;
-		console.log(elems);
+
 		for (let i = 0; i < elems.length; ++i) {
 			elems[i].onload = function() {
+				fillDoneLoadingPercent(parElemPercent);
 				++count;
 				if (count == elems.length) {
+					fillDoneLoadingPercent(remainPercent);
 					callback()
 				}
 			}
@@ -130,9 +137,10 @@ export default function TopPageContent(props) {
 	React.useEffect(() => {
 		if (!isPreload) {
 			handSrcToImageElem(featuredWorkInfoArry);
-			setLoadAllCallback(htmlImageArray, function() {
-				setIsPreload(true);
-				endTopPageLoading();
+			setLoadAllCallback(htmlImageArray, async function() {
+				console.log('load is finished')
+				await sleep(500);
+				await setStateFunc(handleDonePreload);
 			})
 		}
 	});
@@ -146,19 +154,12 @@ export default function TopPageContent(props) {
 	// TopPageがスライドしているか否かのHook
 	const [isSlideOut, setIsSlideOut] = React.useState(false);
 
-	// ローディング画面を表示するか否かのHook
-	const [isTopPageLoading, setIsTopPageLoading] = React.useState(true);
+	// ロード完了を表すパーセントのHopk
+	const [doneLoadingPercent, setDoneLoadingPercent] = React.useState(0);
 
-	// ローディング完了が否かのHopk
-	const [isPreload, setIsPreload] = React.useState(false);
-
-	function startTopPageLoading() {
-		setIsTopPageLoading(true);
-	}
-
-	function endTopPageLoading() {
-		console.log('end top page loading');
-		setIsTopPageLoading(false);
+	function fillDoneLoadingPercent(fillPercent: number) {
+		if (doneLoadingPercent >= 100) return
+			setDoneLoadingPercent((doneLoadingPercent + fillPercent));
 	}
 
 	// アニメーション発火を目的としたref
@@ -202,12 +203,12 @@ export default function TopPageContent(props) {
 		})
 	}
 
-	function sleep(): Promise<boolean> {
+	function sleep(sleepTime:number): Promise<boolean> {
 		return new Promise(resolve => {
 			setTimeout(() => {
 				console.log('sleep out');
 				resolve()
-			}, 500)
+			}, sleepTime)
 		})
 	}
 
@@ -228,7 +229,7 @@ export default function TopPageContent(props) {
 		// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
 		await transactClassesToElements('ADD', animationTarget, ['waitAppearFromBottom']);
 		// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
-		await sleep();
+		await sleep(500);
 		await transactClassesToElements('ADD', animationTarget, ['fade', 'moveContentToTop']);
 		await handleAnimationEvent(animationTarget, 'animationend');
 		await transactClassesToElements('REMOVE', animationTarget, ['waitAppearFromBottom', 'fade', 'moveContentToTop']);
@@ -256,7 +257,7 @@ export default function TopPageContent(props) {
 		// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
 		await transactClassesToElements('ADD', animationTarget, ['waitAppearFromTop']);
 		// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
-		await sleep();
+		await sleep(500);
 		await transactClassesToElements('ADD', animationTarget, ['fade', 'moveContentToBottom']);
 		await handleAnimationEvent(animationTarget, 'animationend');
 		await transactClassesToElements('REMOVE', animationTarget, ['waitAppearFromTop', 'fade', 'moveContentToBottom']);
@@ -269,7 +270,7 @@ export default function TopPageContent(props) {
 
 	// topPageを上に移動させるファンクション
 	async function slideTopPageOut() {
-		console.log('slideTopPageOut');
+		
 		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
 		await setStateFunc(handleAnimationStart);
 		await setStateFunc(handleSlideOut);
@@ -363,7 +364,7 @@ export default function TopPageContent(props) {
 		// フェードインのアニメーションCSSを、クラスの切り替えで発火させる
 		await transactClassesToElements('ADD', animationTarget, ['waitAppearFromTop']);
 		// （top→translate）の順番を守るため、translateの前にsleep処理を実行する
-		await sleep();
+		await sleep(500);
 		await transactClassesToElements('ADD', animationTarget, ['fade', 'moveContentToBottom']);
 		await handleAnimationEvent(animationTarget, 'animationend');
 		await transactClassesToElements('REMOVE', animationTarget, ['waitAppearFromTop', 'fade', 'moveContentToBottom']);
@@ -383,7 +384,10 @@ export default function TopPageContent(props) {
 
 	return (
 		<div>
-			<PageLoading isPageLoading={isTopPageLoading} />
+			<PageLoading
+				isPreload={isPreload}
+				doneLoadingPercent={doneLoadingPercent}
+			/>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 			</ThemeProvider>
