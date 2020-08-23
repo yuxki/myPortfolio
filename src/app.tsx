@@ -6,6 +6,13 @@ import AboutPage from "./aboutPage";
 import PageLoading from "./pageLoading";
 
 function App() {
+	// ローディング完了が否かのHopk
+	const [isPreload, setIsPreload] = React.useState(false);
+
+	function handleDonePreload() {
+		setIsPreload(true);
+	}
+
 	return (
 		<Router>
 			<div>
@@ -14,7 +21,10 @@ function App() {
 						<AboutPage />
 					</Route>
 					<Route path={"/"}>
-						<TopPage />
+						<TopPage
+							isPreload={isPreload}
+							handleDonePreload={handleDonePreload}
+						/>
 					</Route>
 				</Switch>
 			</div>

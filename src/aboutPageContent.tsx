@@ -37,14 +37,9 @@ export default function AboutPageContent(props) {
 		setIsAboutPageLoading(false);
 	}
 
-	React.useEffect(() => {
-		endAboutPageLoading();
-	});
-
 	const aboutAtelier = "何かを知る楽しさ、なにかを始める楽しさ、なにかをつくる楽しさ、\nモノづくりで得られる楽しさを知るために活動しています。\nAtelier Hiroyuki は、その活動拠点です。"
 	return (
 		<div>
-			<PageLoading isPageLoading={isAboutPageLoading}/>
 			<CssBaseline />
 			<Header />
 			<div className={classes.aboutPageArea}>
