@@ -1,0 +1,17 @@
+コンポーネント
+
+・レイアウトコンポーネント
+	読み方向: vertical, horizonal
+	メイン画像の数: single, double
+	メイン画像の変更形式: static, Dynamic
+	コンポーネント種別名: layout
+  例：verticalSingleDynamicLayout horizontalSingleDynamicLayout
+
+・ページ系コンポーネント
+	ページ名: about, top
+	コンポーネント種別名: page
+
+・ページの内容コンポーネント
+	ページ名: about, top
+	ページ: page
+	コンポーネント種別名:content
