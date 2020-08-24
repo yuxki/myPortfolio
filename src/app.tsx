@@ -5,6 +5,8 @@ import TopPage from "./topPage";
 import AboutPage from "./aboutPage";
 import PageLoading from "./pageLoading";
 
+import FeaturedWorkSandBox from "./featuredWorkSandBox"
+
 function App() {
 	// ローディング完了が否かのHopk
 	const [isPreload, setIsPreload] = React.useState(false);
@@ -14,6 +16,7 @@ function App() {
 	}
 
 	return (
+		/*
 		<Router>
 			<div>
 				<Switch>
@@ -27,6 +30,12 @@ function App() {
 						/>
 					</Route>
 				</Switch>
+			</div>
+		</Router>
+		*/
+		<Router>
+			<div>
+				<FeaturedWorkSandBox />
 			</div>
 		</Router>
 	)

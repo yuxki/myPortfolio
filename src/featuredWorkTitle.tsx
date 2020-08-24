@@ -1,18 +1,17 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		featuredWorkTitleArea: {
-			position: 'absolute',
-			bottom: theme.spacing(12),
-			left: 0,
+			display:'flex',
 		},
 		h2: {
-			fontSize: '66px',
+			fontSize: '50px',
 			fontWeight: 'lighter',
+			textAlign: 'center',
+			marginBottom:theme.spacing(1),
 		}
 	})
 );
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function FeaturedWorkTitle(props) {
 	const classes = useStyles();
 	return (
-		<div className={clsx(classes.featuredWorkTitleArea)}>
+		<div className={classes.featuredWorkTitleArea}>
 			<Typography variant="h2" classes={{ h2: classes.h2 }}>
 				{props.featuredWorkTitle}
 			</Typography>
