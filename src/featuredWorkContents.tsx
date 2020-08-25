@@ -1,6 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import VerticalSingleDynamicLayout from "./layout/verticalSingleDynamicLayout";
+import HorizontalSingleDynamicLayout from "./layout/horizontalSingleDynamicLayout";
+import RightAngleSingleStaticLayout from "./layout/rightAngleSingleStaticLayout";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -8,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			position: 'absolute',
 			top: theme.spacing(20),
 			left: '50%',
+			width:'870px',
 			transform: 'translateX(-50%)',
 		},
 		primaryGraphicDesign: {
@@ -18,9 +22,25 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function FeaturedWorkContents(props) {
 	const classes = useStyles();
+	const imageInfoList = props.imageInfoList;
+	const topPageNum = props.topPageNum;
+	const contents = [
+		<VerticalSingleDynamicLayout
+			imageInfoList={imageInfoList.featuredWorkImgSrc}
+			featuredWorkTitle={imageInfoList.featuredWorkTitle}
+		/>,
+		<HorizontalSingleDynamicLayout
+			imageInfoList={imageInfoList.featuredWorkImgSrc}
+			featuredWorkTitle={imageInfoList.featuredWorkTitle}
+		/>,
+		<RightAngleSingleStaticLayout
+			imageInfoList={imageInfoList.featuredWorkImgSrc}
+			featuredWorkTitle={imageInfoList.featuredWorkTitle}
+		/>
+	]
 	return (
-			<div className={clsx(classes.featuredWorkContent)}>
-				<img src={props.featuredWorkImgSrc[0]} className={classes.primaryGraphicDesign} />
-			</div>
+		<div className={clsx(classes.featuredWorkContent)}>
+			{contents[topPageNum - 1]}
+		</div>
 	)
 }

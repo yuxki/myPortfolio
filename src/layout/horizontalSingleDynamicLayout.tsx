@@ -81,7 +81,6 @@ export default function HorizontalSingleDynamicLayout(props) {
 
 	function handleImageSelected(selectedImageInfo: string, event) {
 		event.preventDefault();
-		console.log(typeof event);
 		setSelectedMainImage(selectedImageInfo);
 	}
 

@@ -16,13 +16,12 @@ http.createServer((req, res) => {
 		return;
 	}
 
-	console.log(req.url);
-
-	let lookup = path.basename(decodeURI(req.url)) || 'index.html';
+	let lookup =  (req.url === '/') ? 'index.html' : req.url;
   if(req.url === '/about') {
     lookup = 'index.html'
   }
 	f = 'dist/' + lookup;
+	console.log(lookup);
 	fs.readFile(f, (err, data) => {
 
 		if (err) { // エラーハンドリング
