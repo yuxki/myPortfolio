@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			flexWrap: 'wrap',
 		},
 		mainImageArea: {
-			position:'relative',
+			position: 'relative',
 			display: 'flex',
 			flexDirection: 'column-reverse',
 			width: '184px',
@@ -24,10 +24,18 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '184px',
 			height: 'auto',
 		},
+		iphoneXFrameSVG: {
+			width: '0px',
+			height: '0px',
+		},
 		mainAppImage: {
-			position:'absolute',
-			left:'12px',
-			bottom:'11px',
+			position: 'absolute',
+			left: '12px',
+			bottom: '11px',
+			width: '160px',
+			height: '346.7px',
+		},
+		clipedAppImage: {
 			width: '160px',
 			height: '346.7px',
 		},
@@ -54,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		imageButtonImage: {
 			display: 'flex',
 			width: '73px',
-			height: 'auto',
+			height: '156px',
 		},
 		titleArea: {
 			display: 'flex',
@@ -81,13 +89,13 @@ export default function HorizontalSingleDynamicLayout(props) {
 		<div className={classes.horizontalLayout}>
 			<div className={classes.mainImageArea}>
 				<img className={classes.mainImage} src={'iPhoneX.png'} />
-				<svg width='0px' height='0px' viewBox="0 0 0 0">
-					<clipPath id="iPhoneXFlame">
+				<svg className={classes.iphoneXFrameSVG} viewBox="0 0 0 0">
+					<clipPath id="iPhoneXFrame">
 						<path d="M143,0H128a4.94,4.94,0,0,0-3,1c-1,1,2,12-14,12H49C33,13,36,2,35,1a4.94,4.94,0,0,0-3-1H17C3,0,0,13,0,15V330.67c0,14.43,15,16,15,16H145s15-1.6,15-16V15C160,13,157,0,143,0Z" />
 					</clipPath>
 				</svg>
 				<svg className={classes.mainAppImage} viewBox="0 0 160 346.7">
-					<image width='160px' height='346.7' xlinkHref={selectedMainImage} clipPath="url(#iPhoneXFlame)" />
+					<image className={classes.clipedAppImage} xlinkHref={selectedMainImage} clipPath="url(#iPhoneXFrame)" />
 				</svg>
 			</div>
 			<div className={classes.imageSelectArea}>
