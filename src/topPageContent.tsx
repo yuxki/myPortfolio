@@ -55,7 +55,6 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-// TopPageの内容に当る、featuredWorkの変数を定義する
 interface FeaturedWorkInfo {
 	featuredWorkTitle: string;
 	featuredWorkType: string;
@@ -67,29 +66,64 @@ interface FeaturedWorkInfo {
 const graphicsDesignInfo: FeaturedWorkInfo = {
 	featuredWorkTitle: 'Graphics Design',
 	featuredWorkType: 'img',
-	featuredWorkImgSrc: ['pawoon.jpg'],
-	featuredWorkImgElem: [new Image()],
+	featuredWorkImgSrc: [
+		'tokyoHalloween.jpg'
+		, 'pawoon.jpg'
+		, 'flyingRabbit_wide.jpg'
+		, 'interface_logo.png'
+	],
+	featuredWorkImgElem: [],
 	featuredWorkLayout: 'single_img',
 }
 
 const applicationDesignInfo: FeaturedWorkInfo = {
 	featuredWorkTitle: 'Application Design',
 	featuredWorkType: 'img',
-	featuredWorkImgSrc: ['sumneil1.png'],
-	featuredWorkImgElem: [new Image()],
+	featuredWorkImgSrc: [
+		'./appImg/calcurate.png'
+		, './appImg/camera.png'
+		, './appImg/cookingRecipe.png'
+		, './appImg/game.png'
+		, './appImg/itemDetail.png'
+		, './appImg/mapDist.png'
+		, './appImg/musicLogin.png'
+		, './appImg/musicPlay.png'
+		, './appImg/readingBook.png'
+		, './appImg/snsProfile.png'
+		, './appImg/sportLogin.png'
+		, './appImg/weather.png'
+	],
+	featuredWorkImgElem: [],
 	featuredWorkLayout: 'single_img',
 }
 
 const threDGraphicsInfo: FeaturedWorkInfo = {
 	featuredWorkTitle: '3D Graphics',
 	featuredWorkType: 'img',
-	featuredWorkImgSrc: ['night_type_under_v2.png', '20190212.png'],
-	featuredWorkImgElem: [new Image(), new Image()],
+	featuredWorkImgSrc: [
+		'./threeDimage/lightHouse_night.png'
+		, './threeDimage/lighthouse_back.jpg'
+		, './threeDimage/lighthouse_front.jpg'
+		, './threeDimage/lighthouse_right.jpg'
+		, './threeDimage/lightHouse_wire.jpg'
+		, './threeDimage/lightHouse_morning.png'
+	],
+	featuredWorkImgElem: [],
 	featuredWorkLayout: 'double_img',
 }
 
 const featuredWorkInfoArry: Array<FeaturedWorkInfo> =
 	[graphicsDesignInfo, applicationDesignInfo, threDGraphicsInfo];
+
+function instantiateImages(infoArray: Array<FeaturedWorkInfo>) {
+	infoArray.forEach((imageInfo) => {
+		let imageArray: Array<HTMLImageElement> = [];
+		imageInfo.featuredWorkImgSrc.forEach(() => {
+			imageArray.push(new Image());
+		});
+		imageInfo.featuredWorkImgElem = imageArray;
+	})
+}
 
 function handSrcToImageElem(infoArray: Array<FeaturedWorkInfo>) {
 	infoArray.forEach((info) => {
@@ -106,13 +140,16 @@ function joinFeaturedWorkImgElem(infoArray: Array<FeaturedWorkInfo>): Array<HTML
 	});
 	return htmlImageArray;
 }
+
+instantiateImages(featuredWorkInfoArry);
+console.log(featuredWorkInfoArry);
 const htmlImageArray = joinFeaturedWorkImgElem(featuredWorkInfoArry);
 
 
 /*------------------------- ここからコンポーネント -------------------------*/
 export default function TopPageContent(props) {
-	const isPreload= props.isPreload;
-	const handleDonePreload= props.handleDonePreload;
+	const isPreload = props.isPreload;
+	const handleDonePreload = props.handleDonePreload;
 
 	const classes = useStyles();
 
@@ -159,7 +196,7 @@ export default function TopPageContent(props) {
 
 	function fillDoneLoadingPercent(fillPercent: number) {
 		if (doneLoadingPercent >= 100) return
-			setDoneLoadingPercent((doneLoadingPercent + fillPercent));
+		setDoneLoadingPercent((doneLoadingPercent + fillPercent));
 	}
 
 	// アニメーション発火を目的としたref
@@ -203,7 +240,7 @@ export default function TopPageContent(props) {
 		})
 	}
 
-	function sleep(sleepTime:number): Promise<boolean> {
+	function sleep(sleepTime: number): Promise<boolean> {
 		return new Promise(resolve => {
 			setTimeout(() => {
 				console.log('sleep out');
@@ -270,7 +307,7 @@ export default function TopPageContent(props) {
 
 	// topPageを上に移動させるファンクション
 	async function slideTopPageOut() {
-		
+
 		// アニメーション実行中のStateに切り替え、アニメーション中のイベントを制限する
 		await setStateFunc(handleAnimationStart);
 		await setStateFunc(handleSlideOut);
@@ -408,10 +445,10 @@ export default function TopPageContent(props) {
 					{topPageNum > 0 && [
 						<div>
 							<FeaturedWorkContents
-								featuredWorkType={featuredWorkInfoArry[topPageNum - 1].featuredWorkType}
-								featuredWorkImgSrc={featuredWorkInfoArry[topPageNum - 1].featuredWorkImgSrc}
-								featuredWorkLayout={featuredWorkInfoArry[topPageNum - 1].featuredWorkLayout} />
-							<FeaturedWorkTitle featuredWorkTitle={featuredWorkInfoArry[topPageNum - 1].featuredWorkTitle} />
+								imageInfoList={featuredWorkInfoArry[topPageNum - 1]}
+								topPageNum={topPageNum}
+							/>
+							<FeaturedWorkTitle />
 							<Nav
 								featuredWorkLength={featuredWorkInfoArry.length}
 								topPageNum={topPageNum}

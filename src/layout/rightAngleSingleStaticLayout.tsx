@@ -90,7 +90,6 @@ export default function RightAngleSingleStaticLayout(props) {
 
 	const mainImage: string = props.imageInfoList[0];
 	const squareImageArray: Array<string> = props.imageInfoList.slice(1, 4);
-	console.log(squareImageArray);
 	const rectangleImageArray: Array<string> = props.imageInfoList.slice(4);
 
 	return (
@@ -109,7 +108,7 @@ export default function RightAngleSingleStaticLayout(props) {
 					}
 					</IconButton>
 					<img className={clsx(classes.mainImage, isVideoModeOn && classes.hide)} src={mainImage} />
-					<iframe className={clsx(classes.mainImage, classes.hide, isVideoModeOn && classes.appear)} src="https://www.youtube.com/embed/uUPppgbQGow?loop=1&rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameBorder="0"></iframe>
+					{/*<iframe className={clsx(classes.mainImage, classes.hide, isVideoModeOn && classes.appear)} src="https://www.youtube.com/embed/uUPppgbQGow?loop=1&rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameBorder="0"></iframe>*/}
 				</div>
 			</div>
 			<div className={classes.subImageArea}>

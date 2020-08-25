@@ -60,7 +60,6 @@ export default function VerticalSingleDynamicLayout(props) {
 
 	function handleImageSelected(selectedImageInfo: string, event) {
 		event.preventDefault();
-		console.log(typeof event);
 		setSelectedMainImage(selectedImageInfo);
 	}
 

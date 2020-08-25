@@ -16,7 +16,6 @@ function App() {
 	}
 
 	return (
-		/*
 		<Router>
 			<div>
 				<Switch>
@@ -32,12 +31,13 @@ function App() {
 				</Switch>
 			</div>
 		</Router>
-		*/
+		/*
 		<Router>
 			<div>
 				<FeaturedWorkSandBox />
 			</div>
 		</Router>
+		*/
 	)
 }
 

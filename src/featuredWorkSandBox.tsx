@@ -18,7 +18,7 @@ const graphicsDesignInfo: FeaturedWorkInfo = {
 	featuredWorkTitle: 'Graphics Design',
 	featuredWorkType: 'img',
 	featuredWorkImgSrc: ['tokyoHalloween.jpg', 'pawoon.jpg', 'flyingRabbit_wide.jpg', 'interface_logo.png'],
-	featuredWorkImgElem: [new Image()],
+	featuredWorkImgElem: [],
 	featuredWorkLayout: 'single_img',
 }
 
@@ -39,7 +39,7 @@ const applicationDesignInfo: FeaturedWorkInfo = {
 		, './appImg/sportLogin.png'
 		, './appImg/weather.png'
 	],
-	featuredWorkImgElem: [new Image()],
+	featuredWorkImgElem: [],
 	featuredWorkLayout: 'single_img',
 }
 
@@ -54,10 +54,9 @@ const threDGraphicsInfo: FeaturedWorkInfo = {
 		, './threeDimage/lightHouse_wire.jpg'
 		, './threeDimage/lightHouse_morning.png'
 	],
-	featuredWorkImgElem: [new Image(), new Image()],
+	featuredWorkImgElem: [],
 	featuredWorkLayout: 'double_img',
 }
-
 
 const featuredWorkInfoArry: Array<FeaturedWorkInfo> =
 	[graphicsDesignInfo];
@@ -90,7 +89,6 @@ export default function FeaturedWorkSandBox() {
 			<Header />
 			<div className={classes.sandBoxArea}>
 				<div className={classes.featuredWorkContentDummy}>
-
 					<VerticalSingleDynamicLayout
 						imageInfoList={graphicsDesignInfo.featuredWorkImgSrc}
 						featuredWorkTitle={graphicsDesignInfo.featuredWorkTitle}
