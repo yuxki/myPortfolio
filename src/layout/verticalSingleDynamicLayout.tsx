@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function VerticalSingleDynamicLayout(props) {
 	const classes = useStyles();
 
-	const initialMainImage = props.imageInfoList[0];
+	const initialMainImage = props.imageInfoSrcList[0];
 	const [selectedMainImage, setSelectedMainImage] = React.useState(initialMainImage);
 
 	function handleImageSelected(selectedImageInfo: string, event) {
@@ -70,7 +70,7 @@ export default function VerticalSingleDynamicLayout(props) {
 			</div>
 			<div className={classes.imageSelectArea}>
 				{
-					props.imageInfoList.map((imageInfo, index) => (
+					props.imageInfoSrcList.map((imageInfo, index) => (
 						<div
 							className={clsx(classes.imageButton, (imageInfo === selectedMainImage) && classes.selctedImageButton)}
 							key={imageInfo}

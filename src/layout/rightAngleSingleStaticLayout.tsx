@@ -88,9 +88,9 @@ export default function RightAngleSingleStaticLayout(props) {
 		setIsVideoModeOn(!isVideoModeOn);
 	}
 
-	const mainImage: string = props.imageInfoList[0];
-	const squareImageArray: Array<string> = props.imageInfoList.slice(1, 4);
-	const rectangleImageArray: Array<string> = props.imageInfoList.slice(4);
+	const mainImage: string = props.imageInfoSrcList[0];
+	const squareImageArray: Array<string> = props.imageInfoSrcList.slice(1, 4);
+	const rectangleImageArray: Array<string> = props.imageInfoSrcList.slice(4);
 
 	return (
 		<div className={classes.rightAngleLayout}>

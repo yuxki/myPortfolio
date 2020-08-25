@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			margin: theme.spacing(0, 10),
 		},
 		'@global': {
-			overflow: 'hidden',
+			// overflow: 'hidden',
 		},
 	}),
 );
@@ -445,7 +445,7 @@ export default function TopPageContent(props) {
 					{topPageNum > 0 && [
 						<div>
 							<FeaturedWorkContents
-								imageInfoList={featuredWorkInfoArry[topPageNum - 1]}
+								featuredWorkInfoArry={featuredWorkInfoArry}
 								topPageNum={topPageNum}
 							/>
 							<FeaturedWorkTitle />
