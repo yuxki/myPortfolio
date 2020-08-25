@@ -5,7 +5,7 @@
 	メイン画像の数: single, double
 	メイン画像の変更形式: static, Dynamic
 	コンポーネント種別名: layout
-  例：verticalSingleDynamicLayout horizontalSingleDynamicLayout
+  例：verticalSingleDynamicLayout horizontalSingleDynamicLayout rigthAngleSingleStaticLayout
 
 ・ページ系コンポーネント
 	ページ名: about, top
