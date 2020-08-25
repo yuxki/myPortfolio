@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme: Theme) =>
 		'@global': {
 			// overflow: 'hidden',
 		},
+		hide: {
+			display: 'none',
+		}
 	}),
 );
 
@@ -439,32 +442,30 @@ export default function TopPageContent(props) {
 				<div className={clsx(classes.topPageArea, 'animationTarget')}
 					ref={animationTarget}
 				>
-					{topPageNum === 0 && (
+					<div className={clsx((topPageNum !== 0) && classes.hide)}>
 						<Billboard />
-					)}
-					{topPageNum > 0 && [
-						<div>
-							<FeaturedWorkContents
-								featuredWorkInfoArry={featuredWorkInfoArry}
-								topPageNum={topPageNum}
-							/>
-							<FeaturedWorkTitle />
-							<Nav
-								featuredWorkLength={featuredWorkInfoArry.length}
-								topPageNum={topPageNum}
-								isAnimating={isAnimating}
-								isSlideOut={isSlideOut}
-								switchElementWithAnimationToDown={switchElementWithAnimationToDown}
-								switchElementWithAnimationToUp={switchElementWithAnimationToUp}
-								slideTopPageOut={slideTopPageOut}
-							/>
-						</div>
-					]}
-					{topPageNum === 0 && (
+					</div>
+					<div className={clsx(!(topPageNum > 0) && classes.hide)}>
+						<FeaturedWorkContents
+							featuredWorkInfoArry={featuredWorkInfoArry}
+							topPageNum={topPageNum}
+						/>
+						<FeaturedWorkTitle />
+						<Nav
+							featuredWorkLength={featuredWorkInfoArry.length}
+							topPageNum={topPageNum}
+							isAnimating={isAnimating}
+							isSlideOut={isSlideOut}
+							switchElementWithAnimationToDown={switchElementWithAnimationToDown}
+							switchElementWithAnimationToUp={switchElementWithAnimationToUp}
+							slideTopPageOut={slideTopPageOut}
+						/>
+					</div>
+					<div className={clsx((topPageNum !== 0) && classes.hide)}>
 						<ContentChange
 							switchElementWithAnimationToDown={switchElementWithAnimationToDown}
 						/>
-					)}
+					</div>
 				</div>
 			</div>
 			<Footer
