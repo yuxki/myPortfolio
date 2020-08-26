@@ -4,11 +4,11 @@ import PageLoading from "./pageLoading";
 import Header from "./header";
 import Billboard from "./billboard";
 import ContentChange from "./contentChange";
-import Nav from "./nav"
 import FeaturedWorkContents from "./featuredWorkContents";
 import FeaturedWorkTitle from "./featuredWorkTitle";
 import Footer from "./footer";
 import NavUpward from './navUpward';
+import NavDownward from './navDownward';
 import { makeStyles, useTheme, Theme, createStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -54,7 +54,26 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		hide: {
 			display: 'none',
-		}
+		},
+		navUpwardPotiton: {
+			position: 'absolute',
+			zIndex: 150,
+			top: theme.spacing(3),
+			left: '50%',
+			transform: 'translateX(-50%)',
+			animation: 'fadeIn 0.5s ease-in',
+		},
+		navDownwardPotiton: {
+			position: 'absolute',
+			zIndex: 150,
+			bottom: theme.spacing(3),
+			left: '50%',
+			transform: 'translateX(-50%)',
+			animation: 'fadeIn 0.5s ease-in',
+		},
+		hideWithfadeOut: {
+			animation: 'fadeOut 0.5s ease-in',
+		},
 	}),
 );
 
@@ -431,7 +450,6 @@ export default function TopPageContent(props) {
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 			</ThemeProvider>
-			<Header resetState={resetState} />
 			<div className={clsx(classes.staticArea, isSlideOut && 'slideTopPage')}
 				onWheel={isAnimating
 					? null
@@ -439,6 +457,7 @@ export default function TopPageContent(props) {
 				}
 				ref={slideArea}
 			>
+				<Header resetState={resetState} />
 				<div className={clsx(classes.topPageArea, 'animationTarget')}
 					ref={animationTarget}
 				>
@@ -451,21 +470,31 @@ export default function TopPageContent(props) {
 							topPageNum={topPageNum}
 						/>
 						<FeaturedWorkTitle />
-						<Nav
-							featuredWorkLength={featuredWorkInfoArry.length}
-							topPageNum={topPageNum}
-							isAnimating={isAnimating}
-							isSlideOut={isSlideOut}
-							switchElementWithAnimationToDown={switchElementWithAnimationToDown}
-							switchElementWithAnimationToUp={switchElementWithAnimationToUp}
-							slideTopPageOut={slideTopPageOut}
-						/>
 					</div>
 					<div className={clsx((topPageNum !== 0) && classes.hide)}>
 						<ContentChange
 							switchElementWithAnimationToDown={switchElementWithAnimationToDown}
 						/>
 					</div>
+				</div>
+				<div className={clsx(classes.navUpwardPotiton, !(topPageNum > 0) && classes.hide)}>
+					<NavUpward
+						featuredWorkLength={featuredWorkInfoArry.length}
+						topPageNum={topPageNum}
+						isAnimating={isAnimating}
+						isSlideOut={isSlideOut}
+						switchElementWithAnimationToUp={switchElementWithAnimationToUp}
+					/>
+				</div>
+				<div className={clsx(classes.navDownwardPotiton, !(topPageNum > 0) && classes.hide)}>
+					<NavDownward
+						featuredWorkLength={featuredWorkInfoArry.length}
+						topPageNum={topPageNum}
+						isAnimating={isAnimating}
+						isSlideOut={isSlideOut}
+						switchElementWithAnimationToDown={switchElementWithAnimationToDown}
+						slideTopPageOut={slideTopPageOut}
+					/>
 				</div>
 			</div>
 			<Footer
