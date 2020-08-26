@@ -89,9 +89,9 @@ const graphicsDesignInfo: FeaturedWorkInfo = {
 	featuredWorkTitle: 'Graphics Design',
 	featuredWorkType: 'img',
 	featuredWorkImgSrc: [
-		'tokyoHalloween.jpg'
-		, 'pawoon.jpg'
-		, 'flyingRabbit_wide.jpg'
+		'tokyoHalloween.png'
+		, 'pawoon.png'
+		, 'flyingRabbit_wide.png'
 		, 'interface_logo.png'
 	],
 	featuredWorkImgElem: [],

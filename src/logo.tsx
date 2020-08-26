@@ -24,7 +24,7 @@ export default function Logo() {
 
 	return (
 		<div className={classes.logoArea}>
-			<img src={'logo.png'} style={{ display: 'flex', width: 78, height: 89 }} />
+			<img src={'peelingEgg.svg'} style={{ display: 'flex', width: 78, height: 89 }} />
 			<Typography variant="h2" classes={{ h2: classes.h2 }}>
 				Atelier Hiroyuki
 			</Typography>
