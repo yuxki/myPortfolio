@@ -5,7 +5,8 @@ const fs = require('fs');
 const mimeTypes = {
 	'.js': 'text/javascript',
 	'.html': 'text/html',
-	'.css': 'text/css'
+	'.css': 'text/css',
+	'.svg':'image/svg+xml'
 };
 
 http.createServer((req, res) => {
