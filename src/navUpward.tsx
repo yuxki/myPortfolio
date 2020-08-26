@@ -7,15 +7,13 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		navUpward: {
 			display: 'flex',
-			backgroundColor: '#F2BE22',
-			width: '56px',
-			height: '56px',
 			justifyContent: 'center',
-			alignItems: 'center',
 		},
-		root: {
-			display: 'inherit',
-			color: '#FFFFFF',
+		transitionArrow: {
+			display: 'flex',
+			width: '65px',
+			height: '27px',
+			fill: '#F2BE22',
 		},
 	}),
 );
@@ -28,10 +26,9 @@ export default function NavUpward(props) {
 			className={classes.navUpward}
 			onClick={props.isAnimating || props.isSlideOut ? null : props.switchElementWithAnimationToUp}
 		>
-			<ExpandLessIcon
-				fontSize='large'
-				classes={{ root: classes.root }}
-			/>
+			<svg className={classes.transitionArrow} viewBox="0 0 65 27">
+				<path d="M31.88.22l-31.5,25A1,1,0,0,0,1,27H64a1,1,0,0,0,.62-1.78L33.12.22A1,1,0,0,0,31.88.22Z" />
+			</svg>
 		</div>
 	)
 }
