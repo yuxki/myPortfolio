@@ -13,10 +13,7 @@ React.useEffect(() => {
 
 	return (
 		<div>
-			<TopPageContent
-			isPreload={props.isPreload}
-			handleDonePreload={props.handleDonePreload}
-			 />
+			<TopPageContent />
 		</div>
 	)
 }

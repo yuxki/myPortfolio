@@ -8,13 +8,6 @@ import PageLoading from "./pageLoading";
 import FeaturedWorkSandBox from "./featuredWorkSandBox"
 
 function App() {
-	// ローディング完了が否かのHopk
-	const [isPreload, setIsPreload] = React.useState(false);
-
-	function handleDonePreload() {
-		setIsPreload(true);
-	}
-
 	return (
 		<Router>
 			<div>
@@ -23,10 +16,7 @@ function App() {
 						<AboutPage />
 					</Route>
 					<Route path={"/"}>
-						<TopPage
-							isPreload={isPreload}
-							handleDonePreload={handleDonePreload}
-						/>
+						<TopPage />
 					</Route>
 				</Switch>
 			</div>

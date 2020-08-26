@@ -137,72 +137,9 @@ const threDGraphicsInfo: FeaturedWorkInfo = {
 const featuredWorkInfoArry: Array<FeaturedWorkInfo> =
 	[graphicsDesignInfo, applicationDesignInfo, threDGraphicsInfo];
 
-function instantiateImages(infoArray: Array<FeaturedWorkInfo>) {
-	infoArray.forEach((imageInfo) => {
-		let imageArray: Array<HTMLImageElement> = [];
-		imageInfo.featuredWorkImgSrc.forEach(() => {
-			imageArray.push(new Image());
-		});
-		imageInfo.featuredWorkImgElem = imageArray;
-	})
-}
-
-function handSrcToImageElem(infoArray: Array<FeaturedWorkInfo>) {
-	infoArray.forEach((info) => {
-		for (let i = 0; i < info.featuredWorkImgSrc.length; i++) {
-			info.featuredWorkImgElem[i].src = info.featuredWorkImgSrc[i];
-		}
-	})
-}
-
-function joinFeaturedWorkImgElem(infoArray: Array<FeaturedWorkInfo>): Array<HTMLImageElement> {
-	let htmlImageArray: Array<HTMLImageElement> = [];
-	infoArray.forEach((info) => {
-		htmlImageArray = htmlImageArray.concat(info.featuredWorkImgElem);
-	});
-	return htmlImageArray;
-}
-
-instantiateImages(featuredWorkInfoArry);
-console.log(featuredWorkInfoArry);
-const htmlImageArray = joinFeaturedWorkImgElem(featuredWorkInfoArry);
-
-
 /*------------------------- ここからコンポーネント -------------------------*/
 export default function TopPageContent(props) {
-	const isPreload = props.isPreload;
-	const handleDonePreload = props.handleDonePreload;
-
 	const classes = useStyles();
-
-	function setLoadAllCallback(elems: Array<HTMLImageElement>, callback) {
-		let parElemPercent = 100 / elems.length;
-		let remainPercent = 100 / elems.length;
-
-		let count = 0;
-
-		for (let i = 0; i < elems.length; ++i) {
-			elems[i].onload = function() {
-				fillDoneLoadingPercent(parElemPercent);
-				++count;
-				if (count == elems.length) {
-					fillDoneLoadingPercent(remainPercent);
-					callback()
-				}
-			}
-		}
-	}
-
-	React.useEffect(() => {
-		if (!isPreload) {
-			handSrcToImageElem(featuredWorkInfoArry);
-			setLoadAllCallback(htmlImageArray, async function() {
-				console.log('load is finished')
-				await sleep(500);
-				await setStateFunc(handleDonePreload);
-			})
-		}
-	});
 
 	// ページ切り替え番号のHook
 	const [topPageNum, setTopPageNum] = React.useState(0);
@@ -212,14 +149,6 @@ export default function TopPageContent(props) {
 
 	// TopPageがスライドしているか否かのHook
 	const [isSlideOut, setIsSlideOut] = React.useState(false);
-
-	// ロード完了を表すパーセントのHopk
-	const [doneLoadingPercent, setDoneLoadingPercent] = React.useState(0);
-
-	function fillDoneLoadingPercent(fillPercent: number) {
-		if (doneLoadingPercent >= 100) return
-		setDoneLoadingPercent((doneLoadingPercent + fillPercent));
-	}
 
 	// アニメーション発火を目的としたref
 	const animationTarget = React.useRef(null);
@@ -443,10 +372,6 @@ export default function TopPageContent(props) {
 
 	return (
 		<div>
-			<PageLoading
-				isPreload={isPreload}
-				doneLoadingPercent={doneLoadingPercent}
-			/>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 			</ThemeProvider>
