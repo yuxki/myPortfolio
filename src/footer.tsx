@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		menuArea: {
 			display: 'inherit',
 			paddingRight: theme.spacing(10),
-			marginTop: theme.spacing(10),
+			margin: theme.spacing(5, 0, 19, 0),
 		},
 	}),
 )
@@ -27,10 +27,10 @@ export default function Footer(props) {
 				? null
 				: props.isSlideOut ? props.slideTopPageInBywheel : null
 			}
-			style={props.isSlideOut ? {zIndex:45} : {}}
-			>
+			style={props.isSlideOut ? { zIndex: 45 } : {}}
+		>
 			<div className={classes.menuArea}>
-				<MenuList resetState={props.resetState}/>
+				<MenuList resetState={props.resetState} />
 			</div>
 		</footer>
 	)
