@@ -9,12 +9,11 @@ const useStyles = makeStyles((theme: Theme) =>
 			flexDirection: 'column',
 			alignItems: 'center',
 		},
-		h2: {
-			fontWeight: 'lighter',
+		root: {
 			display: 'flex',
-			fontSize: 47,
 			margin: theme.spacing(1, 0),
-			textAlign: 'center'
+			textAlign: 'center',
+			fontSize:'47px',
 		},
 	}),
 );
@@ -25,7 +24,7 @@ export default function Logo() {
 	return (
 		<div className={classes.logoArea}>
 			<img src={'peelingEgg.svg'} style={{ display: 'flex', width: 78, height: 89 }} />
-			<Typography variant="h2" classes={{ h2: classes.h2 }}>
+			<Typography variant="h3" classes={{ root: classes.root }}>
 				Atelier Hiroyuki
 			</Typography>
 		</div>

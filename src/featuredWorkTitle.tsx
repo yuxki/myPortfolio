@@ -7,12 +7,6 @@ const useStyles = makeStyles((theme: Theme) =>
 		featuredWorkTitleArea: {
 			display:'flex',
 		},
-		h2: {
-			fontSize: '50px',
-			fontWeight: 'lighter',
-			textAlign: 'center',
-			marginBottom:theme.spacing(1),
-		}
 	})
 );
 
@@ -20,7 +14,7 @@ export default function FeaturedWorkTitle(props) {
 	const classes = useStyles();
 	return (
 		<div className={classes.featuredWorkTitleArea}>
-			<Typography variant="h2" classes={{ h2: classes.h2 }}>
+			<Typography variant="h2">
 				{props.featuredWorkTitle}
 			</Typography>
 		</div>

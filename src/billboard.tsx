@@ -16,10 +16,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			justifyContent: 'center',
 			alignItems: 'center',
 		},
-		h6: {
-			fontWeight: 'lighter',
+		root:{
 			display: 'inherit',
-			fontSize: 12,
 			textAlign: 'center',
 		},
 	}),
@@ -31,7 +29,7 @@ export default function Billboard() {
 	return (
 			<div className={clsx(classes.billboardContent)}>
 				<Logo />
-				<Typography variant="h6" classes={{ h6: classes.h6 }}>
+				<Typography variant="h6" classes={{ root: classes.root }}>
 					作れるを、楽しくするために
 				</Typography>
 			</div>

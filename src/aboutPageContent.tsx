@@ -17,9 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
 		bodyAboutAtelier: {
 			marginTop: theme.spacing(4),
 		},
-		root: {
-			fontWeight: 'lighter',
-		},
 	}),
 )
 
@@ -43,10 +40,10 @@ export default function AboutPageContent(props) {
 			<CssBaseline />
 			<Header />
 			<div className={classes.aboutPageArea}>
-				<Typography variant='h1' classes={{ root: classes.root }}>
+				<Typography variant='h1'>
 					About
 			</Typography>
-				<Typography variant='h2'>
+				<Typography variant='h3'>
 					Atelier Hiroyuki
 			</Typography>
 				<div className={classes.bodyAboutAtelier}>

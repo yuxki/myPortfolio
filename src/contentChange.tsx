@@ -16,15 +16,16 @@ const useStyles = makeStyles((theme: Theme) =>
 			justifyContent: 'center',
 			flexDirection: 'column',
 		},
-		h4: {
+		root: {
 			display: 'flex',
-			fontSize: '22px',
+		},
+		colorPrimary: {
 			color: '#F2BE22',
 		},
 		svgArea: {
 			display: 'flex',
 			marginTop: theme.spacing(1),
-			justifyContent:'center',
+			justifyContent: 'center',
 		},
 		transitionArrow: {
 			display: 'flex',
@@ -48,7 +49,7 @@ export default function ContentChange(props) {
 			className={clsx(classes.contentChange)}
 			onClick={props.switchElementWithAnimationToDown}
 		>
-			<Typography variant="h4" classes={{ h4: classes.h4 }}>
+			<Typography variant="h4" color='primary' classes={{ root: classes.root, colorPrimary:classes.colorPrimary }}>
 				Scroll or Click here!!
 			</Typography>
 			<div className={classes.svgArea}>
