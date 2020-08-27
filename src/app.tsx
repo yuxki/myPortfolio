@@ -12,7 +12,7 @@ import ComponentSandBox from "./componentSandBox"
 const theme = createMuiTheme({
 	typography: {
 		fontFamily: [
-			'Noto Sans CJK JP',
+			'Noto Sans JP',
 			'helvetica',
 			"Arial",
 			'sans-serif',
