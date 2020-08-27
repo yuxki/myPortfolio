@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import MenuButton from "./menuButton";
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -10,6 +11,10 @@ import Logo from './logo';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
+		menuButtonArea: {
+			position: 'fixed',
+			zIndex: 1500,
+		},
 		hide: {
 			display: 'none',
 		},
@@ -61,39 +66,34 @@ export default function DrawerMenu(props) {
 
 	return (
 		<div>
-			<IconButton
-				color="inherit"
-				aria-label="open drawer"
-				edge="end"
-				onClick={handleDrawerOpen}
-				className={clsx(open && classes.hide)}
-			>
-				<MenuIcon />
-			</IconButton>
+			<div className={classes.menuButtonArea}>
+				<MenuButton
+					onClick={open ? handleDrawerClose : handleDrawerOpen}
+					open={open}
+				/>
+			</div>
 			<Drawer
 				className={classes.drawer}
 				variant="persistent"
 				anchor="right"
 				open={open}
+				transitionDuration={{ appear: 1000, enter: 500, exit: 500 }}
 				classes={{
 					paper: classes.drawerPaper,
 				}}
 			>
 				<div className={classes.drawerContent}>
 					<div className={classes.drawerHeader}>
-						<IconButton onClick={handleDrawerClose}>
-							<CloseIcon />
-						</IconButton>
 					</div>
 					<div className={classes.drawerBody}>
 						<div className={classes.drawerLeft}>
-						<MenuList
-							handleDrawerClose={handleDrawerClose}
-							resetState = {props.resetState}
-						/>
+							<MenuList
+								handleDrawerClose={handleDrawerClose}
+								resetState={props.resetState}
+							/>
 						</div>
 						<div className={classes.drawerRight}>
-						<Logo />
+							<Logo />
 						</div>
 					</div>
 				</div>
