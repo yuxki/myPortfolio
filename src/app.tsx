@@ -17,6 +17,31 @@ const theme = createMuiTheme({
 			"Arial",
 			'sans-serif',
 		].join(','),
+		h1:{
+			fontSize: '84px',
+			fontWeight: 'lighter',
+		},
+		h2: {
+			fontSize: '50px',
+			fontWeight: 'lighter',
+		},
+		h3:{
+			fontWeight: 'lighter',
+			fontSize: '41px',
+		},
+		h4:{
+			fontSize: '22px',
+		},
+		h5:{
+			fontSize: '18px',
+		},
+		h6:{
+			fontSize: '14px',
+		},
+		body1:{
+			fontWeight: 'lighter',
+			fontSize: '16px',
+		}
 	},
 });
 
