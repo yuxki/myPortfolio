@@ -6,6 +6,7 @@ import AboutPage from "./aboutPage";
 import PageLoading from "./pageLoading";
 
 import FeaturedWorkSandBox from "./featuredWorkSandBox"
+import ComponentSandBox from "./componentSandBox"
 
 function App() {
 	return (
@@ -27,6 +28,11 @@ function App() {
 				<FeaturedWorkSandBox />
 			</div>
 		</Router>
+		*/
+	/*
+		<div>
+			<ComponentSandBox />
+		</div>
 		*/
 	)
 }
