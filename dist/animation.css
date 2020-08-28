@@ -24,13 +24,13 @@
 
 /* 下方向への要素切り替えのアニメーション */
 .moveContentToTop {
-	transform: translateY(-714px) !important;
+	transform: translateY(-1000px) !important;
 	transition-timing-function: ease-out !important;
 	transition-duration: 1s !important;
 }
 
 .waitAppearFromBottom {
-	top: 714px;
+	top: 1000px;
 }
 
 .slideTopPage {
@@ -39,13 +39,13 @@
 
 /* 上方向への要素切り替えのアニメーション */
 .moveContentToBottom {
-	transform: translateY(714px) !important;
+	transform: translateY(1000px) !important;
 	transition-timing-function: ease-out !important;
 	transition-duration: 1s !important;
 }
 
 .waitAppearFromTop {
-	top: -714px;
+	top: -1000px;
 }
 
 .fadeOutLoading {

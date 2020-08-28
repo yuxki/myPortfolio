@@ -10,6 +10,15 @@ import FeaturedWorkSandBox from "./featuredWorkSandBox"
 import ComponentSandBox from "./componentSandBox"
 
 const theme = createMuiTheme({
+	breakpoints: {
+		values: {
+			xs: 0,
+			sm: 600,
+			md: 960,
+			lg: 1280,
+			xl: 1920,
+		},
+	},
 	typography: {
 		fontFamily: [
 			'Noto Sans JP',
@@ -17,7 +26,7 @@ const theme = createMuiTheme({
 			"Arial",
 			'sans-serif',
 		].join(','),
-		h1:{
+		h1: {
 			fontSize: '84px',
 			fontWeight: 'lighter',
 		},
@@ -25,25 +34,37 @@ const theme = createMuiTheme({
 			fontSize: '50px',
 			fontWeight: 'lighter',
 		},
-		h3:{
+		h3: {
 			fontWeight: 'lighter',
 			fontSize: '41px',
 		},
-		h4:{
-			fontSize: '22px',
-		},
-		h5:{
+		h5: {
 			fontSize: '18px',
 		},
-		h6:{
-			fontSize: '14px',
-		},
-		body1:{
-			fontWeight: 'lighter',
+		body1: {
 			fontSize: '16px',
+			fontWeight: 'lighter',
 		}
 	},
 });
+
+theme.typography.h4 = {
+	fontSize: '22px',
+	fontWeight: 'normal',
+	[theme.breakpoints.down('xs')]: {
+		fontSize: '19px',
+		fontWeight: 'normal',
+	},
+}
+
+theme.typography.h6 = {
+	fontSize: '14px',
+	fontWeight: 'lighter',
+	[theme.breakpoints.down('xs')]: {
+		fontSize: '12px',
+		fontWeight: 'normal',
+	},
+}
 
 function App() {
 	return (

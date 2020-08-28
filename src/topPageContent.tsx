@@ -37,20 +37,20 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		staticArea: {
 			position: 'relative',
+			width:'100%',
 			height: '100vh',
 			backgroundColor: '#FFFFFF',
-			transitionDuration: '1s',
 			zIndex: 51,
-			// backgroundColor: 'rgb(255,255,255,0.5)',
+			[theme.breakpoints.down('xs')]: {
+				maxWidth: '600px',
+				padding: theme.spacing(0, 4),
+			}
 		},
 		topPageArea: {
+			width: '100%',
 			display: 'block',
 			position: 'relative',
 			height: 'inherit',
-			margin: theme.spacing(0, 10),
-		},
-		'@global': {
-			// overflow: 'hidden',
 		},
 		hide: {
 			display: 'none',
@@ -375,6 +375,7 @@ export default function TopPageContent(props) {
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 			</ThemeProvider>
+			<Header resetState={resetState} />
 			<div className={clsx(classes.staticArea, isSlideOut && 'slideTopPage')}
 				onWheel={isAnimating
 					? null
@@ -382,7 +383,6 @@ export default function TopPageContent(props) {
 				}
 				ref={slideArea}
 			>
-				<Header resetState={resetState} />
 				<div className={clsx(classes.topPageArea, 'animationTarget')}
 					ref={animationTarget}
 				>
