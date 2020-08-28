@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		featuredWorkContent: {
 			position: 'absolute',
-			top: theme.spacing(20),
+			top: '50%',
 			left: '50%',
-			width: '870px',
-			transform: 'translateX(-50%)',
+			width: '80%',
+			transform: 'translate(-50%, -50%)',
 		},
 		primaryGraphicDesign: {
 			height: '328px',

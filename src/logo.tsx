@@ -4,16 +4,30 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		logoArea:{
+		logoArea: {
 			display: 'flex',
 			flexDirection: 'column',
 			alignItems: 'center',
 		},
-		root: {
+		rogoMark: {
 			display: 'flex',
-			margin: theme.spacing(1, 0),
-			textAlign: 'center',
-			fontSize:'47px',
+			width: '78px',
+			height: '89px',
+			[theme.breakpoints.down('xs')]: {
+				width: '64px',
+				height: '73px',
+			},
+		},
+		rogoType: {
+			display: 'flex',
+			width: '322px',
+			height: 'auto',
+			margin: theme.spacing(1, 0, 0, 0),
+			[theme.breakpoints.down('xs')]: {
+				width: '100%',
+				maxWidth: '246px',
+				height: 'auto',
+			},
 		},
 	}),
 );
@@ -23,10 +37,8 @@ export default function Logo() {
 
 	return (
 		<div className={classes.logoArea}>
-			<img src={'peelingEgg.svg'} style={{ display: 'flex', width: 78, height: 89 }} />
-			<Typography variant="h3" classes={{ root: classes.root }}>
-				Atelier Hiroyuki
-			</Typography>
+			<img src={'peelingEgg.svg'} className={classes.rogoMark} />
+			<img src={'Atelier_Hiroyuki.svg'} className={classes.rogoType} />
 		</div>
 	);
 }

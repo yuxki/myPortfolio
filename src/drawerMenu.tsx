@@ -1,20 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import MenuButton from "./menuButton";
 import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
 import MenuList from './menuList';
 import Logo from './logo';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		menuButtonArea: {
-			position: 'fixed',
-			zIndex: 1500,
-		},
 		hide: {
 			display: 'none',
 		},
@@ -28,11 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		drawerContent: {
 			padding: theme.spacing(12, 10),
-		},
-		drawerHeader: {
-			display: 'flex',
-			alignItems: 'center',
-			justifyContent: 'flex-end',
 		},
 		drawerBody: {
 			display: 'flex',
@@ -54,24 +41,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function DrawerMenu(props) {
 	const classes = useStyles();
-	const [open, setOpen] = React.useState(false);
-
-	const handleDrawerOpen = () => {
-		setOpen(true);
-	};
-
-	const handleDrawerClose = () => {
-		setOpen(false);
-	};
+	const handleDrawerClose = props.handleDrawerClose;
+	const open:boolean = props.open;
 
 	return (
 		<div>
-			<div className={classes.menuButtonArea}>
-				<MenuButton
-					onClick={open ? handleDrawerClose : handleDrawerOpen}
-					open={open}
-				/>
-			</div>
 			<Drawer
 				className={classes.drawer}
 				variant="persistent"
@@ -83,8 +57,6 @@ export default function DrawerMenu(props) {
 				}}
 			>
 				<div className={classes.drawerContent}>
-					<div className={classes.drawerHeader}>
-					</div>
 					<div className={classes.drawerBody}>
 						<div className={classes.drawerLeft}>
 							<MenuList

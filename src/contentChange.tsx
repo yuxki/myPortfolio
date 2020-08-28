@@ -7,8 +7,6 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		contentChange: {
 			display: 'flex',
-			// width: '270px',
-			// height: '53px',
 			position: 'absolute',
 			bottom: theme.spacing(3),
 			left: '50%',
@@ -18,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		root: {
 			display: 'flex',
+			whiteSpace: 'nowrap',
 		},
 		colorPrimary: {
 			color: '#F2BE22',

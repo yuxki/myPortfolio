@@ -1,34 +1,62 @@
 import * as React from 'react';
+import MenuButton from "./menuButton";
 import DrawerMenu from "./drawerMenu";
+
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		header: {
 			position: 'fixed',
+			display: 'flex',
 			zIndex: 100,
 			width: '100%',
-			height: theme.spacing(15),
-			marginBottom: theme.spacing(5),
+			height: '96px',
+			padding: theme.spacing(12, 10, 0, 10),
+			justifyContent: 'flex-end',
+			[theme.breakpoints.down('xs')]: {
+				maxWidth: theme.breakpoints.values.sm - (theme.spacing(4) * 2),
+				padding: theme.spacing(8, 4, 0, 4),
+			},
 		},
 		headerContent: {
 			display: 'flex',
-			padding: theme.spacing(12, 10, 0, 10),
-			alignItems: 'center',
-			justifyContent: 'flex-end',
+		},
+		menuButtonArea: {
+			display: 'flex',
+			zIndex: 1500,
 		},
 	}),
 );
 
 export default function Header(props) {
-	const classes = useStyles();
 	const resetState = props.resetState ? props.resetState : null;
-	
+	const classes = useStyles();
+
+	const [open, setOpen] = React.useState(false);
+
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+
+	const handleDrawerClose = () => {
+		setOpen(false);
+	};
+
 	return (
 		<header className={classes.header}>
 			<div className={classes.headerContent}>
-				<DrawerMenu resetState={props.resetState} />
+				<div className={classes.menuButtonArea}>
+					<MenuButton
+						onClick={open ? handleDrawerClose : handleDrawerOpen}
+						open={open}
+					/>
+				</div>
 			</div>
+			<DrawerMenu
+				resetState={props.resetState}
+				open={open}
+				handleDrawerClose={handleDrawerClose} />
 		</header>
 	)
 }
