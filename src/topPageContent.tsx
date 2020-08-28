@@ -37,10 +37,11 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		staticArea: {
 			position: 'relative',
-			width:'100%',
+			width: '100%',
 			height: '100vh',
 			backgroundColor: '#FFFFFF',
 			zIndex: 51,
+			padding: theme.spacing(0, 10),
 			[theme.breakpoints.down('xs')]: {
 				maxWidth: '600px',
 				padding: theme.spacing(0, 4),
@@ -81,6 +82,7 @@ interface FeaturedWorkInfo {
 	featuredWorkTitle: string;
 	featuredWorkType: string;
 	featuredWorkImgSrc: Array<string>;
+	featuredWorkButtomMaxWidth: Array<string>;
 	featuredWorkImgElem: Array<HTMLImageElement>;
 	featuredWorkLayout: string;
 }
@@ -94,6 +96,7 @@ const graphicsDesignInfo: FeaturedWorkInfo = {
 		, 'flyingRabbit_wide.png'
 		, 'interface_logo.png'
 	],
+	featuredWorkButtomMaxWidth:['54px', '78px', '115px', '111px'],
 	featuredWorkImgElem: [],
 	featuredWorkLayout: 'single_img',
 }
@@ -115,6 +118,7 @@ const applicationDesignInfo: FeaturedWorkInfo = {
 		, './appImg/sportLogin.png'
 		, './appImg/weather.png'
 	],
+	featuredWorkButtomMaxWidth:[],
 	featuredWorkImgElem: [],
 	featuredWorkLayout: 'single_img',
 }
@@ -130,6 +134,7 @@ const threDGraphicsInfo: FeaturedWorkInfo = {
 		, './threeDimage/lightHouse_wire.jpg'
 		, './threeDimage/lightHouse_morning.png'
 	],
+	featuredWorkButtomMaxWidth:[],
 	featuredWorkImgElem: [],
 	featuredWorkLayout: 'double_img',
 }

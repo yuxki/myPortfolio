@@ -30,10 +30,6 @@ const theme = createMuiTheme({
 			fontSize: '84px',
 			fontWeight: 'lighter',
 		},
-		h2: {
-			fontSize: '50px',
-			fontWeight: 'lighter',
-		},
 		h3: {
 			fontWeight: 'lighter',
 			fontSize: '41px',
@@ -47,6 +43,15 @@ const theme = createMuiTheme({
 		}
 	},
 });
+
+theme.typography.h2 = {
+	fontSize: '50px',
+	fontWeight: 'lighter',
+	[theme.breakpoints.down('xs')]:{
+		fontSize: '34px',
+		fontWeight: 'lighter',
+	}
+}
 
 theme.typography.h4 = {
 	fontSize: '22px',
