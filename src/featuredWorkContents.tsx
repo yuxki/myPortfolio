@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			position: 'absolute',
 			top: '50%',
 			left: '50%',
-			width: '80%',
+			width: '100%',
 			transform: 'translate(-50%, -50%)',
 		},
 		primaryGraphicDesign: {
@@ -35,8 +35,7 @@ export default function FeaturedWorkContents(props) {
 		<div className={clsx(classes.featuredWorkContent)}>
 			<div className={clsx(!isMatchPageNums(0, topPageNum) && classes.hide)}>
 				<VerticalSingleDynamicLayout
-					imageInfoSrcList={featuredWorkInfoArry[0].featuredWorkImgSrc}
-					featuredWorkTitle={featuredWorkInfoArry[0].featuredWorkTitle}
+					featuredWorkInfo={featuredWorkInfoArry[0]}
 				/>
 			</ div>
 			<div className={clsx(!isMatchPageNums(1, topPageNum) && classes.hide)}>
