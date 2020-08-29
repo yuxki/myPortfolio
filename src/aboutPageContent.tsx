@@ -3,7 +3,6 @@ import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/sty
 import Header from "./header";
 import Footer from "./footer";
 import Typography from '@material-ui/core/Typography';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import PageLoading from "./pageLoading";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -37,7 +36,6 @@ export default function AboutPageContent(props) {
 	const aboutAtelier = "何かを知る楽しさ、なにかを始める楽しさ、なにかをつくる楽しさ、\nモノづくりで得られる楽しさを知るために活動しています。\nAtelier Hiroyuki は、その活動拠点です。"
 	return (
 		<div>
-			<CssBaseline />
 			<Header />
 			<div className={classes.aboutPageArea}>
 				<Typography variant='h1'>

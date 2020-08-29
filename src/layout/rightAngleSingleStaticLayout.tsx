@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		rightAngleLayout: {
 			display: 'flex',
 			flexDirection: 'row',
-			justifyContent: 'flex-start',
+			justifyContent: 'center',
 			flexWrap: 'wrap',
 		},
 		mainImageArea: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '380px',
 			marginRight: theme.spacing(1),
 			alignItems: 'center',
-			flexDirection:'column',
+			flexDirection: 'column',
 			[theme.breakpoints.down('xs')]: {
 				margin: '0 calc(50% - 50vw)',
 				width: '100vw',
@@ -35,15 +35,15 @@ const useStyles = makeStyles((theme: Theme) =>
 				height: 'calc(100vw * 0.5625)',
 			},
 		},
-		videocamIconArea:{
-			display:'flex',
-			width:'100%',
-			height: '32px',
-			justifyContent:'center',
+		videocamIconArea: {
+			display: 'flex',
+			width: '100%',
+			height: '44px',
+			justifyContent: 'center',
 			alignItems: 'center',
 		},
 		vidoModeIcon: {
-			display:'flex',
+			display: 'flex',
 		},
 		root: {
 			color: "#000000",
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				justifyContent: 'center',
 				width: '100vw',
 				height: 'auto',
-				margin: theme.spacing(2, 0),
+				margin: theme.spacing(0, 0, 2, 0),
 			},
 		},
 		squareImage: {
@@ -79,9 +79,10 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '78px',
 			height: '78px',
 			[theme.breakpoints.down('xs')]: {
-				width: '30%',
+				width: '30vw',
 				maxWidth: '120px',
-				height: 'auto',
+				height: '30vw',
+				maxHeight: '120px',
 				margin: theme.spacing(0, 1, 0, 1),
 			},
 		},
@@ -99,7 +100,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		rectangleImage: {
 			display: 'flex',
 			width: '249px',
-			hight: '140',
+			height: '140px',
 			marginTop: theme.spacing(1),
 			[theme.breakpoints.down('xs')]: {
 				margin: theme.spacing(0, 2, 0, 0),

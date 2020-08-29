@@ -71,6 +71,8 @@ theme.typography.h6 = {
 	},
 }
 
+console.log(theme.typography);
+
 function App() {
 	return (
 		<Router>

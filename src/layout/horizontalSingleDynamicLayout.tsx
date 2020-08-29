@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		horizontalLayout: {
 			display: 'flex',
 			flexDirection: 'row',
-			justifyContent: 'flex-start',
+			justifyContent: 'center',
 			flexWrap: 'wrap',
 		},
 		mainImageArea: {
@@ -16,14 +16,16 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			flexDirection: 'column-reverse',
 			width: '184px',
-			height: 'auto',
+			height: '368px',
 			margin: theme.spacing(0, 4, 2, 0),
 			[theme.breakpoints.down('xs')]: {
 				flexDirection: 'row',
 				justifyContent: 'center',
 				width: '100%',
+				maxWidth: '151px',
+				height: '302px',
 				margin: theme.spacing(0, 0, 3, 0),
-				padding: theme.spacing(0, 4),
+				// padding: theme.spacing(0, 10),
 			},
 		},
 		mainImageWrap: {
@@ -33,11 +35,10 @@ const useStyles = makeStyles((theme: Theme) =>
 		mainImage: {
 			display: 'flex',
 			width: '184px',
-			height: 'auto',
+			height: '368px',
 			[theme.breakpoints.down('xs')]: {
-				width: '100%',
-				maxWidth: '151px',
-				maxHeight:'302px',
+				width: '151px',
+				height: '302px',
 			},
 		},
 		svgFrameArea: {
