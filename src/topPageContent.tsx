@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			backgroundColor: '#FFFFFF',
 			zIndex: 51,
 			padding: theme.spacing(0, 10),
+			transitionDuration: '1.0s',
 			[theme.breakpoints.down('xs')]: {
 				maxWidth: '600px',
 				padding: theme.spacing(0, 4),
@@ -372,8 +373,6 @@ export default function TopPageContent(props) {
 		setIsSlideOut(false)
 		initTopPageNum();
 	}
-
-
 
 	return (
 		<div>
