@@ -54,7 +54,7 @@ export default function Header(props) {
 				</div>
 			</div>
 			<DrawerMenu
-				resetState={props.resetState}
+				resetState={resetState}
 				open={open}
 				handleDrawerClose={handleDrawerClose} />
 		</header>
