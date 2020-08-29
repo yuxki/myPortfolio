@@ -20,24 +20,33 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '380px',
 			marginRight: theme.spacing(1),
 			alignItems: 'center',
-		},
-		mainImageFrame: {
-			position: 'relative',
-			display: 'flex',
-			width: '583px',
-			height: '328px',
+			flexDirection:'column',
+			[theme.breakpoints.down('xs')]: {
+				margin: '0 calc(50% - 50vw)',
+				width: '100vw',
+				height: 'auto',
+			}
 		},
 		mainImage: {
 			width: '583px',
 			height: '328px',
+			[theme.breakpoints.down('xs')]: {
+				width: '100vw',
+				height: 'calc(100vw * 0.5625)',
+			},
+		},
+		videocamIconArea:{
+			display:'flex',
+			width:'100%',
+			height: '32px',
+			justifyContent:'center',
+			alignItems: 'center',
 		},
 		vidoModeIcon: {
-			position: 'absolute',
-			bottom: theme.spacing(5),
-			left: theme.spacing(4),
+			display:'flex',
 		},
 		root: {
-			color:"#FFFFFF",
+			color: "#000000",
 		},
 		hide: {
 			display: 'none',
@@ -48,29 +57,53 @@ const useStyles = makeStyles((theme: Theme) =>
 		subImageArea: {
 			display: 'flex',
 			flexDirection: 'column',
+			[theme.breakpoints.down('xs')]: {
+				margin: '0 calc(50% - 50vw)',
+			},
 		},
 		squareImageArea: {
 			display: 'flex',
 			justifyContent: 'space-between',
 			width: '249px',
 			height: '78px',
+			[theme.breakpoints.down('xs')]: {
+				padding: theme.spacing(0, 2),
+				justifyContent: 'center',
+				width: '100vw',
+				height: 'auto',
+				margin: theme.spacing(2, 0),
+			},
 		},
 		squareImage: {
 			display: 'flex',
 			width: '78px',
 			height: '78px',
+			[theme.breakpoints.down('xs')]: {
+				width: '30%',
+				maxWidth: '120px',
+				height: 'auto',
+				margin: theme.spacing(0, 1, 0, 1),
+			},
 		},
 		rectangleImageArea: {
 			display: 'flex',
 			flexDirection: 'column',
 			width: 'auto',
 			height: 'auto',
+			[theme.breakpoints.down('xs')]: {
+				width: '100vw',
+				flexDirection: 'row',
+				overflowX: 'auto',
+			},
 		},
 		rectangleImage: {
 			display: 'flex',
 			width: '249px',
 			hight: '140',
 			marginTop: theme.spacing(1),
+			[theme.breakpoints.down('xs')]: {
+				margin: theme.spacing(0, 2, 0, 0),
+			},
 		},
 		titleArea: {
 			display: 'flex',
@@ -95,20 +128,20 @@ export default function RightAngleSingleStaticLayout(props) {
 	return (
 		<div className={classes.rightAngleLayout}>
 			<div className={classes.mainImageArea}>
-				<div className={classes.mainImageFrame}>
+				<img className={clsx(classes.mainImage, isVideoModeOn && classes.hide)} src={mainImage} />
+				<iframe className={clsx(classes.mainImage, classes.hide, isVideoModeOn && classes.appear)} src="https://www.youtube.com/embed/uUPppgbQGow?loop=1&rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameBorder="0"></iframe>
+				<div className={classes.videocamIconArea}>
 					<IconButton
 						edge="start"
 						className={classes.vidoModeIcon}
 						onClick={handleModeSwitched}
 						size="medium"
-						classes={{root:classes.root}}
+						classes={{ root: classes.root }}
 					>
-					{
-						isVideoModeOn ? <ImageIcon /> : <VideocamIcon />
-					}
+						{
+							isVideoModeOn ? <ImageIcon /> : <VideocamIcon />
+						}
 					</IconButton>
-					<img className={clsx(classes.mainImage, isVideoModeOn && classes.hide)} src={mainImage} />
-					{/*<iframe className={clsx(classes.mainImage, classes.hide, isVideoModeOn && classes.appear)} src="https://www.youtube.com/embed/uUPppgbQGow?loop=1&rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameBorder="0"></iframe>*/}
 				</div>
 			</div>
 			<div className={classes.subImageArea}>
