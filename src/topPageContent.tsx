@@ -12,7 +12,6 @@ import NavDownward from './navDownward';
 import { makeStyles, useTheme, Theme, createStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-
 const theme = createMuiTheme({
 	overrides: {
 		MuiCssBaseline: {
@@ -22,11 +21,16 @@ const theme = createMuiTheme({
 				},
 				body: {
 					overflow: 'hidden',
+					fontFamily: "Noto Sans JP,helvetica,Arial,sans-serif",
 				},
 				footer: {
 					zIndex: -100,
 					position: 'fixed',
 					bottom: 0,
+				},
+				a: {
+					color: "#000000",
+					textDecoration: 'none',
 				},
 			},
 		},
