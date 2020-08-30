@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme: Theme) =>
 				maxWidth: '151px',
 				height: '302px',
 				margin: theme.spacing(0, 0, 3, 0),
-				// padding: theme.spacing(0, 10),
 			},
 		},
 		mainImageWrap: {
