@@ -38,9 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				paddingTop: '100%',
 			},
 			[theme.breakpoints.down('xs')]: {
-				position: 'relative',
-				marginBottom: theme.spacing(4),
-				paddingTop: '100%',
+				// smと同じロジックのスタイル
 			},
 		},
 		mainImage: {
@@ -57,10 +55,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				height: 'auto',
 			},
 			[theme.breakpoints.down('xs')]: {
-				position: 'absolute',
-				top: '50%',
-				left: '50%',
-				transform: 'translate(-50%, -50%)',
+				// smと同じロジックのポジション
 				width: '100%',
 				maxWidth: '310px',
 				height: 'auto',
