@@ -12,8 +12,14 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		menuArea: {
 			display: 'inherit',
-			paddingRight: theme.spacing(10),
+			padding: theme.spacing(0, 10),
 			margin: theme.spacing(5, 0, 19, 0),
+			[theme.breakpoints.down('sm')]:{
+				padding: theme.spacing(0, 8),
+			},
+			[theme.breakpoints.down('xs')]:{
+				padding: theme.spacing(0, 4),
+			}
 		},
 	}),
 )
