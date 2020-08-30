@@ -18,11 +18,16 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '184px',
 			height: '368px',
 			margin: theme.spacing(0, 4, 2, 0),
-			[theme.breakpoints.down('xs')]: {
+			[theme.breakpoints.down('sm')]: {
 				flexDirection: 'row',
 				justifyContent: 'center',
-				width: '100%',
-				maxWidth: '151px',
+				width: '184px',
+				height: '368px',
+				margin: theme.spacing(0, 0, 5, 0),
+			},
+			[theme.breakpoints.down('xs')]: {
+				// flexDirectionとjustifyContentはsmと同じスロジックのスタイル
+				width: '151px',
 				height: '302px',
 				margin: theme.spacing(0, 0, 3, 0),
 			},
@@ -35,24 +40,34 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			width: '184px',
 			height: '368px',
+			[theme.breakpoints.down('sm')]: {
+				width: '184px',
+				height: '368px',
+			},
 			[theme.breakpoints.down('xs')]: {
 				width: '151px',
 				height: '302px',
 			},
 		},
 		svgFrameArea: {
-			[theme.breakpoints.down('xs')]: {
+			[theme.breakpoints.down('sm')]: {
 				position: 'absolute',
 				top: 0,
 				left: 0,
 				width: '100%',
 				padding: '6% 6% 6% 6%',
 			},
+			[theme.breakpoints.down('xs')]: {
+				// smと同じスロジックのスタイル
+			},
 		},
 		svgFrameWrap: {
-			[theme.breakpoints.down('xs')]: {
+			[theme.breakpoints.down('sm')]: {
 				position: 'absolute',
 				width: '88%',
+			},
+			[theme.breakpoints.down('xs')]: {
+				// smと同じスロジックのスタイル
 			},
 		},
 		iphoneXFrameSVG: {
@@ -65,21 +80,27 @@ const useStyles = makeStyles((theme: Theme) =>
 			bottom: '11px',
 			width: '160px',
 			height: '346.7px',
-			[theme.breakpoints.down('xs')]: {
+			[theme.breakpoints.down('sm')]: {
 				width: '100%',
 				height: 'auto',
 				top: 0,
 				left: 0,
 			},
+			[theme.breakpoints.down('xs')]: {
+				// smと同じスロジックのスタイル
+			},
 		},
 		clipedAppImage: {
 			width: '160px',
 			height: '346.7px',
-			[theme.breakpoints.down('xs')]: {
+			[theme.breakpoints.down('sm')]: {
 				width: '100%',
 				height: 'auto',
 				top: 0,
 				left: 0,
+			},
+			[theme.breakpoints.down('xs')]: {
+				// smと同じスロジックのスタイル
 			},
 		},
 		imageSelectArea: {
@@ -90,13 +111,16 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: 'auto',
 			margin: theme.spacing(2, 0, 0, 0),
 			paddingTop: theme.spacing(3),
-			[theme.breakpoints.down('xs')]: {
+			[theme.breakpoints.down('sm')]: {
 				margin: '0 calc(50% - 50vw)',
 				width: '100vw',
 				flexWrap: 'nowrap',
 				overflowX: 'auto',
 				padding: '0px',
-			}
+			},
+			[theme.breakpoints.down('xs')]: {
+				// smと同じスロジックのスタイル
+			},
 		},
 		imageButton: {
 			display: 'flex',
@@ -105,8 +129,11 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: 'auto',
 			border: ' 1px solid #D8D8D8',
 			boxSizing: 'border-box',
-			[theme.breakpoints.down('xs')]: {
+			[theme.breakpoints.down('sm')]: {
 				boxShadow: '0px 3px 6px rgb(0,0,0,0.16)',
+				margin: theme.spacing(0, 5, 0, 0),
+			},
+			[theme.breakpoints.down('xs')]: {
 				margin: theme.spacing(0, 3, 0, 0),
 			},
 		},
@@ -117,6 +144,10 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			width: '73px',
 			height: '156px',
+			[theme.breakpoints.down('sm')]: {
+				width: '73px',
+				height: '156px',
+			},
 			[theme.breakpoints.down('xs')]: {
 				width: '60px',
 				height: '130px',
@@ -127,6 +158,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			height: 'auto',
 			justifyContent: 'center',
+			[theme.breakpoints.down('xs')]: {
+				margin: theme.spacing(4, 0, 0, 0),
+			},
 			[theme.breakpoints.down('xs')]: {
 				margin: theme.spacing(2, 0, 0, 0),
 			}
