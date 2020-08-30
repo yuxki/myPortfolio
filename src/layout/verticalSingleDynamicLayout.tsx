@@ -15,6 +15,11 @@ interface FeaturedWorkInfo {
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		mainImageAreaWrap: {
+			[theme.breakpoints.down('sm')]: {
+				margin: 'auto',
+				width: '62%',
+				maxWidth: '386px',
+			},
 			[theme.breakpoints.down('xs')]: {
 				margin: 'auto',
 				width: '100%',
@@ -27,6 +32,11 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			height: 'auto',
 			marginBottom: theme.spacing(2),
+			[theme.breakpoints.down('sm')]: {
+				position: 'relative',
+				marginBottom: theme.spacing(4),
+				paddingTop: '100%',
+			},
 			[theme.breakpoints.down('xs')]: {
 				position: 'relative',
 				marginBottom: theme.spacing(4),
@@ -37,6 +47,15 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			width: 'auto',
 			height: '274px',
+			[theme.breakpoints.down('sm')]: {
+				position: 'absolute',
+				top: '50%',
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+				width: '100%',
+				maxWidth: '386px',
+				height: 'auto',
+			},
 			[theme.breakpoints.down('xs')]: {
 				position: 'absolute',
 				top: '50%',
@@ -45,7 +64,6 @@ const useStyles = makeStyles((theme: Theme) =>
 				width: '100%',
 				maxWidth: '310px',
 				height: 'auto',
-				marginBottom: theme.spacing(4),
 			},
 		},
 		imageSelectArea: {
@@ -54,6 +72,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			height: 'auto',
 			margin: theme.spacing(2, 0, 2, 0),
+			[theme.breakpoints.down('sm')]: {
+				flexWrap: 'wrap',
+			},
 			[theme.breakpoints.down('xs')]: {
 				flexDirection: 'column',
 			},
@@ -67,6 +88,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			},
 		},
 		upperRow: {
+			[theme.breakpoints.down('sm')]: {
+				marginBottom: theme.spacing(2),
+			},
 			[theme.breakpoints.down('xs')]: {
 				marginBottom: theme.spacing(2),
 			},
@@ -84,6 +108,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			border: ' 1px solid #E0E0E0',
 			borderRadius: '4px',
 			boxSizing: 'border-box',
+			[theme.breakpoints.down('sm')]: {
+				margin: theme.spacing(0, 2, 0, 2),
+			},
 			[theme.breakpoints.down('xs')]: {
 				margin: theme.spacing(0, 1, 0, 1),
 				padding: theme.spacing(1, 2),

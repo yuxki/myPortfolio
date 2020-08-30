@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			left: '50%',
 			transform: 'translate(-50%, -50%)',
 			width: '100%',
+			[theme.breakpoints.down('sm')]: {
+				// breakpoint mdと変わりなし
+			},
 			[theme.breakpoints.down('xs')]: {
 				padding: theme.spacing(0, 4),
 				width: '100%',

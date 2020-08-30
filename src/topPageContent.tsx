@@ -47,10 +47,12 @@ const useStyles = makeStyles((theme: Theme) =>
 			zIndex: 51,
 			padding: theme.spacing(0, 10),
 			transitionDuration: '1.0s',
+			[theme.breakpoints.down('sm')]:{
+				padding: theme.spacing(0, 8),
+			},
 			[theme.breakpoints.down('xs')]: {
-				maxWidth: '600px',
 				padding: theme.spacing(0, 4),
-			}
+			},
 		},
 		topPageArea: {
 			width: '100%',
