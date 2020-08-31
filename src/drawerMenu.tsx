@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function DrawerMenu(props) {
 	const classes = useStyles();
 	const handleDrawerClose = props.handleDrawerClose;
-	const open:boolean = props.open;
+	const open: boolean = props.open;
 
 	return (
 		<div>
@@ -59,13 +59,12 @@ export default function DrawerMenu(props) {
 				<div className={classes.drawerContent}>
 					<div className={classes.drawerBody}>
 						<div className={classes.drawerLeft}>
+						</div>
+						<div className={classes.drawerRight}>
 							<MenuList
 								handleDrawerClose={handleDrawerClose}
 								resetState={props.resetState}
 							/>
-						</div>
-						<div className={classes.drawerRight}>
-							<Logo />
 						</div>
 					</div>
 				</div>
