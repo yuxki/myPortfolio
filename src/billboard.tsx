@@ -3,15 +3,17 @@ import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Logo from './logo';
+import ContentChange from "./contentChange";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		billboardArea: {
-			position: 'absolute',
-			top: '50%',
-			left: '50%',
-			transform: 'translate(-50%, -50%)',
+			display:'flex',
+			position:'relative',
 			width: '100%',
+			height: '100vh',
+			justifyContent: 'center',
+			alignItems: 'center',
 			[theme.breakpoints.down('sm')]: {
 				// breakpoint mdと変わりなし
 			},
@@ -25,7 +27,6 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			display: 'flex',
 			flexDirection: 'column',
-			justifyContent: 'center',
 			alignItems: 'center',
 		},
 		root: {
@@ -46,6 +47,7 @@ export default function Billboard() {
 					作れる を楽しくするために
 				</Typography>
 			</div>
+			<ContentChange />
 		</div>
 	)
 }

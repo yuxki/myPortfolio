@@ -28,13 +28,7 @@ export default function Footer(props) {
 	const classes = useStyles();
 
 	return (
-		<footer className={classes.footerArea}
-			onWheel={props.isAnimating
-				? null
-				: props.isSlideOut ? props.slideTopPageInBywheel : null
-			}
-			style={props.isSlideOut ? { zIndex: 45 } : {}}
-		>
+		<footer className={classes.footerArea}>
 			<div className={classes.menuArea}>
 				<MenuList resetState={props.resetState} />
 			</div>

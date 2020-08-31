@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			transform: 'translateX(-50%)',
 			justifyContent: 'center',
 			flexDirection: 'column',
+			[theme.breakpoints.down('xs')]:{
+				bottom: theme.spacing(2),
+			},
 		},
 		root: {
 			display: 'flex',
@@ -31,6 +34,10 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '65px',
 			height: '27px',
 			fill: '#F2BE22',
+			[theme.breakpoints.down('xs')]:{
+				width: '48px',
+				height: '20px',
+			},
 		},
 		// 以下切り替えアニメーション部分
 		fadeOut: {
@@ -49,7 +56,7 @@ export default function ContentChange(props) {
 			onClick={props.switchElementWithAnimationToDown}
 		>
 			<Typography variant="h4" color='primary' classes={{ root: classes.root, colorPrimary:classes.colorPrimary }}>
-				Scroll or Click here!!
+				Scroll Please!!
 			</Typography>
 			<div className={classes.svgArea}>
 				<svg className={classes.transitionArrow} viewBox="0 0 65 27">

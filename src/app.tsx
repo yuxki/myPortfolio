@@ -4,7 +4,7 @@ import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import TopPage from "./topPage";
 import AboutPage from "./aboutPage";
-import PageLoading from "./pageLoading";
+import Footer from "./footer";
 
 import FeaturedWorkSandBox from "./featuredWorkSandBox"
 import ComponentSandBox from "./componentSandBox"
@@ -86,6 +86,7 @@ function App() {
 							<TopPage />
 						</Route>
 					</Switch>
+					<Footer/>
 				</div>
 			</ThemeProvider>
 		</Router>

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Header from "./header";
-import Footer from "./footer";
 import Typography from '@material-ui/core/Typography';
-import PageLoading from "./pageLoading";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -49,9 +47,6 @@ export default function AboutPageContent(props) {
 						return <Typography variant='body1' key={index}>{text}</Typography>
 					})}
 				</div>
-			</div>
-			<div>
-				<Footer />
 			</div>
 		</div>
 	)

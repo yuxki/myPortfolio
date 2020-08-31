@@ -14,9 +14,23 @@ interface FeaturedWorkInfo {
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
+		backgroundArea: {
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			height: '100vh',
+			minHeight: '580px',
+		},
+		verticalLayout: {
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'center',
+			alignItems: 'center',
+			width: '100%',
+		},
 		mainImageAreaWrap: {
 			[theme.breakpoints.down('sm')]: {
-				margin: 'auto',
+				margin: '0',
 				width: '62%',
 				maxWidth: '386px',
 			},
@@ -66,7 +80,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			justifyContent: 'center',
 			width: '100%',
 			height: 'auto',
-			margin: theme.spacing(2, 0, 2, 0),
+			margin: theme.spacing(2, 0, 0, 0),
 			[theme.breakpoints.down('sm')]: {
 				flexWrap: 'wrap',
 			},
@@ -127,6 +141,12 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			height: 'auto',
 			justifyContent: 'center',
+			[theme.breakpoints.down('xs')]: {
+				margin: theme.spacing(4, 0, 0, 0),
+			},
+			[theme.breakpoints.down('xs')]: {
+				margin: theme.spacing(1, 0, 0, 0),
+			},
 		}
 	})
 )
@@ -172,30 +192,30 @@ export default function VerticalSingleDynamicLayout(props) {
 		)
 	}
 	return (
-		<div>
-			<div className={classes.mainImageAreaWrap}>
-				<div className={classes.mainImageArea}>
-					<img className={classes.mainImage} src={selectedMainImage} />
+		<div className={classes.backgroundArea}>
+			<div className={classes.verticalLayout}>
+				<div className={classes.mainImageAreaWrap}>
+					<div className={classes.mainImageArea}>
+						<img className={classes.mainImage} src={selectedMainImage} />
+					</div>
 				</div>
-			</div>
-
-			<div className={classes.imageSelectArea}>
-				<div className={clsx(classes.imageSelectRow, classes.upperRow)}>
-					{
-						upperRowImageButtonInfo.map((imageInfo, index) => (
-							generateImageButton(imageInfo, index)
-						))}
+				<div className={classes.imageSelectArea}>
+					<div className={clsx(classes.imageSelectRow, classes.upperRow)}>
+						{
+							upperRowImageButtonInfo.map((imageInfo, index) => (
+								generateImageButton(imageInfo, index)
+							))}
+					</div>
+					<div className={clsx(classes.imageSelectRow, classes.lowerRow)}>
+						{
+							lowerRowImageButtonInfo.map((imageInfo, index) => (
+								generateImageButton(imageInfo, index)
+							))}
+					</div>
 				</div>
-				<div className={clsx(classes.imageSelectRow, classes.lowerRow)}>
-					{
-						lowerRowImageButtonInfo.map((imageInfo, index) => (
-							generateImageButton(imageInfo, index)
-						))}
+				<div className={classes.titleArea}>
+					<FeaturedWorkTitle featuredWorkTitle={title} />
 				</div>
-			</div>
-
-			<div className={classes.titleArea}>
-				<FeaturedWorkTitle featuredWorkTitle={title} />
 			</div>
 		</div>
 	)
