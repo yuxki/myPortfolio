@@ -5,7 +5,6 @@ import Billboard from "./billboard";
 import FeaturedWorkContents from "./featuredWorkContents";
 import FeaturedWorkTitle from "./featuredWorkTitle";
 import { makeStyles, useTheme, Theme, createStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 const theme = createMuiTheme({
 	overrides: {
@@ -16,6 +15,7 @@ const theme = createMuiTheme({
 				},
 				body:{
 					overflowX:'hidden',
+					fontFamily:	'Noto Sans JP, helvetica, Arial, sans-serif',
 				},
 				a: {
 					color: "#000000",
@@ -122,9 +122,6 @@ export default function TopPageContent(props) {
 
 	return (
 		<div>
-			<ThemeProvider theme={theme}>
-				<CssBaseline />
-			</ThemeProvider>
 			<Header />
 			<div className={classes.staticArea}>
 				<div className={classes.topPageArea}>

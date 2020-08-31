@@ -8,8 +8,13 @@ const useStyles = makeStyles((theme: Theme) =>
 		aboutPageArea: {
 			display: 'block',
 			position: 'static',
-			paddingTop: theme.spacing(15),
-			margin: theme.spacing(0, 10, 8, 10),
+			padding: theme.spacing(15, 10, 8, 10),
+			[theme.breakpoints.down('sm')]:{
+				padding: theme.spacing(15, 8, 8, 8),
+			},
+			[theme.breakpoints.down('xs')]:{
+				padding: theme.spacing(15, 4, 8, 4),
+			},
 		},
 		bodyAboutAtelier: {
 			marginTop: theme.spacing(4),
@@ -30,17 +35,19 @@ export default function AboutPageContent(props) {
 	function endAboutPageLoading() {
 		setIsAboutPageLoading(false);
 	}
-
+	const title = 'About';
+	const subTitle = 'Atelier Hiroyuki';
 	const aboutAtelier = "何かを知る楽しさ、なにかを始める楽しさ、なにかをつくる楽しさ、\nモノづくりで得られる楽しさを知るために活動しています。\nAtelier Hiroyuki は、その活動拠点です。"
+
 	return (
 		<div>
 			<Header />
 			<div className={classes.aboutPageArea}>
 				<Typography variant='h1'>
-					About
+					{title}
 			</Typography>
 				<Typography variant='h3'>
-					Atelier Hiroyuki
+					{subTitle}
 			</Typography>
 				<div className={classes.bodyAboutAtelier}>
 					{aboutAtelier.split("\n").map((text, index) => {

@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			justifyContent: 'center',
 			height: '100vh',
 			minHeight: '580px',
+			backgroundColor:'#F7F7F7',
+			margin: '0 calc(50% - 50vw)',
 		},
 		horizontalLayout: {
 			display: 'flex',
