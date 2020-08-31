@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		drawerContent: {
 			padding: theme.spacing(12, 10),
+			[theme.breakpoints.down('sm')]:{
+				padding: theme.spacing(12, 8),
+			},
+			[theme.breakpoints.down('xs')]:{
+				padding: theme.spacing(12, 4),
+			},
 		},
 		drawerBody: {
 			display: 'flex',
