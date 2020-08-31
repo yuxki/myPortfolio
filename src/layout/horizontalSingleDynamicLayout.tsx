@@ -5,10 +5,18 @@ import FeaturedWorkTitle from "../featuredWorkTitle"
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
+		backgroundArea: {
+			display:'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			height: '100vh',
+			minHeight: '580px',
+		},
 		horizontalLayout: {
 			display: 'flex',
 			flexDirection: 'row',
 			justifyContent: 'center',
+			alignItems: 'center',
 			flexWrap: 'wrap',
 		},
 		mainImageArea: {
@@ -125,15 +133,15 @@ const useStyles = makeStyles((theme: Theme) =>
 		imageButton: {
 			display: 'flex',
 			margin: theme.spacing(0, 4, 2, 0),
-			width: 'auto',
-			height: 'auto',
-			border: ' 1px solid #D8D8D8',
-			boxSizing: 'border-box',
+			width: '73px',
+			height: '156px',
 			[theme.breakpoints.down('sm')]: {
 				boxShadow: '0px 3px 6px rgb(0,0,0,0.16)',
 				margin: theme.spacing(0, 5, 0, 0),
 			},
 			[theme.breakpoints.down('xs')]: {
+				width: '60px',
+				height: '130px',
 				margin: theme.spacing(0, 3, 0, 0),
 			},
 		},
@@ -144,6 +152,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			width: '73px',
 			height: '156px',
+			border: ' 1px solid #D8D8D8',
+			boxSizing: 'border-box',
 			[theme.breakpoints.down('sm')]: {
 				width: '73px',
 				height: '156px',
@@ -162,8 +172,8 @@ const useStyles = makeStyles((theme: Theme) =>
 				margin: theme.spacing(4, 0, 0, 0),
 			},
 			[theme.breakpoints.down('xs')]: {
-				margin: theme.spacing(2, 0, 0, 0),
-			}
+				margin: theme.spacing(1, 0, 0, 0),
+			},
 		}
 	})
 )
@@ -180,38 +190,40 @@ export default function HorizontalSingleDynamicLayout(props) {
 	}
 
 	return (
-		<div className={classes.horizontalLayout}>
-			<div className={classes.mainImageArea}>
-				<div className={classes.mainImageWrap}>
-					<img className={classes.mainImage} src={'iPhoneX.png'} />
-					<div className={classes.svgFrameArea}>
-						<div className={classes.svgFrameWrap}>
-							<svg className={classes.iphoneXFrameSVG} viewBox="0 0 0 0">
-								<clipPath id="iPhoneXFrame">
-									<path d="M143,0H128a4.94,4.94,0,0,0-3,1c-1,1,2,12-14,12H49C33,13,36,2,35,1a4.94,4.94,0,0,0-3-1H17C3,0,0,13,0,15V330.67c0,14.43,15,16,15,16H145s15-1.6,15-16V15C160,13,157,0,143,0Z" />
-								</clipPath>
-							</svg>
-							<svg className={classes.mainAppImage} viewBox="0 0 160 346.7">
-								<image className={classes.clipedAppImage} xlinkHref={selectedMainImage} clipPath="url(#iPhoneXFrame)" />
-							</svg>
+		<div className={classes.backgroundArea}>
+			<div className={classes.horizontalLayout}>
+				<div className={classes.mainImageArea}>
+					<div className={classes.mainImageWrap}>
+						<img className={classes.mainImage} src={'iPhoneX.png'} />
+						<div className={classes.svgFrameArea}>
+							<div className={classes.svgFrameWrap}>
+								<svg className={classes.iphoneXFrameSVG} viewBox="0 0 0 0">
+									<clipPath id="iPhoneXFrame">
+										<path d="M143,0H128a4.94,4.94,0,0,0-3,1c-1,1,2,12-14,12H49C33,13,36,2,35,1a4.94,4.94,0,0,0-3-1H17C3,0,0,13,0,15V330.67c0,14.43,15,16,15,16H145s15-1.6,15-16V15C160,13,157,0,143,0Z" />
+									</clipPath>
+								</svg>
+								<svg className={classes.mainAppImage} viewBox="0 0 160 346.7">
+									<image className={classes.clipedAppImage} xlinkHref={selectedMainImage} clipPath="url(#iPhoneXFrame)" />
+								</svg>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div className={classes.imageSelectArea}>
-				{
-					props.imageInfoSrcList.map((imageInfo, index) => (
-						<div
-							className={clsx(classes.imageButton, (imageInfo === selectedMainImage) && classes.selctedImageButton)}
-							key={imageInfo}
-							onClick={(event) => handleImageSelected(imageInfo, event)}>
-							<img className={classes.imageButtonImage} src={imageInfo} />
-						</div>
-					))}
-			</div>
-			<div className={classes.titleArea}>
-				<FeaturedWorkTitle featuredWorkTitle={props.featuredWorkTitle} />
-			</div>
-		</div >
+				<div className={classes.imageSelectArea}>
+					{
+						props.imageInfoSrcList.map((imageInfo, index) => (
+							<div
+								className={clsx(classes.imageButton, (imageInfo === selectedMainImage) && classes.selctedImageButton)}
+								key={imageInfo}
+								onClick={(event) => handleImageSelected(imageInfo, event)}>
+								<img className={classes.imageButtonImage} src={imageInfo} />
+							</div>
+						))}
+				</div>
+				<div className={classes.titleArea}>
+					<FeaturedWorkTitle featuredWorkTitle={props.featuredWorkTitle} />
+				</div>
+			</div >
+		</div>
 	)
 }

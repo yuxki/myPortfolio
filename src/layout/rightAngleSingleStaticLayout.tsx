@@ -8,10 +8,18 @@ import FeaturedWorkTitle from "../featuredWorkTitle"
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
+		backgroundArea: {
+			display:'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			height: '100vh',
+			minHeight: '580px',
+		},
 		rightAngleLayout: {
 			display: 'flex',
 			flexDirection: 'row',
 			justifyContent: 'center',
+			alignItems: 'center',
 			flexWrap: 'wrap',
 		},
 		mainImageArea: {
@@ -83,13 +91,13 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '249px',
 			height: '78px',
 			[theme.breakpoints.down('sm')]: {
-				flexDirection:'column',
-				width:'90px',
-				height:'288px',
+				flexDirection: 'column',
+				width: '90px',
+				height: '288px',
 				margin: theme.spacing(0, 4, 0, 0),
 			},
 			[theme.breakpoints.down('xs')]: {
-				flexDirection:'row',
+				flexDirection: 'row',
 				padding: theme.spacing(0, 2),
 				justifyContent: 'center',
 				width: '100vw',
@@ -107,9 +115,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			},
 			[theme.breakpoints.down('xs')]: {
 				width: '30vw',
-				maxWidth: '120px',
+				maxWidth: '90px',
 				height: '30vw',
-				maxHeight: '120px',
+				maxHeight: '90px',
 				margin: theme.spacing(0, 1, 0, 1),
 			},
 		},
@@ -138,8 +146,8 @@ const useStyles = makeStyles((theme: Theme) =>
 				margin: theme.spacing(0, 0, 1, 0),
 			},
 			[theme.breakpoints.down('xs')]: {
-				width: '249px',
-				height: '140px',
+				width: '217px',
+				height: '120px',
 				margin: theme.spacing(0, 2, 0, 0),
 			},
 		},
@@ -148,6 +156,12 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			height: 'auto',
 			justifyContent: 'center',
+			[theme.breakpoints.down('xs')]: {
+				margin: theme.spacing(4, 0, 0, 0),
+			},
+			[theme.breakpoints.down('xs')]: {
+				margin: theme.spacing(1, 0, 0, 0),
+			},
 		},
 	})
 )
@@ -164,42 +178,44 @@ export default function RightAngleSingleStaticLayout(props) {
 	const rectangleImageArray: Array<string> = props.imageInfoSrcList.slice(4);
 
 	return (
-		<div className={classes.rightAngleLayout}>
-			<div className={classes.mainImageArea}>
-				<img className={clsx(classes.mainImage, isVideoModeOn && classes.hide)} src={mainImage} />
-				<iframe className={clsx(classes.mainImage, classes.hide, isVideoModeOn && classes.appear)} src="https://www.youtube.com/embed/uUPppgbQGow?loop=1&rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameBorder="0"></iframe>
-				<div className={classes.videocamIconArea}>
-					<IconButton
-						edge="start"
-						className={classes.vidoModeIcon}
-						onClick={handleModeSwitched}
-						size="medium"
-						classes={{ root: classes.root }}
-					>
+		<div className={classes.backgroundArea}>
+			<div className={classes.rightAngleLayout}>
+				<div className={classes.mainImageArea}>
+					<img className={clsx(classes.mainImage, isVideoModeOn && classes.hide)} src={mainImage} />
+					<iframe className={clsx(classes.mainImage, classes.hide, isVideoModeOn && classes.appear)} src="https://www.youtube.com/embed/uUPppgbQGow?loop=1&rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameBorder="0"></iframe>
+					<div className={classes.videocamIconArea}>
+						<IconButton
+							edge="start"
+							className={classes.vidoModeIcon}
+							onClick={handleModeSwitched}
+							size="medium"
+							classes={{ root: classes.root }}
+						>
+							{
+								isVideoModeOn ? <ImageIcon /> : <VideocamIcon />
+							}
+						</IconButton>
+					</div>
+				</div>
+				<div className={classes.subImageArea}>
+					<div className={classes.squareImageArea}>
 						{
-							isVideoModeOn ? <ImageIcon /> : <VideocamIcon />
+							squareImageArray.map((imageInfo, index) => (
+								<img className={classes.squareImage} key={imageInfo} src={imageInfo} />
+							))
 						}
-					</IconButton>
+					</div>
+					<div className={classes.rectangleImageArea}>
+						{
+							rectangleImageArray.map((imageInfo, index) => (
+								<img className={classes.rectangleImage} key={imageInfo} src={imageInfo} />
+							))
+						}
+					</div>
 				</div>
-			</div>
-			<div className={classes.subImageArea}>
-				<div className={classes.squareImageArea}>
-					{
-						squareImageArray.map((imageInfo, index) => (
-							<img className={classes.squareImage} key={imageInfo} src={imageInfo} />
-						))
-					}
+				<div className={classes.titleArea}>
+					<FeaturedWorkTitle featuredWorkTitle={props.featuredWorkTitle} />
 				</div>
-				<div className={classes.rectangleImageArea}>
-					{
-						rectangleImageArray.map((imageInfo, index) => (
-							<img className={classes.rectangleImage} key={imageInfo} src={imageInfo} />
-						))
-					}
-				</div>
-			</div>
-			<div className={classes.titleArea}>
-				<FeaturedWorkTitle featuredWorkTitle={props.featuredWorkTitle} />
 			</div>
 		</div>
 	)

@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '65px',
 			height: '27px',
 			fill: '#F2BE22',
+			[theme.breakpoints.down('xs')]:{
+				width: '48px',
+				height: '20px',
+			},
 		},
 	}),
 );
