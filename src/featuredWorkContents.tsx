@@ -23,12 +23,12 @@ export default function FeaturedWorkContents(props) {
 	}
 	return (
 		<div className={clsx(classes.featuredWorkContent)}>
-			<VerticalSingleDynamicLayout
-				featuredWorkInfo={featuredWorkInfoArry[0]}
-			/>
 			<HorizontalSingleDynamicLayout
 				imageInfoSrcList={featuredWorkInfoArry[1].featuredWorkImgSrc}
 				featuredWorkTitle={featuredWorkInfoArry[1].featuredWorkTitle}
+			/>
+			<VerticalSingleDynamicLayout
+				featuredWorkInfo={featuredWorkInfoArry[0]}
 			/>
 			<RightAngleSingleStaticLayout
 				imageInfoSrcList={featuredWorkInfoArry[2].featuredWorkImgSrc}

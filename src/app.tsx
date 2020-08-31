@@ -5,11 +5,27 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import TopPage from "./topPage";
 import AboutPage from "./aboutPage";
 import Footer from "./footer";
-
+import CssBaseline from '@material-ui/core/CssBaseline';
 import FeaturedWorkSandBox from "./featuredWorkSandBox"
 import ComponentSandBox from "./componentSandBox"
 
 const theme = createMuiTheme({
+	overrides: {
+		MuiCssBaseline: {
+			'@global': {
+				html:{
+					backgroundColor:'#F2BE22',
+				},
+				body:{
+					backgroundColor:'#FFFFFF',
+				},
+				a: {
+					color: "#000000",
+					textDecoration: 'none',
+				},
+			},
+		},
+	},
 	breakpoints: {
 		values: {
 			xs: 0,
@@ -23,17 +39,9 @@ const theme = createMuiTheme({
 		fontFamily: [
 			'Noto Sans JP',
 			'helvetica',
-			"Arial",
+			'Arial',
 			'sans-serif',
 		].join(','),
-		h1: {
-			fontSize: '84px',
-			fontWeight: 'lighter',
-		},
-		h3: {
-			fontWeight: 'lighter',
-			fontSize: '41px',
-		},
 		h5: {
 			fontSize: '18px',
 		},
@@ -44,11 +52,34 @@ const theme = createMuiTheme({
 	},
 });
 
+const fontFamily = 'Noto Sans JP, helvetica, Arial, sans-serif';
+
+theme.typography.h1 = {
+	fontSize:'84px',
+	fontWeight:'lighter',
+	fontFamily : fontFamily,
+	[theme.breakpoints.down('xs')]:{
+		fontSize:'66px',
+		fontWeight:'lighter',
+	}
+}
+
 theme.typography.h2 = {
 	fontSize: '50px',
 	fontWeight: 'lighter',
+	fontFamily : fontFamily,
 	[theme.breakpoints.down('xs')]:{
 		fontSize: '34px',
+		fontWeight: 'lighter',
+	}
+}
+
+theme.typography.h3 = {
+	fontSize: '47px',
+	fontWeight: 'lighter',
+	fontFamily : fontFamily,
+	[theme.breakpoints.down('xs')]:{
+		fontSize: '36px',
 		fontWeight: 'lighter',
 	}
 }
@@ -56,6 +87,7 @@ theme.typography.h2 = {
 theme.typography.h4 = {
 	fontSize: '22px',
 	fontWeight: 'normal',
+	fontFamily : fontFamily,
 	[theme.breakpoints.down('xs')]: {
 		fontSize: '19px',
 		fontWeight: 'normal',
@@ -65,18 +97,18 @@ theme.typography.h4 = {
 theme.typography.h6 = {
 	fontSize: '14px',
 	fontWeight: 'lighter',
+	fontFamily : fontFamily,
 	[theme.breakpoints.down('xs')]: {
 		fontSize: '12px',
 		fontWeight: 'normal',
 	},
 }
 
-console.log(theme.typography);
-
 function App() {
 	return (
 		<Router>
 			<ThemeProvider theme={theme}>
+			<CssBaseline />
 				<div>
 					<Switch>
 						<Route path={"/about"}>
@@ -90,13 +122,6 @@ function App() {
 				</div>
 			</ThemeProvider>
 		</Router>
-		/*
-		<Router>
-			<div>
-				<FeaturedWorkSandBox />
-			</div>
-		</Router>
-		*/
 		/*
 			<div>
 				<ComponentSandBox />
