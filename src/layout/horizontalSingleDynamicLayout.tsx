@@ -133,6 +133,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			},
 		},
 		imageButton: {
+			cursor: 'pointer',
+			pointerEvents: 'auto',
 			display: 'flex',
 			margin: theme.spacing(0, 4, 2, 0),
 			width: '73px',
