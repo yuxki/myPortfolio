@@ -6,12 +6,12 @@ import FeaturedWorkTitle from "../featuredWorkTitle"
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		backgroundArea: {
-			display:'flex',
+			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
 			height: '100vh',
 			minHeight: '580px',
-			backgroundColor:'#F7F7F7',
+			backgroundColor: '#F7F7F7',
 			margin: '0 calc(50% - 50vw)',
 		},
 		horizontalLayout: {
@@ -126,6 +126,8 @@ const useStyles = makeStyles((theme: Theme) =>
 				width: '100vw',
 				flexWrap: 'nowrap',
 				overflowX: 'auto',
+				'-ms-overflowX': 'scroll',
+				'-ms-overflowY': 'hidden',
 				padding: '0px',
 				height: '161px',
 			},
@@ -139,14 +141,18 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			margin: theme.spacing(0, 4, 2, 0),
 			width: '73px',
+			minWidth: '73px',
 			height: '156px',
+			minHeight: '156px',
 			[theme.breakpoints.down('sm')]: {
 				boxShadow: '0px 1px 6px rgb(0,0,0,0.16)',
 				margin: theme.spacing(0, 5, 0, 0),
 			},
 			[theme.breakpoints.down('xs')]: {
 				width: '60px',
+				minWidth: '60px',
 				height: '130px',
+				minHeight: '130px',
 				margin: theme.spacing(0, 3, 0, 0),
 			},
 		},
