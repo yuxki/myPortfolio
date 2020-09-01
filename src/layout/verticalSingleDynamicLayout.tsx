@@ -55,6 +55,23 @@ const useStyles = makeStyles((theme: Theme) =>
 				// smと同じロジックのスタイル
 			},
 		},
+		consistenttMainImageArea: {
+			[theme.breakpoints.down('sm')]: {
+				position: 'absolute',
+				top: '50%',
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+				width: '100%',
+				maxWidth: '386px',
+				height: 'auto',
+			},
+			[theme.breakpoints.down('xs')]: {
+				// smと同じロジックのポジション
+				width: '100%',
+				maxWidth: '310px',
+				height: '100%',
+			},
+		},
 		mainImage: {
 			display: 'flex',
 			width: 'auto',
@@ -192,6 +209,7 @@ export default function VerticalSingleDynamicLayout(props) {
 			<div className={classes.verticalLayout}>
 				<div className={classes.mainImageAreaWrap}>
 					<div className={classes.mainImageArea}>
+						<div className={classes.consistenttMainImageArea}></div>
 						<img className={classes.mainImage} src={selectedMainImage} />
 					</div>
 				</div>
