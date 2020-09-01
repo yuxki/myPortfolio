@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		logoArea: {
 			display: 'flex',
-			width:'100%',
+			width: '100%',
 			flexDirection: 'column',
 			alignItems: 'center',
 		},
@@ -38,8 +38,8 @@ export default function Logo() {
 
 	return (
 		<div className={classes.logoArea}>
-			<img src={'peelingEgg.svg'} className={classes.rogoMark} />
-			<img src={'Atelier_Hiroyuki.svg'} className={classes.rogoType} />
+			<img src={'./public/' + 'peelingEgg.svg'} className={classes.rogoMark} />
+			<img src={'./public/' + 'Atelier_Hiroyuki.svg'} className={classes.rogoType} />
 		</div>
 	);
 }

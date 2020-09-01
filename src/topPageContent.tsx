@@ -65,10 +65,10 @@ const graphicsDesignInfo: FeaturedWorkInfo = {
 	featuredWorkTitle: 'Graphic Design',
 	featuredWorkType: 'img',
 	featuredWorkImgSrc: [
-		'tokyoHalloween.png'
-		, 'pawoon.png'
-		, 'flyingRabbit_wide.png'
-		, 'interface_logo.png'
+		'./public/tokyoHalloween.png'
+		, './public/pawoon.png'
+		, './public/flyingRabbit_wide.png'
+		, './public/interface_logo.png'
 	],
 	featuredWorkButtomMaxWidth: ['54px', '78px', '115px', '111px'],
 	featuredWorkImgElem: [],
@@ -79,18 +79,18 @@ const applicationDesignInfo: FeaturedWorkInfo = {
 	featuredWorkTitle: 'App Design',
 	featuredWorkType: 'img',
 	featuredWorkImgSrc: [
-		'./appImg/calcurate.png'
-		, './appImg/camera.png'
-		, './appImg/cookingRecipe.png'
-		, './appImg/game.png'
-		, './appImg/itemDetail.png'
-		, './appImg/mapDist.png'
-		, './appImg/musicLogin.png'
-		, './appImg/musicPlay.png'
-		, './appImg/readingBook.png'
-		, './appImg/snsProfile.png'
-		, './appImg/sportLogin.png'
-		, './appImg/weather.png'
+		'./public/calcurate.png'
+		, './public/camera.png'
+		, './public/cookingRecipe.png'
+		, './public/game.png'
+		, './public/itemDetail.png'
+		, './public/mapDist.png'
+		, './public/musicLogin.png'
+		, './public/musicPlay.png'
+		, './public/readingBook.png'
+		, './public/snsProfile.png'
+		, './public/sportLogin.png'
+		, './public/weather.png'
 	],
 	featuredWorkButtomMaxWidth: [],
 	featuredWorkImgElem: [],
@@ -101,12 +101,12 @@ const threDGraphicsInfo: FeaturedWorkInfo = {
 	featuredWorkTitle: '3D Graphics',
 	featuredWorkType: 'img',
 	featuredWorkImgSrc: [
-		'./threeDimage/lightHouse_night.png'
-		, './threeDimage/lighthouse_back.jpg'
-		, './threeDimage/lighthouse_front.jpg'
-		, './threeDimage/lighthouse_right.jpg'
-		, './threeDimage/lightHouse_wire.jpg'
-		, './threeDimage/lightHouse_morning.png'
+		'./public/lightHouse_night.png'
+		, './public/lighthouse_back.jpg'
+		, './public/lighthouse_front.jpg'
+		, './public/lighthouse_right.jpg'
+		, './public/lightHouse_wire.jpg'
+		, './public/lightHouse_morning.png'
 	],
 	featuredWorkButtomMaxWidth: [],
 	featuredWorkImgElem: [],

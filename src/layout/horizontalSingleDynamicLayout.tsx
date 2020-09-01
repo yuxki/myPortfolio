@@ -196,7 +196,7 @@ export default function HorizontalSingleDynamicLayout(props) {
 			<div className={classes.horizontalLayout}>
 				<div className={classes.mainImageArea}>
 					<div className={classes.mainImageWrap}>
-						<img className={classes.mainImage} src={'iPhoneX.png'} />
+						<img className={classes.mainImage} src={'./public/iPhoneX.png'} />
 						<div className={classes.svgFrameArea}>
 							<div className={classes.svgFrameWrap}>
 								<svg className={classes.iphoneXFrameSVG} viewBox="0 0 0 0">
