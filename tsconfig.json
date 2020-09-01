@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    // TSはECMAScript 6に変換
-    "target": "es6",
+    // TSはECMAScript 5に変換
+    "target": "es5",
     // TSのモジュールはES Modulesとして出力
     "module": "commonjs",
     // JSXの書式を有効に設定
