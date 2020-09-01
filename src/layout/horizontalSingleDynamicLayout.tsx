@@ -127,9 +127,10 @@ const useStyles = makeStyles((theme: Theme) =>
 				flexWrap: 'nowrap',
 				overflowX: 'auto',
 				padding: '0px',
+				height: '161px',
 			},
 			[theme.breakpoints.down('xs')]: {
-				// smと同じスロジックのスタイル
+				height: '135px',
 			},
 		},
 		imageButton: {
@@ -140,7 +141,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '73px',
 			height: '156px',
 			[theme.breakpoints.down('sm')]: {
-				boxShadow: '0px 3px 6px rgb(0,0,0,0.16)',
+				boxShadow: '0px 1px 6px rgb(0,0,0,0.16)',
 				margin: theme.spacing(0, 5, 0, 0),
 			},
 			[theme.breakpoints.down('xs')]: {
