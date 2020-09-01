@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				maxWidth: '386px',
 			},
 			[theme.breakpoints.down('xs')]: {
-				margin: 'auto',
+				margin: '0',
 				width: '100%',
 				maxWidth: '310px',
 			},
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			justifyContent: 'center',
 			width: '100%',
-			height: 'auto',
+			// height: 'auto',
 			marginBottom: theme.spacing(2),
 			[theme.breakpoints.down('sm')]: {
 				position: 'relative',
@@ -129,12 +129,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			border: '2px solid #F2BE22',
 		},
 		imageButtonImage: {
-			display: 'flex',
-			height: '55px',
-			[theme.breakpoints.down('xs')]: {
-				width: '100%',
-				height: 'auto',
-			},
+			width: '100%',
+			height: 'auto',
 		},
 		titleArea: {
 			display: 'flex',
