@@ -135,6 +135,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				width: '100vw',
 				flexDirection: 'row',
 				overflowX: 'auto',
+				'-ms-overflowX': 'scroll',
 			},
 		},
 		rectangleImage: {
@@ -149,7 +150,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			},
 			[theme.breakpoints.down('xs')]: {
 				width: '217px',
+				minWidth:'217px',
 				height: '120px',
+				minHeight:'120px',
 				margin: theme.spacing(0, 2, 0, 0),
 			},
 		},
