@@ -66,11 +66,11 @@ const graphicsDesignInfo: FeaturedWorkInfo = {
 	featuredWorkType: 'img',
 	featuredWorkImgSrc: [
 		'./public/tokyoHalloween.png'
-		, './public/pawoon_rect.png'
-		, './public/flyingRabbit_wide_rect.png'
-		, './public/interface_logo_rect.png'
+		, './public/pawoon.png'
+		, './public/flyingRabbit_wide.png'
+		, './public/interface_logo.png'
 	],
-	featuredWorkButtomMaxWidth: ['54px', '70px', '70px', '70px'],
+	featuredWorkButtomMaxWidth: ['54px', '78px', '115px', '111px'],
 	featuredWorkImgElem: [],
 	featuredWorkLayout: 'single_img',
 }
