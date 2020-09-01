@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			height: 'auto',
 			backgroundColor: '#FFFFFF',
-			zIndex: 51,
+			// zIndex: 51,
 			padding: theme.spacing(0, 10),
 			transitionDuration: '1.0s',
 			[theme.breakpoints.down('sm')]: {

@@ -7,7 +7,7 @@ import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/sty
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		header: {
-			boxSizing:'border-box',
+			boxSizing: 'border-box',
 			position: 'fixed',
 			display: 'flex',
 			zIndex: 100,
@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '96px',
 			padding: theme.spacing(12, 10, 0, 10),
 			justifyContent: 'flex-end',
+			pointerEvents: 'none',
 			[theme.breakpoints.down('sm')]: {
 				padding: theme.spacing(8, 8, 0, 8),
 			},
@@ -27,6 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			// width: '100%',
 		},
 		menuButtonArea: {
+			cursor: 'pointer',
+			pointerEvents: 'auto',
 			display: 'flex',
 			zIndex: 1500,
 		},

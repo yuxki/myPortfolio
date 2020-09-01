@@ -17,6 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
 		primary: {
 			fontSize: 44,
 			margin: theme.spacing(1, 0),
+			cursor: 'pointer',
+			pointerEvents: 'auto',
 		},
 		root: {
 			margin: 0,

@@ -125,6 +125,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 		},
 		imageButton: {
+			cursor: 'pointer',
+			pointerEvents: 'auto',
 			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
