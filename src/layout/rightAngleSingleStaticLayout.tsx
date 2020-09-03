@@ -62,11 +62,12 @@ const useStyles = makeStyles((theme: Theme) =>
 			justifyContent: 'center',
 			alignItems: 'center',
 		},
-		vidoModeIcon: {
+		modeIcon: {
 			display: 'flex',
+			marginRight:theme.spacing(4),
 		},
 		root: {
-			color: "#000000",
+			color: "#F2BE22",
 		},
 		hide: {
 			display: 'none',
@@ -174,8 +175,11 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function RightAngleSingleStaticLayout(props) {
 	const classes = useStyles();
 	const [isVideoModeOn, setIsVideoModeOn] = React.useState(false);
-	function handleModeSwitched() {
-		setIsVideoModeOn(!isVideoModeOn);
+	function handleVideoModeOn() {
+		setIsVideoModeOn(true);
+	}
+	function handleVideoModeOff() {
+		setIsVideoModeOn(false);
 	}
 
 	const mainImage: string = props.imageInfoSrcList[0];
@@ -191,14 +195,20 @@ export default function RightAngleSingleStaticLayout(props) {
 					<div className={classes.videocamIconArea}>
 						<IconButton
 							edge="start"
-							className={classes.vidoModeIcon}
-							onClick={handleModeSwitched}
+							className={classes.modeIcon}
+							onClick={handleVideoModeOff}
 							size="medium"
-							classes={{ root: classes.root }}
+							classes={{root: clsx(!isVideoModeOn && classes.root)}}
 						>
-							{
-								isVideoModeOn ? <ImageIcon /> : <VideocamIcon />
-							}
+								<ImageIcon />
+						</IconButton>
+						<IconButton
+							edge="start"
+							classes={{root: clsx(isVideoModeOn && classes.root)}}
+							onClick={handleVideoModeOn}
+							size="medium"
+						>
+								<VideocamIcon />
 						</IconButton>
 					</div>
 				</div>
