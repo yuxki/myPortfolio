@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/yuxki/myPortfolio#readme",
   "devDependencies": {
+    "es6-promise": "^4.2.8",
     "eslint-plugin-react-hooks": "^4.0.8",
     "express": "^4.17.1",
     "ts-loader": "^8.0.2",
