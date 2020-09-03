@@ -4,10 +4,9 @@ import TopPageContent from "./topPageContent";
 export default function TopPage(props) {
 
 React.useEffect(() => {
-	console.log('render in TopPage!');
-
 		return () => {
-			console.log('TopPage is unmounted');
+			// pageのswitch時に、画面のトップまで戻る
+			window.scrollTo(0, 0);
 		}
 	});
 
