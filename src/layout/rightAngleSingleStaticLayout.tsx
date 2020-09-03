@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			display:'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
-			height: '100vh',
+			height: 'calc(100vh + 80px)',
 			minHeight: '580px',
 			backgroundColor:'#F7F7F7',
 			margin: '0 calc(50% - 50vw)',

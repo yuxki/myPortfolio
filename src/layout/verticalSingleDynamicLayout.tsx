@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
-			height: '100vh',
+			height: 'calc(100vh + 80px)',
 			minHeight: '580px',
 		},
 		verticalLayout: {
