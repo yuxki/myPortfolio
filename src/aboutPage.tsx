@@ -4,10 +4,9 @@ import AboutPageContent from "./aboutPageContent";
 export default function AboutPage(props) {
 
 	React.useEffect(() => {
-		console.log('render in AboutPage!');
-
 		return () => {
-			console.log('AboutPage is unmounted');
+			// pageのswitch時に、画面のトップまで戻る
+			window.scrollTo(0, 0);
 		}
 	});
 
