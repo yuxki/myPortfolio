@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		mainImageWrap: {
 			position: 'relative',
 			display: 'flex',
-			height:'100%',
+			height: '100%',
 		},
 		mainImage: {
 			display: 'flex',
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				top: 0,
 				left: 0,
 				width: '100%',
-				height:'100%',
+				height: '100%',
 				padding: '6% 6% 6% 6%',
 			},
 			[theme.breakpoints.down('xs')]: {
@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				top: 0,
 				left: 0,
 				width: '100%',
-				height:'100%',
+				height: '100%',
 			},
 			[theme.breakpoints.down('xs')]: {
 				// smと同じスロジックのスタイル
@@ -159,6 +159,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			},
 		},
 		imageButton: {
+			position: 'relative',
 			cursor: 'pointer',
 			pointerEvents: 'auto',
 			display: 'flex',
@@ -179,10 +180,34 @@ const useStyles = makeStyles((theme: Theme) =>
 				margin: theme.spacing(0, 3, 0, 0),
 			},
 		},
+		iPhoneIcon: {
+			position: 'absolute',
+			zIndex: 20,
+			width: '28px',
+			height: '56px',
+			top: '50%',
+			left: '50%',
+			transform: 'translate(-50%, -50%)',
+			fill: "rgb(255, 255, 255, 0.8)",
+		},
 		selctedImageButton: {
-			// border: '2px solid #F2BE22',
+			position: 'absolute',
+			zIndex: 10,
+			backgroundColor: "rgb(0, 0, 0, 0.6)",
+			width: '73px',
+			height: '156px',
+			[theme.breakpoints.down('sm')]: {
+				width: '73px',
+				height: '156px',
+			},
+			[theme.breakpoints.down('xs')]: {
+				width: '60px',
+				height: '130px',
+			},
 		},
 		imageButtonImage: {
+			zIndex: 5,
+			position: 'absolute',
 			display: 'flex',
 			width: '73px',
 			height: '156px',
@@ -263,14 +288,14 @@ export default function HorizontalSingleDynamicLayout(props) {
 	React.useEffect(() => {
 		// userAgentがIEの場合にappImageを、clip-pathではなくcanvasで描画する。
 		if (isIe) {
-		drawMaskedAppImage(mainImageAreaRef, mainAppImageCanvasRef, selectedMainImage);
+			drawMaskedAppImage(mainImageAreaRef, mainAppImageCanvasRef, selectedMainImage);
 		}
 	})
 
 	return (
 		<div className={classes.backgroundArea}>
 			<div className={classes.horizontalLayout}>
-				<div className={classes.mainImageArea}  ref={mainImageAreaRef}>
+				<div className={classes.mainImageArea} ref={mainImageAreaRef}>
 					<div className={classes.mainImageWrap}>
 						<img className={classes.mainImage} src={'./public/iPhoneX.png'} />
 						<div className={classes.svgFrameArea}>
@@ -292,9 +317,17 @@ export default function HorizontalSingleDynamicLayout(props) {
 					{
 						props.imageInfoSrcList.map((imageInfo, index) => (
 							<div
-								className={clsx(classes.imageButton, (imageInfo === selectedMainImage) && classes.selctedImageButton)}
+								className={clsx(classes.imageButton)}
 								key={imageInfo}
 								onClick={(event) => handleImageSelected(imageInfo, event)}>
+								{
+									(imageInfo === selectedMainImage) ?
+										<svg className={classes.iPhoneIcon} viewBox="0 0 39 78">
+											<path d="M31.49,0h-24A7.51,7.51,0,0,0,0,7.51v63A7.51,7.51,0,0,0,7.51,78h24A7.51,7.51,0,0,0,39,70.49v-63A7.51,7.51,0,0,0,31.49,0ZM36,70.81A4.2,4.2,0,0,1,31.81,75H7.19A4.2,4.2,0,0,1,3,70.81V7.19A4.2,4.2,0,0,1,7.19,3H9.5V4.67A1.32,1.32,0,0,0,10.83,6H28.17A1.32,1.32,0,0,0,29.5,4.67V3h2.31A4.2,4.2,0,0,1,36,7.19Z" />
+										</svg>
+										: null
+								}
+								<div className={clsx((imageInfo === selectedMainImage) && classes.selctedImageButton)}></div>
 								<img className={classes.imageButtonImage} src={imageInfo} />
 							</div>
 						))}
