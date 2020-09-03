@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
 	// メインとなるJavaScriptファイル（エントリーポイント）
 	entry: "./src/app.tsx",
@@ -20,5 +22,9 @@ module.exports = {
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".json"]
 	},
-	// devtool: 'cheap-module-source-map'
+	plugins: [
+		new webpack.ProvidePlugin({
+			Promise: 'es6-promise'
+		})
+	]
 };

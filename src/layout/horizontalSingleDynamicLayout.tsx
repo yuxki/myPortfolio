@@ -3,6 +3,9 @@ import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import FeaturedWorkTitle from "../featuredWorkTitle"
 
+const userAgent = window.navigator.userAgent.toLowerCase();
+const isIe = (userAgent.indexOf('msie') > 0) || (userAgent.indexOf('trident') > 0);
+
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		backgroundArea: {
@@ -45,6 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		mainImageWrap: {
 			position: 'relative',
 			display: 'flex',
+			height:'100%',
 		},
 		mainImage: {
 			display: 'flex',
@@ -65,6 +69,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				top: 0,
 				left: 0,
 				width: '100%',
+				height:'100%',
 				padding: '6% 6% 6% 6%',
 			},
 			[theme.breakpoints.down('xs')]: {
@@ -75,6 +80,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			[theme.breakpoints.down('sm')]: {
 				position: 'absolute',
 				width: '88%',
+				height: '95%',
 			},
 			[theme.breakpoints.down('xs')]: {
 				// smと同じスロジックのスタイル
@@ -92,12 +98,13 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '346.7px',
 			[theme.breakpoints.down('sm')]: {
 				width: '100%',
-				height: 'auto',
+				height: '100%',
 				top: 0,
 				left: 0,
 			},
 			[theme.breakpoints.down('xs')]: {
-				// smと同じスロジックのスタイル
+				width: '100%',
+				height: '100%',
 			},
 		},
 		clipedAppImage: {
@@ -105,9 +112,25 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '346.7px',
 			[theme.breakpoints.down('sm')]: {
 				width: '100%',
-				height: 'auto',
+				height: '100%',
 				top: 0,
 				left: 0,
+			},
+			[theme.breakpoints.down('xs')]: {
+				// smと同じスロジックのスタイル
+			},
+		},
+		canvasOnIe: {
+			position: 'absolute',
+			width: '160px',
+			height: '346.7px',
+			left: '12px',
+			bottom: '11px',
+			[theme.breakpoints.down('sm')]: {
+				top: 0,
+				left: 0,
+				width: '100%',
+				height:'100%',
 			},
 			[theme.breakpoints.down('xs')]: {
 				// smと同じスロジックのスタイル
@@ -191,7 +214,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function HorizontalSingleDynamicLayout(props) {
 	const classes = useStyles();
-
+	const mainImageAreaRef = React.useRef(null);
+	const mainAppImageCanvasRef = React.useRef(null);
 	const initialMainImage = props.imageInfoSrcList[0];
 	const [selectedMainImage, setSelectedMainImage] = React.useState(initialMainImage);
 
@@ -200,10 +224,53 @@ export default function HorizontalSingleDynamicLayout(props) {
 		setSelectedMainImage(selectedImageInfo);
 	}
 
+	async function drawMaskedAppImage(mainImageAreaElem: any, canvasElem: any, maskedImage: string) {
+		const canvas = canvasElem.current;
+		// CanvasRenderingContext2Dを取得
+		const ctx = canvas.getContext('2d');
+		// maskするイメージ
+		const mask = new Image();
+		// maskされるイメージ
+		const bg = new Image();
+
+		// imgのロードをmask, bgの順番に行い両方完了したら描画を開始する。
+		await loadImage(mask, './public/iphoneXDisplayFlame_for_canvas.png');
+		await loadImage(bg, maskedImage);
+
+		// タブレットの画像のアスペクト比に合わせる為に、mainImageAreaの縦横の値をcanvasのサイズに当てはめる
+		const mainImageArea = mainImageAreaElem.current;
+		const canvasWidth = mainImageArea.offsetWidth;
+		const canvasHeight = mainImageArea.offsetHeight;
+		canvas.width = canvasWidth;
+		canvas.height = canvasHeight;
+
+		// maskされる背景イメージを描画
+		ctx.drawImage(bg, 0, 0, canvasWidth, canvasHeight);
+		// 合成方法の指定
+		ctx.globalCompositeOperation = 'destination-in';
+		// 合成するmaskイメージを描画
+		ctx.drawImage(mask, 0, 0, canvasWidth, canvasHeight);
+	}
+
+	function loadImage(img: HTMLImageElement, src: string): Promise<void> {
+		return new Promise((resolve, reject) => {
+			img.onload = () => resolve();
+			img.onerror = (e) => reject();
+			img.src = src;
+		})
+	}
+
+	React.useEffect(() => {
+		// userAgentがIEの場合にappImageを、clip-pathではなくcanvasで描画する。
+		if (isIe) {
+		drawMaskedAppImage(mainImageAreaRef, mainAppImageCanvasRef, selectedMainImage);
+		}
+	})
+
 	return (
 		<div className={classes.backgroundArea}>
 			<div className={classes.horizontalLayout}>
-				<div className={classes.mainImageArea}>
+				<div className={classes.mainImageArea}  ref={mainImageAreaRef}>
 					<div className={classes.mainImageWrap}>
 						<img className={classes.mainImage} src={'./public/iPhoneX.png'} />
 						<div className={classes.svgFrameArea}>
@@ -216,6 +283,7 @@ export default function HorizontalSingleDynamicLayout(props) {
 								<svg className={classes.mainAppImage} viewBox="0 0 160 346.7">
 									<image className={classes.clipedAppImage} xlinkHref={selectedMainImage} clipPath="url(#iPhoneXFrame)" />
 								</svg>
+								<canvas className={classes.canvasOnIe} ref={mainAppImageCanvasRef}></canvas>
 							</div>
 						</div>
 					</div>
