@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			flexWrap: 'wrap',
 		},
 		mainImageArea: {
+			zIndex: 5,
 			position: 'relative',
 			display: 'flex',
 			flexDirection: 'column-reverse',
@@ -36,13 +37,13 @@ const useStyles = makeStyles((theme: Theme) =>
 				justifyContent: 'center',
 				width: '184px',
 				height: '368px',
-				margin: theme.spacing(0, 0, 5, 0),
+				margin: theme.spacing(0, 0, 3, 0),
 			},
 			[theme.breakpoints.down('xs')]: {
+				margin: theme.spacing(0, 0, 2, 0),
 				// flexDirectionとjustifyContentはsmと同じスロジックのスタイル
 				width: '151px',
 				height: '302px',
-				margin: theme.spacing(0, 0, 3, 0),
 			},
 		},
 		mainImageWrap: {
@@ -137,6 +138,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			},
 		},
 		imageSelectArea: {
+			zIndex: 10,
+			position: 'relative',
 			display: 'flex',
 			justifyContent: 'flex-start',
 			flexWrap: 'wrap',
@@ -152,10 +155,11 @@ const useStyles = makeStyles((theme: Theme) =>
 				'-ms-overflowX': 'scroll',
 				'-ms-overflowY': 'hidden',
 				padding: '0px',
-				height: '161px',
+				alignItems:'center',
+				height: '200px',
 			},
 			[theme.breakpoints.down('xs')]: {
-				height: '135px',
+				height: '178px',
 			},
 		},
 		imageButton: {
@@ -163,6 +167,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			cursor: 'pointer',
 			pointerEvents: 'auto',
 			display: 'flex',
+			justifyContent: 'center',
 			margin: theme.spacing(0, 4, 2, 0),
 			width: '73px',
 			minWidth: '73px',
@@ -180,30 +185,25 @@ const useStyles = makeStyles((theme: Theme) =>
 				margin: theme.spacing(0, 3, 0, 0),
 			},
 		},
-		iPhoneIcon: {
-			position: 'absolute',
-			zIndex: 20,
-			width: '28px',
-			height: '56px',
-			top: '50%',
-			left: '50%',
-			transform: 'translate(-50%, -50%)',
-			fill: "rgb(255, 255, 255, 0.8)",
-		},
-		selctedImageButton: {
-			position: 'absolute',
+		expandingBall: {
 			zIndex: 10,
-			backgroundColor: "rgb(0, 0, 0, 0.6)",
-			width: '73px',
-			height: '156px',
+			position: 'absolute',
+			top: 0,
+			right: 0,
+			width: '1px',
+			height: '1px',
+			borderRadius: '50%',
+			transitionDuration: '200ms',
+			transitionTimingFunction: 'ease-out',
+			backgroundColor: "rgb(242, 190, 34, 0.5)",
 			[theme.breakpoints.down('sm')]: {
-				width: '73px',
-				height: '156px',
+				top: '-16px',
+				left: '50%',
+				transform: 'translateX(-50%)',
 			},
-			[theme.breakpoints.down('xs')]: {
-				width: '60px',
-				height: '130px',
-			},
+		},
+		expand: {
+			transform: 'scale(14)',
 		},
 		imageButtonImage: {
 			zIndex: 5,
@@ -227,11 +227,11 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			height: 'auto',
 			justifyContent: 'center',
-			[theme.breakpoints.down('xs')]: {
-				margin: theme.spacing(4, 0, 0, 0),
+			[theme.breakpoints.down('sm')]: {
+				margin: theme.spacing(1, 0, 0, 0),
 			},
 			[theme.breakpoints.down('xs')]: {
-				margin: theme.spacing(1, 0, 0, 0),
+				margin: theme.spacing(-2, 0, 0, 0),
 			},
 		}
 	})
@@ -320,14 +320,7 @@ export default function HorizontalSingleDynamicLayout(props) {
 								className={clsx(classes.imageButton)}
 								key={imageInfo}
 								onClick={(event) => handleImageSelected(imageInfo, event)}>
-								{
-									(imageInfo === selectedMainImage) ?
-										<svg className={classes.iPhoneIcon} viewBox="0 0 39 78">
-											<path d="M31.49,0h-24A7.51,7.51,0,0,0,0,7.51v63A7.51,7.51,0,0,0,7.51,78h24A7.51,7.51,0,0,0,39,70.49v-63A7.51,7.51,0,0,0,31.49,0ZM36,70.81A4.2,4.2,0,0,1,31.81,75H7.19A4.2,4.2,0,0,1,3,70.81V7.19A4.2,4.2,0,0,1,7.19,3H9.5V4.67A1.32,1.32,0,0,0,10.83,6H28.17A1.32,1.32,0,0,0,29.5,4.67V3h2.31A4.2,4.2,0,0,1,36,7.19Z" />
-										</svg>
-										: null
-								}
-								<div className={clsx((imageInfo === selectedMainImage) && classes.selctedImageButton)}></div>
+								<div className={clsx(classes.expandingBall, (imageInfo === selectedMainImage) && classes.expand)}></div>
 								<img className={classes.imageButtonImage} src={imageInfo} />
 							</div>
 						))}

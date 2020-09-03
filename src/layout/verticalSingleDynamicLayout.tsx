@@ -156,8 +156,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			height: 'auto',
 			justifyContent: 'center',
-			[theme.breakpoints.down('xs')]: {
-				margin: theme.spacing(4, 0, 0, 0),
+			[theme.breakpoints.down('sm')]: {
+				margin: theme.spacing(3, 0, 0, 0),
 			},
 			[theme.breakpoints.down('xs')]: {
 				margin: theme.spacing(1, 0, 0, 0),
