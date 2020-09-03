@@ -9,12 +9,12 @@ import FeaturedWorkTitle from "../featuredWorkTitle"
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		backgroundArea: {
-			display:'flex',
+			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
 			height: 'calc(100vh + 80px)',
 			minHeight: '580px',
-			backgroundColor:'#F7F7F7',
+			backgroundColor: '#F7F7F7',
 			margin: '0 calc(50% - 50vw)',
 		},
 		rightAngleLayout: {
@@ -58,13 +58,28 @@ const useStyles = makeStyles((theme: Theme) =>
 		videocamIconArea: {
 			display: 'flex',
 			width: '100%',
-			height: '44px',
+			height: theme.spacing(6),
 			justifyContent: 'center',
 			alignItems: 'center',
 		},
+		movingBall: {
+			display: 'flex',
+			width: '12px',
+			height: '12px',
+			borderRadius: '50%',
+			transitionDuration: '0.3s',
+			transitionTimingFunction: 'ease-out',
+			marginRight: '-8px',
+			backgroundColor: "rgb(242, 190, 34, 0.5)",
+		},
+		moveRightSide: {
+			transform: 'translateX(74px)',
+		},
 		modeIcon: {
 			display: 'flex',
-			marginRight:theme.spacing(4),
+		},
+		modeIconMargin: {
+			marginRight: theme.spacing(3),
 		},
 		root: {
 			color: "#F2BE22",
@@ -151,9 +166,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			},
 			[theme.breakpoints.down('xs')]: {
 				width: '217px',
-				minWidth:'217px',
+				minWidth: '217px',
 				height: '120px',
-				minHeight:'120px',
+				minHeight: '120px',
 				margin: theme.spacing(0, 2, 0, 0),
 			},
 		},
@@ -193,22 +208,26 @@ export default function RightAngleSingleStaticLayout(props) {
 					<img className={clsx(classes.mainImage, isVideoModeOn && classes.hide)} src={mainImage} />
 					<iframe className={clsx(classes.mainImage, classes.hide, isVideoModeOn && classes.appear)} src="https://www.youtube.com/embed/uUPppgbQGow?loop=1&rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameBorder="0"></iframe>
 					<div className={classes.videocamIconArea}>
+						<div className={clsx(
+							classes.movingBall,
+							isVideoModeOn && classes.moveRightSide,
+						)
+						}></div>
 						<IconButton
-							edge="start"
-							className={classes.modeIcon}
+							className={clsx(classes.modeIcon, classes.modeIconMargin)}
 							onClick={handleVideoModeOff}
+							classes={{ root: clsx(!isVideoModeOn && classes.root) }}
 							size="medium"
-							classes={{root: clsx(!isVideoModeOn && classes.root)}}
 						>
-								<ImageIcon />
+							<ImageIcon />
 						</IconButton>
 						<IconButton
-							edge="start"
-							classes={{root: clsx(isVideoModeOn && classes.root)}}
+							className={classes.modeIcon}
+							classes={{ root: clsx(isVideoModeOn && classes.root) }}
 							onClick={handleVideoModeOn}
 							size="medium"
 						>
-								<VideocamIcon />
+							<VideocamIcon />
 						</IconButton>
 					</div>
 				</div>
