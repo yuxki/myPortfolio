@@ -156,7 +156,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				'-ms-overflowY': 'hidden',
 				padding: '0px',
 				alignItems:'center',
-				height: '200px',
+				height: '204px',
 			},
 			[theme.breakpoints.down('xs')]: {
 				height: '178px',
