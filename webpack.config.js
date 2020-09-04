@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
 	// メインとなるJavaScriptファイル（エントリーポイント）
@@ -26,5 +27,6 @@ module.exports = {
 		new webpack.ProvidePlugin({
 			Promise: 'es6-promise'
 		})
+		// , new BundleAnalyzerPlugin()
 	]
 };
