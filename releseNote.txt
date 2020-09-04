@@ -1,0 +1,3 @@
+ver.1.2:202009041027
+androidのchromeでタップした時、青いハイライトが表示される #116
+App Design の expandBallが見切れる close #119
