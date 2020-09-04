@@ -15,6 +15,7 @@ const theme = createMuiTheme({
 			'@global': {
 				html: {
 					backgroundColor: '#F2BE22',
+					'-webkit-tap-highlight-color': 'rgba(0,0,0,0)',
 				},
 				body: {
 					backgroundColor: '#FFFFFF',
@@ -22,9 +23,6 @@ const theme = createMuiTheme({
 				a: {
 					color: "#000000",
 					textDecoration: 'none',
-				},
-				div: {
-					'-webkit-tap-highlight-color': 'rgba(0,0,0,0)',
 				},
 			},
 		},
