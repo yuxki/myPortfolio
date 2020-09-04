@@ -13,15 +13,18 @@ const theme = createMuiTheme({
 	overrides: {
 		MuiCssBaseline: {
 			'@global': {
-				html:{
-					backgroundColor:'#F2BE22',
+				html: {
+					backgroundColor: '#F2BE22',
 				},
-				body:{
-					backgroundColor:'#FFFFFF',
+				body: {
+					backgroundColor: '#FFFFFF',
 				},
 				a: {
 					color: "#000000",
 					textDecoration: 'none',
+				},
+				div: {
+					'-webkit-tap-highlight-color': 'rgba(0,0,0,0)',
 				},
 			},
 		},
@@ -55,20 +58,20 @@ const theme = createMuiTheme({
 const fontFamily = 'Noto Sans JP, helvetica, Arial, sans-serif';
 
 theme.typography.h1 = {
-	fontSize:'84px',
-	fontWeight:'lighter',
-	fontFamily : fontFamily,
-	[theme.breakpoints.down('xs')]:{
-		fontSize:'66px',
-		fontWeight:'lighter',
+	fontSize: '84px',
+	fontWeight: 'lighter',
+	fontFamily: fontFamily,
+	[theme.breakpoints.down('xs')]: {
+		fontSize: '66px',
+		fontWeight: 'lighter',
 	}
 }
 
 theme.typography.h2 = {
 	fontSize: '50px',
 	fontWeight: 'lighter',
-	fontFamily : fontFamily,
-	[theme.breakpoints.down('xs')]:{
+	fontFamily: fontFamily,
+	[theme.breakpoints.down('xs')]: {
 		fontSize: '34px',
 		fontWeight: 'lighter',
 	}
@@ -77,8 +80,8 @@ theme.typography.h2 = {
 theme.typography.h3 = {
 	fontSize: '47px',
 	fontWeight: 'lighter',
-	fontFamily : fontFamily,
-	[theme.breakpoints.down('xs')]:{
+	fontFamily: fontFamily,
+	[theme.breakpoints.down('xs')]: {
 		fontSize: '36px',
 		fontWeight: 'lighter',
 	}
@@ -87,7 +90,7 @@ theme.typography.h3 = {
 theme.typography.h4 = {
 	fontSize: '22px',
 	fontWeight: 'normal',
-	fontFamily : fontFamily,
+	fontFamily: fontFamily,
 	[theme.breakpoints.down('xs')]: {
 		fontSize: '19px',
 		fontWeight: 'normal',
@@ -97,7 +100,7 @@ theme.typography.h4 = {
 theme.typography.h6 = {
 	fontSize: '14px',
 	fontWeight: 'lighter',
-	fontFamily : fontFamily,
+	fontFamily: fontFamily,
 	[theme.breakpoints.down('xs')]: {
 		fontSize: '12px',
 		fontWeight: 'normal',
@@ -108,7 +111,7 @@ function App() {
 	return (
 		<Router>
 			<ThemeProvider theme={theme}>
-			<CssBaseline />
+				<CssBaseline />
 				<div>
 					<Switch>
 						<Route path={"/about"}>
@@ -118,7 +121,7 @@ function App() {
 							<TopPage />
 						</Route>
 					</Switch>
-					<Footer/>
+					<Footer />
 				</div>
 			</ThemeProvider>
 		</Router>
