@@ -5,13 +5,13 @@ import MenuList from './menuList';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		footerArea: {
-			backgroundColor: '#F2BE22',
 			display: 'flex',
-			width: '100%',
 			justifyContent: 'flex-end',
+			width: '100%',
+			backgroundColor: theme.palette.primary.main,
 		},
 		menuArea: {
-			display: 'inherit',
+			display: 'flex',
 			padding: theme.spacing(0, 10),
 			margin: theme.spacing(5, 0, 19, 0),
 			[theme.breakpoints.down('sm')]:{
@@ -24,13 +24,13 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 )
 
-export default function Footer(props) {
+export default function Footer() {
 	const classes = useStyles();
 
 	return (
 		<footer className={classes.footerArea}>
 			<div className={classes.menuArea}>
-				<MenuList resetState={props.resetState} />
+				<MenuList />
 			</div>
 		</footer>
 	)
