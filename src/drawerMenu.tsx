@@ -1,5 +1,4 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import MenuList from './menuList';
@@ -7,16 +6,13 @@ import Logo from './logo';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		hide: {
-			display: 'none',
-		},
 		drawer: {
-			width: '100%',
 			flexShrink: 0,
+			width: '100%',
 		},
 		drawerPaper: {
 			width: '100%',
-			backgroundColor: '#F2BE22',
+			backgroundColor: theme.palette.primary.main,
 		},
 		drawerContent: {
 			padding: theme.spacing(12, 10),
@@ -31,13 +27,13 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 		},
 		drawerLeft: {
-			display: 'inherit',
+			display: 'flex',
 			flex: 1,
 			justifyContent: 'center',
 			alignItems: 'center',
 		},
 		drawerRight: {
-			display: 'inherit',
+			display: 'flex',
 			flex: 1,
 			justifyContent: 'center',
 			alignItems: 'center',
@@ -54,8 +50,8 @@ export default function DrawerMenu(props) {
 		<div>
 			<Drawer
 				className={classes.drawer}
-				variant="persistent"
-				anchor="right"
+				variant='persistent'
+				anchor='right'
 				open={open}
 				transitionDuration={{ appear: 1000, enter: 500, exit: 500 }}
 				classes={{
@@ -67,10 +63,7 @@ export default function DrawerMenu(props) {
 						<div className={classes.drawerLeft}>
 						</div>
 						<div className={classes.drawerRight}>
-							<MenuList
-								handleDrawerClose={handleDrawerClose}
-								resetState={props.resetState}
-							/>
+							<MenuList handleDrawerClose={handleDrawerClose} />
 						</div>
 					</div>
 				</div>

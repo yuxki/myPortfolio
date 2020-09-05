@@ -1,6 +1,6 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 
 const useStyles = makeStyles({
 	menuButtonIcon: {
@@ -26,17 +26,17 @@ const useStyles = makeStyles({
 		bottom: 0,
 	},
 	menuButtonOpen_top: {
-		transform: 'translateY(12px) rotate(225deg)',
 		backgroundColor: '#FFFFFF',
+		transform: 'translateY(12px) rotate(225deg)',
 	},
 	menuButtonOpen_middle: {
+		opacity: 0,
 		transitionDuration: '225ms',
 		transform: 'translateY(-12px)',
-		opacity: 0,
 	},
 	menuButtonOpen_bottom: {
-		transform: ' translateY(-12px) rotate(315deg)',
 		backgroundColor: '#FFFFFF',
+		transform: ' translateY(-12px) rotate(315deg)',
 	},
 }
 );

@@ -1,26 +1,25 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Logo from './logo';
-import ContentChange from "./contentChange";
+import ContentChange from './contentChange';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		billboardArea: {
 			display:'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
 			position:'relative',
 			width: '100%',
 			height: '100vh',
-			justifyContent: 'center',
-			alignItems: 'center',
 			[theme.breakpoints.down('sm')]: {
 				// breakpoint mdと変わりなし
 			},
 			[theme.breakpoints.down('xs')]: {
-				padding: theme.spacing(0, 4),
 				width: '100%',
 				maxWidth: theme.breakpoints.values.sm,
+				padding: theme.spacing(0, 4),
 			},
 		},
 		billboardContent: {
@@ -41,9 +40,9 @@ export default function Billboard() {
 
 	return (
 		<div className={classes.billboardArea}>
-			<div className={clsx(classes.billboardContent)}>
+			<div className={classes.billboardContent}>
 				<Logo />
-				<Typography variant="h6" classes={{ root: classes.root }}>
+				<Typography variant='h6' classes={{ root: classes.root }}>
 					作れる を楽しくするために
 				</Typography>
 			</div>
