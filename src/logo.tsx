@@ -6,9 +6,9 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		logoArea: {
 			display: 'flex',
-			width: '100%',
 			flexDirection: 'column',
 			alignItems: 'center',
+			width: '100%',
 		},
 		rogoMark: {
 			display: 'flex',

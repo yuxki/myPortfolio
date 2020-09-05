@@ -7,13 +7,13 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		contentChange: {
 			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'center',
 			position: 'absolute',
 			bottom: theme.spacing(3),
 			left: '50%',
 			transform: 'translateX(-50%)',
-			justifyContent: 'center',
-			flexDirection: 'column',
-			[theme.breakpoints.down('xs')]:{
+			[theme.breakpoints.down('xs')]: {
 				bottom: theme.spacing(2),
 			},
 		},
@@ -22,27 +22,22 @@ const useStyles = makeStyles((theme: Theme) =>
 			whiteSpace: 'nowrap',
 		},
 		colorPrimary: {
-			color: '#F2BE22',
+			color: theme.palette.primary.main,
 		},
 		svgArea: {
 			display: 'flex',
-			marginTop: theme.spacing(1),
 			justifyContent: 'center',
+			marginTop: theme.spacing(1),
 		},
 		transitionArrow: {
 			display: 'flex',
 			width: '65px',
 			height: '27px',
-			fill: '#F2BE22',
-			[theme.breakpoints.down('xs')]:{
+			fill: theme.palette.primary.main,
+			[theme.breakpoints.down('xs')]: {
 				width: '48px',
 				height: '20px',
 			},
-		},
-		// 以下切り替えアニメーション部分
-		fadeOut: {
-			transition: 'all 1.5s',
-			opacity: '0',
 		},
 	}),
 );
@@ -53,9 +48,8 @@ export default function ContentChange(props) {
 	return (
 		<div
 			className={clsx(classes.contentChange)}
-			onClick={props.switchElementWithAnimationToDown}
 		>
-			<Typography variant="h4" color='primary' classes={{ root: classes.root, colorPrimary:classes.colorPrimary }}>
+			<Typography variant="h4" color='primary' classes={{ root: classes.root, colorPrimary: classes.colorPrimary }}>
 				Scroll Please!!
 			</Typography>
 			<div className={classes.svgArea}>

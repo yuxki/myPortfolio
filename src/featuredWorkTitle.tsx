@@ -15,10 +15,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function FeaturedWorkTitle(props) {
 	const classes = useStyles();
+	const featuredWorkTitle:string = props.featuredWorkTitle;
 	return (
 		<div className={classes.featuredWorkTitleArea}>
 			<Typography variant="h2" classes={{root : classes.root}}>
-				{props.featuredWorkTitle}
+				{featuredWorkTitle}
 			</Typography>
 		</div>
 	)
