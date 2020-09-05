@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import Header from "./header";
 import Typography from '@material-ui/core/Typography';
+import clsx from 'clsx';
+import Header from './header';
+import SnsIconLink from './SnsIconLink';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -20,21 +22,15 @@ const useStyles = makeStyles((theme: Theme) =>
 			marginTop: theme.spacing(4),
 		},
 		snsInfoArea: {
+			display: 'flex',
+			flexDirection: 'row',
 			marginTop: theme.spacing(3),
 		},
-		twitterInfo: {
+		snsIcon: {
+			display: 'flex',
+		},
+		snsIconMargin: {
 			marginRight: theme.spacing(4),
-		},
-		noteInfo: {
-
-		},
-		twitterImg: {
-			width: '60px',
-			height: '60px',
-		},
-		noteImg: {
-			width: '60px',
-			height: '60px',
 		},
 	}),
 )
@@ -42,21 +38,9 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function AboutPageContent(props) {
 	const classes = useStyles();
 
-	// ローディング画面を表示するか否かのHook
-	const [isAboutPageLoading, setIsAboutPageLoading] = React.useState(true);
-
-	function startAboutPageLoading() {
-		setIsAboutPageLoading(true);
-	}
-
-	function endAboutPageLoading() {
-		setIsAboutPageLoading(false);
-	}
 	const title = 'About';
 	const subTitle = 'Atelier Hiroyuki';
-	const aboutAtelier = "何かを知る楽しさ、なにかを始める楽しさ、なにかをつくる楽しさ、\nモノづくりで得られる楽しさを知るために活動しています。\nAtelier Hiroyuki は、その活動拠点です。"
-	const twitterLink = 'twitter';
-	const noteLink = 'note ';
+	const aboutAtelier = '何かを知る楽しさ、なにかを始める楽しさ、なにかをつくる楽しさ、\nモノづくりで得られる楽しさを知るために活動しています。\nAtelier Hiroyuki は、その活動拠点です。'
 	return (
 		<div>
 			<Header />
@@ -68,17 +52,23 @@ export default function AboutPageContent(props) {
 					{subTitle}
 				</Typography>
 				<div className={classes.bodyAboutAtelier}>
-					{aboutAtelier.split("\n").map((text, index) => {
+					{aboutAtelier.split('\n').map((text, index) => {
 						return <Typography variant='body1' key={index}>{text}</Typography>
 					})}
 				</div>
 				<div className={classes.snsInfoArea}>
-					<a href="https://twitter.com/hiroyuki31555" className={classes.twitterInfo}>
-						<img src="./public/Twitter_Logo_Blue.svg" className={classes.twitterImg} />
-					</a>
-					<a href="https://note.com/yuxki_atelier" className={classes.noteInfo}>
-						<img src="./public/logo_symbol.svg" className={classes.noteImg} />
-					</a>
+					<div className={clsx(classes.snsIconMargin, classes.snsIcon)}>
+						<SnsIconLink
+							sns='twitter'
+							accountName='hiroyuki31555'
+						/>
+					</div>
+					<div className={classes.snsIcon}>
+						<SnsIconLink
+							sns='note'
+							accountName='yuxki_atelier'
+						/>
+					</div>
 				</div>
 			</div>
 		</div>

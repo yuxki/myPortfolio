@@ -1,7 +1,7 @@
 import * as React from 'react';
-import AboutPageContent from "./aboutPageContent";
+import AboutPageContent from './aboutPageContent';
 
-export default function AboutPage(props) {
+export default function AboutPage() {
 
 	React.useEffect(() => {
 		return () => {
