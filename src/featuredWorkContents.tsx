@@ -14,9 +14,6 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const featuredWorkInfoArry: Array<FeaturedWorkInfo> =
-	[graphicsDesignInfo, applicationDesignInfo, threDGraphicsInfo];
-
 export default function FeaturedWorkContents(props) {
 	const classes = useStyles();
 
@@ -29,8 +26,7 @@ export default function FeaturedWorkContents(props) {
 				featuredWorkInfo={graphicsDesignInfo}
 			/>
 			<RightAngleSingleStaticLayout
-				imageInfoSrcList={featuredWorkInfoArry[2].featuredWorkImgSrc}
-				featuredWorkTitle={featuredWorkInfoArry[2].featuredWorkTitle}
+				featuredWorkInfo={threDGraphicsInfo}
 			/>
 		</div>
 	)
