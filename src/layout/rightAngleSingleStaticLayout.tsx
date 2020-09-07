@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '12px',
 			marginRight: '-8px',
 			borderRadius: '50%',
-			backgroundColor: 'rgb(242, 190, 34, 0.5)',
+			backgroundColor: 'rgba(242, 190, 34, 0.5)',
 			transitionDuration: '0.3s',
 			transitionTimingFunction: 'ease-out',
 		},
