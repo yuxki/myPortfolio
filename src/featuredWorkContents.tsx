@@ -1,9 +1,10 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import VerticalSingleDynamicLayout from "./layout/verticalSingleDynamicLayout";
-import HorizontalSingleDynamicLayout from "./layout/horizontalSingleDynamicLayout";
-import RightAngleSingleStaticLayout from "./layout/rightAngleSingleStaticLayout";
+import VerticalSingleDynamicLayout from './layout/verticalSingleDynamicLayout';
+import HorizontalSingleDynamicLayout from './layout/horizontalSingleDynamicLayout';
+import RightAngleSingleStaticLayout from './layout/rightAngleSingleStaticLayout';
+import { FeaturedWorkInfo } from 'featuredWork';
+import {graphicsDesignInfo, applicationDesignInfo, threDGraphicsInfo} from './data/featuredWorkData';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -13,22 +14,20 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
+const featuredWorkInfoArry: Array<FeaturedWorkInfo> =
+	[graphicsDesignInfo, applicationDesignInfo, threDGraphicsInfo];
+
 export default function FeaturedWorkContents(props) {
 	const classes = useStyles();
-	const featuredWorkInfoArry = props.featuredWorkInfoArry;
-	const topPageNum = props.topPageNum;
 
-	function isMatchPageNums(contentNum: number, topPageNum: number): boolean {
-		return (contentNum == topPageNum - 1) ? true : false;
-	}
 	return (
-		<div className={clsx(classes.featuredWorkContent)}>
+		<div className={classes.featuredWorkContent}>
 			<HorizontalSingleDynamicLayout
 				imageInfoSrcList={featuredWorkInfoArry[1].featuredWorkImgSrc}
 				featuredWorkTitle={featuredWorkInfoArry[1].featuredWorkTitle}
 			/>
 			<VerticalSingleDynamicLayout
-				featuredWorkInfo={featuredWorkInfoArry[0]}
+				featuredWorkInfo={graphicsDesignInfo}
 			/>
 			<RightAngleSingleStaticLayout
 				imageInfoSrcList={featuredWorkInfoArry[2].featuredWorkImgSrc}
