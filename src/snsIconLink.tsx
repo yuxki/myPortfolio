@@ -24,9 +24,9 @@ const snsToUrlMap: Array<SnsIconLinKInfo> = [twitterInfo, noteInfo];
 // snsNameが一致するSnsIconLinKInfo型のデータを取り出す。
 function getSnsIconInfo(snsName: string, map: Array<SnsIconLinKInfo>): SnsIconLinKInfo {
 	let info: SnsIconLinKInfo;
-	info = map.find((item, index) => {
+	info = map.filter((item, index) => {
 		if (item.snsName === snsName) return true;
-	});
+	})[0]
 	return info
 }
 
