@@ -4,7 +4,7 @@ import VerticalSingleDynamicLayout from './layout/verticalSingleDynamicLayout';
 import HorizontalSingleDynamicLayout from './layout/horizontalSingleDynamicLayout';
 import RightAngleSingleStaticLayout from './layout/rightAngleSingleStaticLayout';
 import { FeaturedWorkInfo } from 'featuredWork';
-import {graphicsDesignInfo, applicationDesignInfo, threDGraphicsInfo} from './data/featuredWorkData';
+import { graphicsDesignInfo, applicationDesignInfo, threDGraphicsInfo } from './data/featuredWorkData';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -23,8 +23,7 @@ export default function FeaturedWorkContents(props) {
 	return (
 		<div className={classes.featuredWorkContent}>
 			<HorizontalSingleDynamicLayout
-				imageInfoSrcList={featuredWorkInfoArry[1].featuredWorkImgSrc}
-				featuredWorkTitle={featuredWorkInfoArry[1].featuredWorkTitle}
+				featuredWorkInfo={applicationDesignInfo}
 			/>
 			<VerticalSingleDynamicLayout
 				featuredWorkInfo={graphicsDesignInfo}
