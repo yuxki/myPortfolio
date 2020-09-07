@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: 'calc(100vh + 80px)',
 			minHeight: '580px',
 			margin: '0 calc(50% - 50vw)',
-			backgroundColor: '#F7F7F7',
+			backgroundColor: theme.palette.secondary.light,
 		},
 		rightAngleLayout: {
 			display: 'flex',
