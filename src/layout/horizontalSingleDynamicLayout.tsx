@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { MutableRefObject } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import FeaturedWorkTitle from "../featuredWorkTitle"
+import FeaturedWorkTitle from '../featuredWorkTitle'
+import { FeaturedWorkInfo } from 'featuredWork';
 
+// ブラウザがIEの場合、他のブラウザの場合とは別の処理を行う。そのためuserAgentからブラウザがIEか否かを判定しておく。
 const userAgent = window.navigator.userAgent.toLowerCase();
 const isIe = (userAgent.indexOf('msie') > 0) || (userAgent.indexOf('trident') > 0);
 
@@ -14,8 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			justifyContent: 'center',
 			height: 'calc(100vh + 80px)',
 			minHeight: '580px',
-			backgroundColor: '#F7F7F7',
 			margin: '0 calc(50% - 50vw)',
+			backgroundColor: '#F7F7F7',
 		},
 		horizontalLayout: {
 			display: 'flex',
@@ -25,25 +28,22 @@ const useStyles = makeStyles((theme: Theme) =>
 			flexWrap: 'wrap',
 		},
 		mainImageArea: {
-			zIndex: 5,
-			position: 'relative',
 			display: 'flex',
 			flexDirection: 'column-reverse',
+			position: 'relative',
+			zIndex: 5,
 			width: '184px',
 			height: '368px',
 			margin: theme.spacing(0, 4, 2, 0),
 			[theme.breakpoints.down('sm')]: {
 				flexDirection: 'row',
 				justifyContent: 'center',
-				width: '184px',
-				height: '368px',
 				margin: theme.spacing(0, 0, 3, 0),
 			},
 			[theme.breakpoints.down('xs')]: {
-				margin: theme.spacing(0, 0, 2, 0),
-				// flexDirectionとjustifyContentはsmと同じスロジックのスタイル
 				width: '151px',
 				height: '302px',
+				margin: theme.spacing(0, 0, 2, 0),
 			},
 		},
 		mainImageWrap: {
@@ -53,15 +53,13 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		mainImage: {
 			display: 'flex',
-			width: '184px',
-			height: '368px',
+			width: '100%',
+			height: '100%',
 			[theme.breakpoints.down('sm')]: {
-				width: '184px',
-				height: '368px',
 			},
 			[theme.breakpoints.down('xs')]: {
-				width: '151px',
-				height: '302px',
+				width: '100%',
+				height: '100%',
 			},
 		},
 		svgFrameArea: {
@@ -74,7 +72,6 @@ const useStyles = makeStyles((theme: Theme) =>
 				padding: '6% 6% 6% 6%',
 			},
 			[theme.breakpoints.down('xs')]: {
-				// smと同じスロジックのスタイル
 			},
 		},
 		svgFrameWrap: {
@@ -84,7 +81,6 @@ const useStyles = makeStyles((theme: Theme) =>
 				height: '95%',
 			},
 			[theme.breakpoints.down('xs')]: {
-				// smと同じスロジックのスタイル
 			},
 		},
 		iphoneXFrameSVG: {
@@ -104,78 +100,57 @@ const useStyles = makeStyles((theme: Theme) =>
 				left: 0,
 			},
 			[theme.breakpoints.down('xs')]: {
-				width: '100%',
-				height: '100%',
 			},
 		},
 		clipedAppImage: {
-			width: '160px',
-			height: '346.7px',
+			width: '100%',
+			height: '100%',
 			[theme.breakpoints.down('sm')]: {
-				width: '100%',
-				height: '100%',
 				top: 0,
 				left: 0,
 			},
 			[theme.breakpoints.down('xs')]: {
-				// smと同じスロジックのスタイル
-			},
-		},
-		canvasOnIe: {
-			position: 'absolute',
-			width: '160px',
-			height: '346.7px',
-			left: '12px',
-			bottom: '11px',
-			[theme.breakpoints.down('sm')]: {
-				top: 0,
-				left: 0,
-				width: '100%',
-				height: '100%',
-			},
-			[theme.breakpoints.down('xs')]: {
-				// smと同じスロジックのスタイル
 			},
 		},
 		imageSelectArea: {
-			zIndex: 10,
-			position: 'relative',
 			display: 'flex',
 			justifyContent: 'flex-start',
 			flexWrap: 'wrap',
+			position: 'relative',
+			zIndex: 10,
 			width: '650px',
 			height: 'auto',
-			margin: theme.spacing(2, 0, 0, 0),
 			paddingTop: theme.spacing(3),
+			margin: theme.spacing(2, 0, 0, 0),
 			[theme.breakpoints.down('sm')]: {
-				margin: '0 calc(50% - 50vw)',
-				width: '100vw',
+				alignItems: 'center',
 				flexWrap: 'nowrap',
+				width: '100vw',
+				height: '204px',
+				padding: '0px',
+				margin: '0 calc(50% - 50vw)',
 				overflowX: 'auto',
 				'-ms-overflowX': 'scroll',
 				'-ms-overflowY': 'hidden',
-				padding: '0px',
-				alignItems:'center',
-				height: '204px',
 			},
 			[theme.breakpoints.down('xs')]: {
 				height: '178px',
 			},
 		},
 		imageButton: {
-			position: 'relative',
-			cursor: 'pointer',
-			pointerEvents: 'auto',
 			display: 'flex',
 			justifyContent: 'center',
-			margin: theme.spacing(0, 4, 2, 0),
+			position: 'relative',
 			width: '73px',
 			minWidth: '73px',
 			height: '156px',
 			minHeight: '156px',
+			margin: theme.spacing(0, 4, 2, 0),
+			cursor: 'pointer',
+			pointerEvents: 'auto',
 			[theme.breakpoints.down('sm')]: {
-				boxShadow: '0px 1px 6px rgb(0,0,0,0.16)',
 				margin: theme.spacing(0, 5, 0, 0),
+				boxShadow: '0px 1px 6px rgb(0,0,0,0.16)',
 			},
 			[theme.breakpoints.down('xs')]: {
 				width: '60px',
@@ -185,17 +160,26 @@ const useStyles = makeStyles((theme: Theme) =>
 				margin: theme.spacing(0, 3, 0, 0),
 			},
 		},
+		imageButtonImage: {
+			display: 'flex',
+			position: 'absolute',
+			zIndex: 5,
+			width: '100%',
+			height: '100%',
+			boxSizing: 'border-box',
+			border: ' 1px solid #D8D8D8',
+		},
 		expandingBall: {
-			zIndex: 10,
 			position: 'absolute',
 			top: 0,
 			right: 0,
+			zIndex: 10,
 			width: '1px',
 			height: '1px',
 			borderRadius: '50%',
+			backgroundColor: 'rgb(242, 190, 34, 0.5)',
 			transitionDuration: '200ms',
 			transitionTimingFunction: 'ease-out',
-			backgroundColor: "rgb(242, 190, 34, 0.5)",
 			[theme.breakpoints.down('sm')]: {
 				top: '-16px',
 				left: '50%',
@@ -205,28 +189,11 @@ const useStyles = makeStyles((theme: Theme) =>
 		expand: {
 			transform: 'scale(14)',
 		},
-		imageButtonImage: {
-			zIndex: 5,
-			position: 'absolute',
-			display: 'flex',
-			width: '73px',
-			height: '156px',
-			border: ' 1px solid #D8D8D8',
-			boxSizing: 'border-box',
-			[theme.breakpoints.down('sm')]: {
-				width: '73px',
-				height: '156px',
-			},
-			[theme.breakpoints.down('xs')]: {
-				width: '60px',
-				height: '130px',
-			},
-		},
 		titleArea: {
 			display: 'flex',
+			justifyContent: 'center',
 			width: '100%',
 			height: 'auto',
-			justifyContent: 'center',
 			[theme.breakpoints.down('sm')]: {
 				margin: theme.spacing(1, 0, 0, 0),
 			},
@@ -237,52 +204,58 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 )
 
+// canvasにスマートフォンの画面の形にマスクされた画像を描画する。
+async function drawMaskedAppImage(mainImageAreaElem: MutableRefObject<any>, canvasElem: MutableRefObject<any>, maskedImage: string) {
+	const canvas = canvasElem.current;
+	// CanvasRenderingContext2Dを取得
+	const ctx = canvas.getContext('2d');
+	// maskするイメージ
+	const mask = new Image();
+	// maskされるイメージ
+	const bg = new Image();
+
+	// imgのロードをmask, bgの順番に行い両方完了したら描画を開始する。
+	await loadImage(mask, './public/iphoneXDisplayFlame_for_canvas.png');
+	await loadImage(bg, maskedImage);
+
+	// タブレットの画像のアスペクト比に合わせる為に、mainImageAreaの縦横の値をcanvasのサイズに当てはめる
+	const mainImageArea = mainImageAreaElem.current;
+	const canvasWidth = mainImageArea.offsetWidth;
+	const canvasHeight = mainImageArea.offsetHeight;
+	canvas.width = canvasWidth;
+	canvas.height = canvasHeight;
+
+	// maskされる背景イメージを描画
+	ctx.drawImage(bg, 0, 0, canvasWidth, canvasHeight);
+	// 合成方法の指定
+	ctx.globalCompositeOperation = 'destination-in';
+	// 合成するmaskイメージを描画
+	ctx.drawImage(mask, 0, 0, canvasWidth, canvasHeight);
+}
+
+// imageをロードした時に処理を完了させるPromise関数を返す。
+function loadImage(img: HTMLImageElement, src: string): Promise<void> {
+	return new Promise((resolve, reject) => {
+		img.onload = () => resolve();
+		img.onerror = (e) => reject();
+		img.src = src;
+	})
+}
+
 export default function HorizontalSingleDynamicLayout(props) {
 	const classes = useStyles();
+
+	const featuredWorkInfo: FeaturedWorkInfo = props.featuredWorkInfo;
+	const title: string = featuredWorkInfo.featuredWorkTitle;
+	const initialMainImage: string = featuredWorkInfo.featuredWorkImgSrc[0];
+
 	const mainImageAreaRef = React.useRef(null);
 	const mainAppImageCanvasRef = React.useRef(null);
-	const initialMainImage = props.imageInfoSrcList[0];
-	const [selectedMainImage, setSelectedMainImage] = React.useState(initialMainImage);
 
+	const [selectedMainImage, setSelectedMainImage] = React.useState(initialMainImage);
 	function handleImageSelected(selectedImageInfo: string, event) {
 		event.preventDefault();
 		setSelectedMainImage(selectedImageInfo);
-	}
-
-	async function drawMaskedAppImage(mainImageAreaElem: any, canvasElem: any, maskedImage: string) {
-		const canvas = canvasElem.current;
-		// CanvasRenderingContext2Dを取得
-		const ctx = canvas.getContext('2d');
-		// maskするイメージ
-		const mask = new Image();
-		// maskされるイメージ
-		const bg = new Image();
-
-		// imgのロードをmask, bgの順番に行い両方完了したら描画を開始する。
-		await loadImage(mask, './public/iphoneXDisplayFlame_for_canvas.png');
-		await loadImage(bg, maskedImage);
-
-		// タブレットの画像のアスペクト比に合わせる為に、mainImageAreaの縦横の値をcanvasのサイズに当てはめる
-		const mainImageArea = mainImageAreaElem.current;
-		const canvasWidth = mainImageArea.offsetWidth;
-		const canvasHeight = mainImageArea.offsetHeight;
-		canvas.width = canvasWidth;
-		canvas.height = canvasHeight;
-
-		// maskされる背景イメージを描画
-		ctx.drawImage(bg, 0, 0, canvasWidth, canvasHeight);
-		// 合成方法の指定
-		ctx.globalCompositeOperation = 'destination-in';
-		// 合成するmaskイメージを描画
-		ctx.drawImage(mask, 0, 0, canvasWidth, canvasHeight);
-	}
-
-	function loadImage(img: HTMLImageElement, src: string): Promise<void> {
-		return new Promise((resolve, reject) => {
-			img.onload = () => resolve();
-			img.onerror = (e) => reject();
-			img.src = src;
-		})
 	}
 
 	React.useEffect(() => {
@@ -300,22 +273,22 @@ export default function HorizontalSingleDynamicLayout(props) {
 						<img className={classes.mainImage} src={'./public/iPhoneX.png'} />
 						<div className={classes.svgFrameArea}>
 							<div className={classes.svgFrameWrap}>
-								<svg className={classes.iphoneXFrameSVG} viewBox="0 0 0 0">
-									<clipPath id="iPhoneXFrame">
-										<path d="M143,0H128a4.94,4.94,0,0,0-3,1c-1,1,2,12-14,12H49C33,13,36,2,35,1a4.94,4.94,0,0,0-3-1H17C3,0,0,13,0,15V330.67c0,14.43,15,16,15,16H145s15-1.6,15-16V15C160,13,157,0,143,0Z" />
+								<svg className={classes.iphoneXFrameSVG} viewBox='0 0 0 0'>
+									<clipPath id='iPhoneXFrame'>
+										<path d='M143,0H128a4.94,4.94,0,0,0-3,1c-1,1,2,12-14,12H49C33,13,36,2,35,1a4.94,4.94,0,0,0-3-1H17C3,0,0,13,0,15V330.67c0,14.43,15,16,15,16H145s15-1.6,15-16V15C160,13,157,0,143,0Z' />
 									</clipPath>
 								</svg>
-								<svg className={classes.mainAppImage} viewBox="0 0 160 346.7">
-									<image className={classes.clipedAppImage} xlinkHref={selectedMainImage} clipPath="url(#iPhoneXFrame)" />
+								<svg className={classes.mainAppImage} viewBox='0 0 160 346.7'>
+									<image className={classes.clipedAppImage} xlinkHref={selectedMainImage} clipPath='url(#iPhoneXFrame)' />
 								</svg>
-								<canvas className={classes.canvasOnIe} ref={mainAppImageCanvasRef}></canvas>
+								<canvas className={classes.mainAppImage} ref={mainAppImageCanvasRef}></canvas>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className={classes.imageSelectArea}>
 					{
-						props.imageInfoSrcList.map((imageInfo, index) => (
+						featuredWorkInfo.featuredWorkImgSrc.map((imageInfo, index) => (
 							<div
 								className={clsx(classes.imageButton)}
 								key={imageInfo}
@@ -326,7 +299,7 @@ export default function HorizontalSingleDynamicLayout(props) {
 						))}
 				</div>
 				<div className={classes.titleArea}>
-					<FeaturedWorkTitle featuredWorkTitle={props.featuredWorkTitle} />
+					<FeaturedWorkTitle featuredWorkTitle={title} />
 				</div>
 			</div >
 		</div>
