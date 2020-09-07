@@ -9,6 +9,7 @@ const customTheme = createMuiTheme({
 			'@global': {
 				html: {
 					backgroundColor: '#F2BE22',
+					overflowX: 'hidden',
 					'-webkit-tap-highlight-color': 'rgba(0,0,0,0)',
 				},
 				body: {
