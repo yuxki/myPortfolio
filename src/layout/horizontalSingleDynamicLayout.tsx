@@ -150,7 +150,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			pointerEvents: 'auto',
 			[theme.breakpoints.down('sm')]: {
 				margin: theme.spacing(0, 5, 0, 0),
-				boxShadow: '0px 1px 6px rgb(0,0,0,0.16)',
+				boxShadow: '0px 1px 6px rgba(0,0,0,0.16)',
 			},
 			[theme.breakpoints.down('xs')]: {
 				width: '60px',
@@ -177,7 +177,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '1px',
 			height: '1px',
 			borderRadius: '50%',
-			backgroundColor: 'rgb(242, 190, 34, 0.5)',
+			backgroundColor: 'rgba(242, 190, 34, 0.5)',
 			transitionDuration: '200ms',
 			transitionTimingFunction: 'ease-out',
 			[theme.breakpoints.down('sm')]: {
