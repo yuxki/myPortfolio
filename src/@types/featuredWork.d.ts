@@ -8,4 +8,9 @@ declare module "featuredWork" {
 		featuredWorkImgElem: Array<HTMLImageElement>;
 		featuredWorkLayout: string;
 	}
+
+	export interface ImageButtonInfo {
+		imageSrc: string;
+		maxWidth: string;
+	}
 }

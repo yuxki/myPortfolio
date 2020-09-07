@@ -3,8 +3,6 @@ import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/sty
 import Header from './header';
 import Billboard from './billboard';
 import FeaturedWorkContents from './featuredWorkContents';
-import { FeaturedWorkInfo } from 'featuredWork';
-import {graphicsDesignInfo, applicationDesignInfo, threDGraphicsInfo} from './data/featuredWorkData';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -25,9 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-const featuredWorkInfoArry: Array<FeaturedWorkInfo> =
-	[graphicsDesignInfo, applicationDesignInfo, threDGraphicsInfo];
-
 export default function TopPageContent(props) {
 	const classes = useStyles();
 
@@ -36,9 +31,7 @@ export default function TopPageContent(props) {
 			<Header />
 			<div className={classes.topPageArea}>
 				<Billboard />
-				<FeaturedWorkContents
-					featuredWorkInfoArry={featuredWorkInfoArry}
-				/>
+				<FeaturedWorkContents />
 			</div>
 		</div>
 	)
