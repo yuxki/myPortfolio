@@ -163,6 +163,8 @@ const useStyles = makeStyles((theme: Theme) =>
 		imageButtonImage: {
 			display: 'flex',
 			position: 'absolute',
+			top:'0px',
+			left:'0px',
 			zIndex: 5,
 			width: '100%',
 			height: '100%',
