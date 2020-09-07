@@ -171,25 +171,25 @@ const useStyles = makeStyles((theme: Theme) =>
 			boxSizing: 'border-box',
 			border: ' 1px solid #D8D8D8',
 		},
-		expandingBall: {
+		fadeInBall: {
 			position: 'absolute',
-			top: 0,
-			right: 0,
+			top: '-7px',
+			right: '-7px',
 			zIndex: 10,
-			width: '1px',
-			height: '1px',
-			borderRadius: '50%',
-			backgroundColor: 'rgba(242, 190, 34, 0.5)',
-			transitionDuration: '200ms',
+			width: '14px',
+			height: '14px',
+			borderRadius: '7px',
+			transitionDuration: '400ms',
 			transitionTimingFunction: 'ease-out',
+			overflow: 'hidden',
 			[theme.breakpoints.down('sm')]: {
-				top: '-16px',
+				top: '-20px',
 				left: '50%',
 				transform: 'translateX(-50%)',
 			},
 		},
-		expand: {
-			transform: 'scale(14)',
+		fadeIn: {
+			backgroundColor: 'rgba(242, 190, 34, 0.5)',
 		},
 		titleArea: {
 			display: 'flex',
@@ -295,7 +295,7 @@ export default function HorizontalSingleDynamicLayout(props) {
 								className={clsx(classes.imageButton)}
 								key={imageInfo}
 								onClick={(event) => handleImageSelected(imageInfo, event)}>
-								<div className={clsx(classes.expandingBall, (imageInfo === selectedMainImage) && classes.expand)}></div>
+								<div className={clsx(classes.fadeInBall, (imageInfo === selectedMainImage) && classes.fadeIn)}></div>
 								<img className={classes.imageButtonImage} src={imageInfo} />
 							</div>
 						))}
