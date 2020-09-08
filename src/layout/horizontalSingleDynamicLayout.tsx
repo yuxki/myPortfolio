@@ -126,7 +126,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				alignItems: 'center',
 				flexWrap: 'nowrap',
 				width: '100vw',
-				height: '204px',
+				height: '206px',
 				padding: '0px',
 				margin: '0 calc(50% - 50vw)',
 				overflowX: 'auto',
@@ -134,7 +134,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				'-ms-overflowY': 'hidden',
 			},
 			[theme.breakpoints.down('xs')]: {
-				height: '178px',
+				height: '182px',
 			},
 		},
 		imageButton: {
@@ -183,9 +183,11 @@ const useStyles = makeStyles((theme: Theme) =>
 			transitionTimingFunction: 'ease-out',
 			overflow: 'hidden',
 			[theme.breakpoints.down('sm')]: {
-				top: '-20px',
+				top: '-17px',
 				left: '50%',
 				transform: 'translateX(-50%)',
+				width: '12px',
+				height: '12px',
 			},
 		},
 		fadeIn: {
