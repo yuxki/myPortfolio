@@ -1,3 +1,14 @@
+ver.1.3:202009081028
+リファクタリング #23
+windowsだと、アンダーバーに押し出されて、fadeInballが見切れる #150
+20200907 #23 背景色をthemeで指定 #142
+IEの場合Array.prototype.find()が使えないエラーが生じる #147
+windowsで表示した場合、画面が横に少し広がって、隙間が見える #145
+ieの場合、rgb()がエラーになりballが表示されない #140
+windowsで表示した場合、ExpandBallが四角くなる #125
+faviconを作成して表示させる #123
+github pagesへデプロイするリリースノートの作成 #122
+
 ver.1.2:202009041027
 androidのchromeでタップした時、青いハイライトが表示される #116
 App Design の expandBallが見切れる close #119
